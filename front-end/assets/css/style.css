@@ -1,0 +1,185 @@
+@font-face {
+  font-family: "belligerent";
+  src: url("../font/belligerent-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+*, header a, footer a {
+  font-family: "belligerent";
+  font-size: 1.2em;
+}
+
+header {
+  background-color: #F3E9F1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 6em;
+}
+header img {
+  max-width: 25%;
+  margin: auto;
+  flex: 0 0 30%;
+}
+header div {
+  flex: 0 0 30%;
+}
+header a {
+  text-decoration: none;
+  text-align: right;
+  color: black;
+  flex: 0 0 30%;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding-right: 5%;
+}
+header a img {
+  max-width: 7%;
+}
+
+body {
+  background-color: white;
+}
+body h1 {
+  font-family: "belligerent";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4% auto 2%;
+  font-size: 2em;
+}
+
+#homepage {
+  margin: 5% 20%;
+}
+#homepage #btns {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto 10% auto;
+  justify-content: space-evenly;
+}
+#homepage #btns button {
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: #F3E9F1;
+  padding: 2%;
+}
+#homepage #btns #btn-teddies a {
+  color: black;
+  text-decoration: none;
+}
+#homepage #btns #btn-teddies:hover {
+  background-color: rgba(143, 91, 254, 0.3);
+  box-shadow: 2px 2px 12px black;
+}
+#homepage section {
+  border: 5px solid #F3E9F1;
+  box-shadow: 2px 2px 12px #4E4E4E;
+  border-radius: 20px;
+  margin: 2% 0 2% 0;
+  padding: 2%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  word-break: break-word;
+}
+#homepage section img {
+  max-width: 90%;
+  border: 2px solid black;
+  border-radius: 25px;
+  flex: 0 0 30%;
+}
+#homepage section img:hover {
+  box-shadow: 0 0 16px #C899BE;
+}
+#homepage section div {
+  flex: 0 0 70%;
+}
+#homepage section div h2 {
+  font-size: 1.2em;
+  margin: 2% 0;
+}
+
+#productPage {
+  margin: 15% 5%;
+  text-align: left;
+  justify-content: space-between;
+}
+#productPage section {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+#productPage section select {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 1em;
+  padding: 2%;
+  border-radius: 25px;
+}
+#productPage section select option {
+  text-align: center;
+}
+#productPage section button {
+  display: flex;
+  margin: 5% auto;
+  padding: 9px 30px;
+  border-radius: 100px;
+  border: 4px solid black;
+  background-color: white;
+  box-shadow: 0 0 12px black;
+  transition: background-color 200ms ease-out;
+}
+#productPage section button:hover {
+  background-color: #C899BE;
+}
+#productPage section img {
+  max-width: 40%;
+  transition: all 1s ease;
+  object-fit: scale-down;
+  background-color: #F3E9F1;
+  flex: 0 0 10%;
+  border-radius: 25px;
+  border: 5px solid #F3E9F1;
+  box-shadow: 0 0 12px #4E4E4E;
+}
+#productPage section img:hover {
+  transform: scale(1.15);
+}
+#productPage section div {
+  font-size: 1em;
+  margin-left: 5%;
+  background-color: #F3E9F1;
+  border-radius: 25px;
+  padding: 1%;
+  box-shadow: 0 0 12px #4E4E4E;
+}
+#productPage section div p:nth-child(2) {
+  font-size: 0.8em;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+footer {
+  background-color: #F3E9F1;
+  display: flex;
+  flex-direction: row;
+  height: 6em;
+}
+footer a {
+  text-align: center;
+  flex: 0 0 10%;
+  margin: auto;
+  align-items: center;
+  padding: 1%;
+}
+footer a:hover {
+  cursor: pointer;
+  border-radius: 25px;
+  box-shadow: 0 0 12px black;
+}
+
+/*# sourceMappingURL=style.css.map */
