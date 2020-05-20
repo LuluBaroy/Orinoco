@@ -1,3 +1,6 @@
+let actualURL = window.location;
+actualUrl = window.location.protocol+'//'+window.location.pathname+':3000';
+console.log(actualURL);
 //Getting products informations
 const connection = function(url){
     return new Promise(function (resolve, reject) {
