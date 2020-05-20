@@ -15,9 +15,10 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 6em;
 }
 header img {
-  max-width: 20%;
+  max-width: 25%;
   margin: auto;
   flex: 0 0 30%;
 }
@@ -46,9 +47,8 @@ body h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4% auto;
-  font-size: 2.5em;
-  text-decoration: underline rgba(0, 0, 0, 0.3);
+  margin: 4% auto 2%;
+  font-size: 2em;
 }
 
 #homepage {
@@ -86,7 +86,7 @@ body h1 {
   word-break: break-word;
 }
 #homepage section img {
-  max-width: 30%;
+  max-width: 90%;
   border: 2px solid black;
   border-radius: 25px;
   flex: 0 0 30%;
@@ -94,42 +94,73 @@ body h1 {
 #homepage section img:hover {
   box-shadow: 0 0 16px #C899BE;
 }
-#homepage section p {
+#homepage section div {
   flex: 0 0 70%;
 }
+#homepage section div h2 {
+  font-size: 1.2em;
+  margin: 2% 0;
+}
 
-#product_page {
-  margin: 5% 15%;
-  display: flex;
-  flex-direction: row;
+#productPage {
+  margin: 15% 5%;
   text-align: left;
   justify-content: space-between;
 }
-#product_page .img-size {
-  max-width: 40%;
-  flex: 0 0 20%;
-  border-radius: 25px;
-  border: 5px solid #F3E9F1;
-}
-#product_page section {
-  flex: 0 0 65%;
-  margin-left: 5%;
+#productPage section {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: row;
   text-align: left;
 }
-#product_page section select {
-  margin-bottom: 2%;
+#productPage section select {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 1em;
+  padding: 2%;
+  border-radius: 25px;
 }
-#product_page section p {
-  font-size: 1.2em;
-  margin-bottom: 2%;
+#productPage section select option {
+  text-align: center;
 }
-#product_page section p:nth-child(2) {
-  font-size: 0.8em;
-}
-
-.panier {
+#productPage section button {
   display: flex;
-  margin: auto;
+  margin: 5% auto;
+  padding: 9px 30px;
+  border-radius: 100px;
+  border: 4px solid black;
+  background-color: white;
+  box-shadow: 0 0 12px black;
+  transition: background-color 200ms ease-out;
+}
+#productPage section button:hover {
+  background-color: #C899BE;
+}
+#productPage section img {
+  max-width: 40%;
+  transition: all 1s ease;
+  object-fit: scale-down;
+  background-color: #F3E9F1;
+  flex: 0 0 10%;
+  border-radius: 25px;
+  border: 5px solid #F3E9F1;
+  box-shadow: 0 0 12px #4E4E4E;
+}
+#productPage section img:hover {
+  transform: scale(1.15);
+}
+#productPage section div {
+  font-size: 1em;
+  margin-left: 5%;
+  background-color: #F3E9F1;
+  border-radius: 25px;
+  padding: 1%;
+  box-shadow: 0 0 12px #4E4E4E;
+}
+#productPage section div p:nth-child(2) {
+  font-size: 0.8em;
+  margin-bottom: 5%;
+  text-align: center;
 }
 
 footer {
