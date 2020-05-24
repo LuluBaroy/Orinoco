@@ -22,6 +22,13 @@ header{
   }
   div{
     flex: 0 0 30%;
+    a {
+      display: flex;
+      .return{
+        max-width: 20%;
+        max-height: 20%;
+      }
+    }
   }
   a{
     text-decoration: none;
@@ -32,7 +39,7 @@ header{
     align-items: flex-start;
     box-sizing: border-box;
     padding-right: 5%;
-    img{
+    .basket{
       max-width: 7%;
     }
   }
@@ -49,8 +56,9 @@ body{
     font-size: 2em;
   }
 }
-#homepage{
+#homepage, #cart{
   margin: 5% 20%;
+  height: 242px;
   #btns{
     display: flex;
     flex-direction: row;
@@ -73,32 +81,33 @@ body{
       }
     }
   }
-  section{
-    border: 5px solid #F3E9F1;
-    box-shadow: 2px 2px 12px #4E4E4E;
-    border-radius: 20px;
-    margin: 2% 0 2% 0;
-    padding: 2%;
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    word-break: break-word;
-    img{
-      max-width: 90%;
-      border: 2px solid black;
-      border-radius: 25px;
-      flex: 0 0 30%;
-      &:hover{
-        box-shadow: 0 0 16px #C899BE;
+  article {
+      border: 5px solid #F3E9F1;
+      box-shadow: 2px 2px 12px #4E4E4E;
+      border-radius: 20px;
+      margin: 2% 0 2% 0;
+      padding: 2%;
+      display: flex;
+      flex-direction: row;
+      box-sizing: border-box;
+      word-break: break-word;
+      img {
+        max-width: 90%;
+        border: 2px solid black;
+        border-radius: 25px;
+        flex: 0 0 30%;
+        &:hover {
+          box-shadow: 0 0 16px #C899BE;
+        }
       }
-    }
-    div{
-      flex: 0 0 70%;
-      h2{
-        font-size: 1.2em;
-        margin: 2% 0;
+      div{
+        flex: 0 0 70%;
+        h2{
+          font-size: 1.2em;
+          margin: 2% 0;
+        }
       }
-    }
+
   }
 }
 #productPage{
@@ -118,6 +127,15 @@ body{
       border-radius: 25px;
       option{
         text-align: center;
+      }
+    }
+    .selectQuantity{
+      display: flex;
+      align-items: baseline;
+      select{
+        margin-top: 0;
+        margin-left: 1%;
+        display: flex;
       }
     }
     button{
@@ -166,9 +184,6 @@ footer{
   display: flex;
   flex-direction: row;
   height: 6em;
-  position: relative;
-  bottom: 0;
-  left: 0;
   width: 100%;
   a{
     text-align: center;

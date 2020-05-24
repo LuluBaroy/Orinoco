@@ -11,19 +11,20 @@
         <header>
             <div></div>
             <img src="assets/img/logo.png" alt="logo Orinoco"/>
-            <a href="pages/basket.html"><img src="assets/img/basket.png"> Panier</a>
+            <a id="btn-basket-index" href="pages/cart.html"><img class="basket" src="assets/img/basket.png"> Panier</a>
         </header>
         <main id="homepage">
             <div id="btns">
-                <button disabled>Ori-Cameras</button>
-                <button id="btn-teddies">Ori-Teddies</button>
-                <button disabled>Ori-Oak-Furnitures</button>
+                <button id="btn-camera" onClick="getItems('cameras')">Ori-Cameras</button>
+                <button id="btn-teddies" onClick="getItems('teddies')">Ori-Teddies</button>
+                <button id="btn-furniture" onClick="getItems('furniture')">Ori-Oak-Furnitures</button>
             </div>
         </main>
-        <footer>
+        <footer id="footerSettings">
             <a>A propos de nous</a>
             <a>Contactez-nous</a>
         </footer>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/index.js"></script>
     </body>
 </html>
