@@ -56,8 +56,9 @@ body{
     font-size: 2em;
   }
 }
-#homepage{
+#homepage, #cart{
   margin: 5% 20%;
+  height: 242px;
   #btns{
     display: flex;
     flex-direction: row;
