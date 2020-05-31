@@ -1,10 +1,8 @@
+modifyingHeader('btn-cart-products', "../");
 //Calling of the promise
 connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.get("id")).then(function (response) {
-    //Creating a variable to stock response
-    let products = [];
-    products = response;
-
     let sectionProducts = document.createElement('section');
+
     //Parametring the buttonCart
     let buttonCart = document.createElement('button');
     buttonCart.textContent = 'Ajouter au panier';
@@ -12,6 +10,18 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
 
         //Getting the locally stored item and verifying if this is the first product added
         let cartUp = JSON.parse(localStorage.getItem('cart'));
+
+        //Creating a new Class to add different products easily in the localStorage item
+        class Line{
+            constructor(param, imgUrl, name, id, quantity, price){
+                this.param = param;
+                this.imgUrl = imgUrl;
+                this.name = name;
+                this.id = id;
+                this.quantity = quantity;
+                this.price = price;
+            }
+        }
 
         if(cartUp === null){                  //if this is the first product added, creating new line and stocking it
             let cart = [];
@@ -120,17 +130,4 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     quantity.appendChild(selectQuantity);
     divProducts.appendChild(priceProduct);
     divProducts.appendChild(buttonCart);
-
-    //Creating a new Class to add different products easily in the localStorage item
-    class Line{
-        constructor(param, imgUrl, name, id, quantity, price){
-            this.param = param;
-            this.imgUrl = imgUrl;
-            this.name = name;
-            this.id = id;
-            this.quantity = quantity;
-            this.price = price;
-        }
-    }
 })
-modifyingHeader('btn-cart-products', "../");

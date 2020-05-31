@@ -58,31 +58,30 @@ body h1 {
   font-size: 2em;
 }
 
-#homepage, #cart {
+#homepage, #cart, #confirmation {
   margin: 5% 20%;
-  height: 242px;
 }
-#homepage #btns, #cart #btns {
+#homepage #btns, #cart #btns, #confirmation #btns {
   display: flex;
   flex-direction: row;
   margin: 0 auto 10% auto;
   justify-content: space-evenly;
 }
-#homepage #btns button, #cart #btns button {
+#homepage #btns button, #cart #btns button, #confirmation #btns button {
   border: 2px solid black;
   border-radius: 20px;
   background-color: #F3E9F1;
   padding: 2%;
 }
-#homepage #btns #btn-teddies a, #cart #btns #btn-teddies a {
+#homepage #btns #btn-teddies a, #homepage #btns #btn-camera a, #homepage #btns #btn-furniture a, #cart #btns #btn-teddies a, #cart #btns #btn-camera a, #cart #btns #btn-furniture a, #confirmation #btns #btn-teddies a, #confirmation #btns #btn-camera a, #confirmation #btns #btn-furniture a {
   color: black;
   text-decoration: none;
 }
-#homepage #btns #btn-teddies:hover, #cart #btns #btn-teddies:hover {
+#homepage #btns #btn-teddies:hover, #homepage #btns #btn-camera:hover, #homepage #btns #btn-furniture:hover, #cart #btns #btn-teddies:hover, #cart #btns #btn-camera:hover, #cart #btns #btn-furniture:hover, #confirmation #btns #btn-teddies:hover, #confirmation #btns #btn-camera:hover, #confirmation #btns #btn-furniture:hover {
   background-color: rgba(143, 91, 254, 0.3);
   box-shadow: 2px 2px 12px black;
 }
-#homepage article, #cart article {
+#homepage article, #cart article, #confirmation article {
   border: 5px solid #F3E9F1;
   box-shadow: 2px 2px 12px #4E4E4E;
   border-radius: 20px;
@@ -93,7 +92,7 @@ body h1 {
   box-sizing: border-box;
   word-break: break-word;
 }
-#homepage article img, #cart article img {
+#homepage article img, #cart article img, #confirmation article img {
   width: 204px;
   height: 199px;
   object-fit: scale-down;
@@ -101,16 +100,21 @@ body h1 {
   border-radius: 25px;
   flex: 0 0 30%;
 }
-#homepage article img:hover, #cart article img:hover {
+#homepage article img:hover, #cart article img:hover, #confirmation article img:hover {
   box-shadow: 0 0 16px #C899BE;
 }
-#homepage article div, #cart article div {
+#homepage article div, #cart article div, #confirmation article div {
   flex: 0 0 70%;
   margin-left: 2%;
 }
-#homepage article div h2, #cart article div h2 {
+#homepage article div h2, #cart article div h2, #confirmation article div h2 {
   font-size: 1.2em;
   margin: 2% 0;
+}
+
+#homepage #imgHomepage {
+  display: flex;
+  float: right;
 }
 
 #productPage {
@@ -211,11 +215,11 @@ footer a:hover {
   box-shadow: 0 0 12px black;
   border-radius: 50px;
   width: 15%;
-  padding: 4%;
-  margin: 5% auto 10%;
+  padding: 2%;
+  margin: 0 auto 5%;
   font-size: 2.3em;
 }
-#cart #emptyCartSection, #cart #sectionWithProducts {
+#cart #emptyCartSection, #cart #sectionWithProducts, #cart #sectionForm {
   border: 4px solid black;
   border-radius: 50px;
   padding: 5%;
@@ -223,15 +227,15 @@ footer a:hover {
   display: flex;
   flex-direction: column;
 }
-#cart #emptyCartSection h2, #cart #sectionWithProducts h2 {
+#cart #emptyCartSection h2, #cart #sectionWithProducts h2, #cart #sectionForm h2 {
   font-size: 1.7em;
   margin: 2% 2% 10%;
 }
-#cart #emptyCartSection p, #cart #sectionWithProducts p {
+#cart #emptyCartSection p, #cart #sectionWithProducts p, #cart #sectionForm p {
   margin: 2%;
   text-decoration: underline black;
 }
-#cart #emptyCartSection button, #cart #sectionWithProducts button {
+#cart #emptyCartSection button, #cart #sectionWithProducts button, #cart #sectionForm button {
   margin: 0 auto 5% auto;
   border-radius: 50px;
   padding: 2%;
@@ -241,7 +245,7 @@ footer a:hover {
   box-shadow: 0 0 12px black;
   transition: background-color 200ms ease-out;
 }
-#cart #emptyCartSection button:hover, #cart #sectionWithProducts button:hover {
+#cart #emptyCartSection button:hover, #cart #sectionWithProducts button:hover, #cart #sectionForm button:hover {
   background-color: #C899BE;
 }
 #cart #sectionWithProducts h2 {

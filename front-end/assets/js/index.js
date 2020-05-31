@@ -1,9 +1,11 @@
-//Defining different btns state
+modifyingHeader('btn-cart-index', '');
+localStorage.getItem('cart');
 let isClicked = false;
 let currentParam = 'teddies';
-console.log(window.location.href);
+
 function getItems(param) {
     //Creating the list container
+    document.getElementById('imgHomepage').style.display = 'none';
     let sectionProducts = document.createElement('section');
     sectionProducts.id = "container-list";
 
@@ -12,17 +14,13 @@ function getItems(param) {
             document.getElementById('container-list').remove();
         }
         document.getElementById('homepage').appendChild(sectionProducts);
-        document.getElementById('homepage').style.height = 'auto';
         connection("http://localhost:3000/api/" + param).then(function (response) {
             /* Dynamic URL
             window.location.href = window.location.protocol + "//" + window.location.hostname + ":3000/api/" + param;
             */
-            //Getting all products informations then stocking it into 'products' variable
-            let products = [];
-            products = response;
-            console.log(products);
+
             //For each products, we create HTML structure
-            products.forEach(function (response) {
+            response.forEach(function (response) {
                 let articleProducts = document.createElement('article');
                 let linkProductsPage = document.createElement('a');
                 let idProduct = response._id;
@@ -52,5 +50,4 @@ function getItems(param) {
         }).catch();
     }
 }
-modifyingHeader('btn-cart-index', '');
-localStorage.getItem('cart');
+
