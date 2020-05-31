@@ -1,9 +1,11 @@
+modifyingHeader('btn-cart-cart', '../');
+
 //Getting products stored in localStorage
 let productsAddedToCart = JSON.parse(localStorage.getItem('cart'));
+
 let titleCart = document.createElement('h1');
     titleCart.textContent = "Panier";
 let sectionCart = document.createElement('section');
-document.getElementById('cart').style.height = 'auto';
 document.getElementById('cart').appendChild(sectionCart);
 sectionCart.appendChild(titleCart);
 
@@ -101,12 +103,12 @@ if(productsAddedToCart === null){
             let priceProductsSuggested = priceOfProduct;
             priceCalculation(priceProductsSuggested, priceText, 'Prix : ');
 
-                //Placing new elements in cart page
-                divProductsSuggested.appendChild(articleSuggested);
-                articleSuggested.appendChild(nameOfProduct);
-                articleSuggested.appendChild(linkToProduct);
-                linkToProduct.appendChild(imgProductSuggested);
-                articleSuggested.appendChild(priceText);
+            //Placing new elements in cart page
+            divProductsSuggested.appendChild(articleSuggested);
+            articleSuggested.appendChild(nameOfProduct);
+            articleSuggested.appendChild(linkToProduct);
+            linkToProduct.appendChild(imgProductSuggested);
+            articleSuggested.appendChild(priceText);
         })
     }
 
@@ -206,18 +208,18 @@ if(productsAddedToCart === null){
     priceCalculation(calculationTotalOrder, totalOrder, 'Prix total de la commande : ');
     sectionCart.appendChild(totalOrder);
 
-    //Creating form
+    //Creating form                                                                     /////!!!!!A RETRAVAILLER !!!!\\\\\\
     let sectionForm = document.createElement('section');
         sectionForm.id = "sectionForm";
-        sectionForm.innerHTML = "<form action=\"\" method=\"POST\" id=\"form1\">\n" +
+        sectionForm.innerHTML = "<form action=\"\" id=\"form1\">\n" +
             "  <div class=\"formCss\">\n" +
             "    <label for=\"name\">Nom : </label>\n" +
             "    <input type=\"text\" name=\"lastName\" id=\"lastName\" class='infoRequired' required placeholder='Nom' pattern='^[a-zA-Z]+$'>\n" +
             "  </div>\n" +
-            "<div class=\"formCss\">\n" +
-                "<label for=\"name\">Prénom : </label>\n" +
-    "           <input type=\"text\" name=\"firstName\" id=\"firstName\" class='infoRequired'required placeholder='Prénom' pattern='^[a-zA-ZÀ-ÿ]+$'>\n" +
-    "           </div>\n" +
+            "  <div class=\"formCss\">\n" +
+            "    <label for=\"name\">Prénom : </label>\n" +
+            "    <input type=\"text\" name=\"firstName\" id=\"firstName\" class='infoRequired'required placeholder='Prénom' pattern='^[a-zA-ZÀ-ÿ]+$'>\n" +
+            "  </div>\n" +
             "  <div class=\"formCss\">\n" +
             "    <label for=\"city\">Adresse : </label>\n" +
             "    <input type=\"text\" name=\"address\" id=\"address\" class='infoRequired' required placeholder='Adresse'>\n" +
@@ -231,36 +233,67 @@ if(productsAddedToCart === null){
             "    <input type=\"email\" name=\"email\" id=\"email\" class='infoRequired' required placeholder='E-mail' pattern='^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})+$'>\n" +
             "  </div>\n" +
             "  <div class=\"formCss\">\n" +
-            "    <input type=\"submit\" id='btn-submit' value=\"Validez votre commande !\">\n" +
+            "    <input type=\"button\" id='btn-submit' value=\"Validez votre commande !\">\n" +
             "  </div>\n" +
             "</form>"
+
+    //Placing form in cart page
     document.getElementById('cart').appendChild(sectionForm);
+
+    //Adding an event listener on the submit button
     document.getElementById('btn-submit').addEventListener('click', function(event){
-        event.preventDefault();
-        class userInfo {
-            constructor(lastName, firstName, address, city, email) {
-                this.lastName = lastName;
+
+        //Creating class for sending contact infos
+        class Contact {
+            constructor(firstName, lastName, address, city, email) {
                 this.firstName = firstName;
+                this.lastName = lastName;
                 this.address = address;
                 this.city = city;
                 this.email = email;
             }
         }
-        let newUser = new userInfo(document.getElementById('lastName').value, document.getElementById('firstName').value, document.getElementById('address').value, document.getElementById('city').value, document.getElementById('email').value);
-        class productsOrder{
-            constructor(id, quantity) {
-                this.id = id;
-                this.quantity = quantity;
+
+        //Creating a class to post contact's object and products' array to server
+        class formSent {
+            constructor(user, products) {
+                this.contact = user;
+                this.products = products;
             }
         }
-        let productsOrdered = new productsOrder(productsAddedToCart.id, productsAddedToCart.quantity);
-        let form1 = document.getElementById('form1');
-        if(!form1.checkValidity()){
-            console.log("You've been a bad boy !");
+        //Creating a new Array to stock products' id and getting the param
+        let productsOrdered = [];
+        let param = '';
+        for(let k in productsAddedToCart) {
+            productsOrdered.push(productsAddedToCart[k].id.toString());
+            param = productsAddedToCart[k].param;
+        }
+
+        //Checking the form validity
+        if(!document.getElementById('form1').checkValidity()){
+            event.preventDefault();
         } else {
-            console.log('Tadaaaaaa !');
+            //Form is valid: creating the user contact infos
+            let newContact = new Contact(document.getElementById('firstName').value, document.getElementById('lastName').value, document.getElementById('address').value, document.getElementById('city').value, document.getElementById('email').value);
+
+            //Creating the variable we're going to post to server
+            let order = new formSent(newContact, productsOrdered);
+
+            //POST request
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                if (this.readyState === 4 && this.status === 201){
+                    //If request's done, setting a new "confirm" item in local storage, remote the 'cart' item and redirecting to confirmation page
+                    localStorage.setItem('confirm', JSON.stringify(order));
+                    localStorage.setItem('param', JSON.stringify(param));
+                    localStorage.setItem('totalPrice', JSON.stringify(calculationTotalOrder));
+                    localStorage.removeItem('cart');
+                    window.location.href = "./confirmation.html";
+                }
+            }
+            request.open("POST", "http://localhost:3000/api/" + param + "/order");
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(JSON.stringify(order));
         }
     })
 }
-
-modifyingHeader('btn-cart-cart', '../');
