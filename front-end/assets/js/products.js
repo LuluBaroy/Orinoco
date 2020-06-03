@@ -1,51 +1,6 @@
-modifyingHeader('btn-cart-products', "../");
 //Calling of the promise
 connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.get("id")).then(function (response) {
     let sectionProducts = document.createElement('section');
-
-    //Parametring the buttonCart
-    let buttonCart = document.createElement('button');
-    buttonCart.textContent = 'Ajouter au panier';
-    buttonCart.addEventListener('click', function (event) {
-
-        //Getting the locally stored item and verifying if this is the first product added
-        let cartUp = JSON.parse(localStorage.getItem('cart'));
-
-        //Creating a new Class to add different products easily in the localStorage item
-        class Line{
-            constructor(param, imgUrl, name, id, quantity, price){
-                this.param = param;
-                this.imgUrl = imgUrl;
-                this.name = name;
-                this.id = id;
-                this.quantity = quantity;
-                this.price = price;
-            }
-        }
-
-        if(cartUp === null){                  //if this is the first product added, creating new line and stocking it
-            let cart = [];
-            let firstLine = new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
-            cart.push(firstLine);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            location.reload();
-        } else {                              //Else, verifying if the product has already been added
-            let cartUp2 = JSON.parse(localStorage.getItem('cart'));
-            let productAlreadyAdded = false;
-            for (let k in cartUp2) {
-                if (cartUp2[k].id === response._id) {
-                    productAlreadyAdded = true;
-                    cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
-                }
-            }
-            if (!productAlreadyAdded) {
-                cartUp2.push(new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
-            }
-            localStorage.setItem('cart', JSON.stringify(cartUp2));
-            location.reload();
-        }
-    });
-
     let imageProducts = document.createElement('img');
         imageProducts.src = response.imageUrl;
         imageProducts.alt = "Photo "+ currentParamProducts + " " +response.name;
@@ -89,11 +44,6 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     //Calling of the option function with the switch value as parameter
     getAllOptions(firstProperty);
 
-    let priceProduct = document.createElement('p');
-    let priceLength = response.price;
-    //Converting the price in euro
-    priceCalculation(priceLength, priceProduct, `Prix : `);
-
     //Possibility to choose quantity
     let quantity = document.createElement('label');
     quantity.for = "quantity";
@@ -116,6 +66,55 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     }
     //Creating the 'select' element by calling the optionQuantity function
     optionQuantity();
+
+
+    let priceProduct = document.createElement('p');
+    let priceLength = response.price;
+    //Converting the price in euro
+    priceCalculation(priceLength, priceProduct, `Prix : `);
+
+    //Parametring the buttonCart
+    let buttonCart = document.createElement('button');
+    buttonCart.textContent = 'Ajouter au panier';
+    buttonCart.addEventListener('click', function (event) {
+
+        //Getting the locally stored item and verifying if this is the first product added
+        let cartUp = JSON.parse(localStorage.getItem('cart'));
+
+        //Creating a new Class to add different products easily in the localStorage item
+        class Line{
+            constructor(param, imgUrl, name, id, quantity, price){
+                this.param = param;
+                this.imgUrl = imgUrl;
+                this.name = name;
+                this.id = id;
+                this.quantity = quantity;
+                this.price = price;
+            }
+        }
+
+        if(cartUp === null){                  //if this is the first product added, creating new line and stocking it
+            let cart = [];
+            let firstLine = new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
+            cart.push(firstLine);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload();
+        } else {                              //Else, verifying if the product has already been added
+            let cartUp2 = JSON.parse(localStorage.getItem('cart'));
+            let productAlreadyAdded = false;
+            for (let k in cartUp2) {
+                if (cartUp2[k].id === response._id) {
+                    productAlreadyAdded = true;
+                    cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
+                }
+            }
+            if (!productAlreadyAdded) {
+                cartUp2.push(new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
+            }
+            localStorage.setItem('cart', JSON.stringify(cartUp2));
+            location.reload();
+        }
+    });
 
     //Placing all elements in the product page
     document.getElementById('productPage').appendChild(sectionProducts);
