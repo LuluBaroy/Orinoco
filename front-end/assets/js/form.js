@@ -64,29 +64,38 @@ if(productsAddedToCart !== null) {
         //Creating a new Array to stock products' id and getting the param
         let productsOrderedFurniture = [], productsOrderedCameras = [], productsOrderedTeddies = [], param = '';
         let productsOrdered = [productsOrderedTeddies, productsOrderedCameras, productsOrderedFurniture];
+
         //Checking the form validity
         if (!document.getElementById('form1').checkValidity()) {
             event.preventDefault();
         } else {
             //Form is valid: creating the user contact infos
-            let newContact = new Contact(document.getElementById('firstName').value, document.getElementById('lastName').value, document.getElementById('address').value, document.getElementById('city').value, document.getElementById('email').value);
+           let newContact = new Contact(document.getElementById('firstName').value, document.getElementById('lastName').value, document.getElementById('address').value, document.getElementById('city').value, document.getElementById('email').value);
             let order, confirm = [];
 
-            for (let l in productsAddedToCart) {
+             for (let l in productsAddedToCart) {
                 if (productsAddedToCart[l].param === 'teddies') {
                     productsOrderedTeddies.push(productsAddedToCart[l].id.toString());
                     order = new formSent(newContact, productsOrdered[0]);
-                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));
+                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));*/
                 } else if (productsAddedToCart[l].param === 'cameras') {
                     productsOrderedCameras.push(productsAddedToCart[l].id.toString());
                     order = new formSent(newContact, productsOrdered[1]);
-                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));
+                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));*/
                 } else {
                     productsOrderedFurniture.push(productsAddedToCart[l].id.toString());
                     order = new formSent(newContact, productsOrdered[2]);
-                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));
+                    confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));*/
                 }
-                sending("http://localhost:3000/api/" + productsAddedToCart[l].param + "/order", order);
+            }
+            if(productsOrdered[0].length !== 0){
+                sending("http://localhost:3000/api/" + 'teddies' + "/order", new formSent(newContact, productsOrdered[0]));
+            }
+            if(productsOrdered[1].length !== 0){
+                sending("http://localhost:3000/api/" + 'cameras' + "/order", new formSent(newContact, productsOrdered[1]));
+            }
+            if(productsOrdered[2].length !== 0){
+                sending("http://localhost:3000/api/" + 'furniture' + "/order", new formSent(newContact, productsOrdered[2]));
             }
 
             localStorage.setItem('confirm', JSON.stringify(confirm));
@@ -97,5 +106,4 @@ if(productsAddedToCart !== null) {
             console.log(orderIds);
         }
     })
-
 }
