@@ -1,5 +1,3 @@
-modifyingHeader('btn-cart-index', '');
-localStorage.getItem('cart');
 let isClicked = false;
 let currentParam = 'teddies';
 
@@ -15,9 +13,6 @@ function getItems(param) {
         }
         document.getElementById('homepage').appendChild(sectionProducts);
         connection("http://localhost:3000/api/" + param).then(function (response) {
-            /* Dynamic URL
-            window.location.href = window.location.protocol + "//" + window.location.hostname + ":3000/api/" + param;
-            */
 
             //For each products, we create HTML structure
             response.forEach(function (response) {
