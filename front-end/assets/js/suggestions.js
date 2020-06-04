@@ -1,20 +1,20 @@
-if(productsAddedToCart === null) {
+if (productsAddedToCart === null) {
     sectionCart.id = "emptyCartSection";
     let textEmptyCart = document.createElement('h2');
-    textEmptyCart.textContent = "Votre panier est vide !!"
+    textEmptyCart.textContent = "Votre panier est vide !!";
     let findProducts = document.createElement('p');
     findProducts.textContent = 'Retrouvez tous nos produits ici : ';
 
     //Creating button to go back to Homepage
     let buttonReturnHomepage = document.createElement('button');
     buttonReturnHomepage.textContent = "Nos produits";
-    buttonReturnHomepage.addEventListener('click', function(event){
+    buttonReturnHomepage.addEventListener('click', function (event) {
         window.location.href = "../index.html";
-    })
+    });
 
     //Products suggestions for users
     let productsSuggested = document.createElement('p');
-    productsSuggested.textContent = "Ces produits pourraient vous plaire :"
+    productsSuggested.textContent = "Ces produits pourraient vous plaire :";
     let divProductsSuggested = document.createElement('div');
     divProductsSuggested.id = 'productsSuggestedContainer';
 
@@ -24,67 +24,58 @@ if(productsAddedToCart === null) {
     sectionCart.appendChild(buttonReturnHomepage);
     sectionCart.appendChild(productsSuggested);
     sectionCart.appendChild(divProductsSuggested);
-    function suggestionsProducts() {
-        let randomParam = Math.floor(Math.random() * 3);
-        let paramChose = "";
-        switch (randomParam) {
-            case 0:
-                paramChose = 'teddies';
-                break;
-            case 1:
-                paramChose = 'furniture';
-                break;
-            case 2:
-                paramChose = 'cameras';
-                break;
+    let arrayForProductRandomlySelected = [];
+    class ProductsRandomlySelected{
+        constructor(param, id, name, image, url, price) {
+            this.param = param;
+            this.id = id;
+            this.name = name;
+            this.image = image;
+            this.url = url;
+            this.price = price;
+
         }
-        connection("http://localhost:3000/api/" + paramChose).then(function (response) {
-            let randomProducts = Math.floor(Math.random() * 5);
-            let productsChose = "";
-            let titleProductChose = "";
-            let imgSrc = "";
-            let linkProduct = "";
-            let priceOfProduct = "";
-            switch (randomProducts) {
+    }
+    let productAlreadySuggested = false;
+    let newArray;
+    function suggestionsProducts() {
+        for(let i = 0; i <= 2; i++) {
+            let randomParam = Math.floor(Math.random() * 3);
+            let paramChose = "";
+            switch (randomParam) {
                 case 0:
-                    productsChose = response[0]._id;
-                    titleProductChose = response[0].name;
-                    imgSrc = response[0].imageUrl;
-                    linkProduct = 'products.html?type=' + paramChose + '&id=' + response[0]._id;
-                    priceOfProduct = response[0].price;
+                    paramChose = 'teddies';
                     break;
                 case 1:
-                    productsChose = response[1]._id;
-                    titleProductChose = response[1].name;
-                    imgSrc = response[1].imageUrl;
-                    linkProduct = 'products.html?type=' + paramChose + '&id=' + response[1]._id;
-                    priceOfProduct = response[1].price;
+                    paramChose = 'furniture';
                     break;
                 case 2:
-                    productsChose = response[2]._id;
-                    titleProductChose = response[2].name;
-                    imgSrc = response[2].imageUrl;
-                    linkProduct = 'products.html?type=' + paramChose + '&id=' + response[2]._id;
-                    priceOfProduct = response[2].price;
-                    break;
-                case 3:
-                    productsChose = response[3]._id;
-                    titleProductChose = response[3].name;
-                    imgSrc = response[3].imageUrl;
-                    linkProduct = 'products.html?type=' + paramChose + '&id=' + response[3]._id;
-                    priceOfProduct = response[3].price;
-                    break;
-                case 4:
-                    productsChose = response[4]._id;
-                    titleProductChose = response[4].name;
-                    imgSrc = response[4].imageUrl;
-                    linkProduct = 'products.html?type=' + paramChose + '&id=' + response[4]._id;
-                    priceOfProduct = response[4].price;
+                    paramChose = 'cameras';
                     break;
             }
-
+            connection("http://localhost:3000/api/" + paramChose).then(function (response) {
+                let randomProducts = Math.floor(Math.random() * 5);
+                switch (randomProducts) {
+                    case 0:
+                        arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[0]._id, response[0].name, response[0].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[0]._id, response[0].price));
+                        break;
+                    case 1:
+                        arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[1]._id, response[1].name, response[1].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[1]._id, response[1].price));
+                        break;
+                    case 2:
+                        arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[2]._id, response[2].name, response[2].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[2]._id, response[2].price));
+                        break;
+                    case 3:
+                        arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[3]._id, response[3].name, response[3].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[3]._id, response[3].price));
+                        break;
+                    case 4:
+                        arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[4]._id, response[4].name, response[4].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[4]._id, response[4].price));
+                        break;
+                }
+            });
+        }
             //Creating the visualisations' layout
-            let articleSuggested = document.createElement('article');
+            /*let articleSuggested = document.createElement('article');
             articleSuggested.className = 'articleSuggested';
             let nameOfProduct = document.createElement('h3');
             nameOfProduct.textContent = titleProductChose;
@@ -101,11 +92,11 @@ if(productsAddedToCart === null) {
             articleSuggested.appendChild(nameOfProduct);
             articleSuggested.appendChild(linkToProduct);
             linkToProduct.appendChild(imgProductSuggested);
-            articleSuggested.appendChild(priceText);
-        })
+            articleSuggested.appendChild(priceText);*/
+        
     }
     suggestionsProducts();
-    suggestionsProducts();
-    suggestionsProducts();
+    console.log(arrayForProductRandomlySelected);
+
 }
 //Calling the random suggestions (1 by product)

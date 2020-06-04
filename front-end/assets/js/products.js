@@ -2,24 +2,24 @@
 connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.get("id")).then(function (response) {
     let sectionProducts = document.createElement('section');
     let imageProducts = document.createElement('img');
-        imageProducts.src = response.imageUrl;
-        imageProducts.alt = "Photo "+ currentParamProducts + " " +response.name;
-        imageProducts.title = "Photo de présentation " + currentParamProducts+ " " + response.name;
+    imageProducts.src = response.imageUrl;
+    imageProducts.alt = "Photo " + currentParamProducts + " " + response.name;
+    imageProducts.title = "Photo de présentation " + currentParamProducts + " " + response.name;
     let divProducts = document.createElement('div');
     let titleProducts = document.createElement('h1');
-        titleProducts.textContent = response.name;
+    titleProducts.textContent = response.name;
     let refProduct = document.createElement('p');
-        refProduct.textContent = "Ref: " + response._id;
+    refProduct.textContent = "Ref: " + response._id;
     let descriptionProducts = document.createElement('p');
-        descriptionProducts.textContent = response.description;
+    descriptionProducts.textContent = response.description;
     let labelSelect = document.createElement('label');
-        labelSelect.for = "option-product";
-        labelSelect.textContent = "Options : ";
+    labelSelect.for = "option-product";
+    labelSelect.textContent = "Options : ";
     let selectProduct = document.createElement('select');
 
     //Switching option property according to URL's param
     let firstProperty = "";
-    switch (currentParamProducts){
+    switch (currentParamProducts) {
         case "teddies":
             firstProperty = 'colors';
             break;
@@ -38,7 +38,7 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
             let optionValue = document.createTextNode(value);
             option.appendChild(optionValue);
             selectProduct.appendChild(option);
-        })
+        });
     }
 
     //Calling of the option function with the switch value as parameter
@@ -54,9 +54,9 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     selectQuantity.id = "quantityChoose";
 
     //Creating possibility to choose quantity of each products
-    function optionQuantity(){
+    function optionQuantity() {
         let j = 0;
-        while(j<=8){
+        while (j <= 8) {
             j++;
             let option = document.createElement('option');
             option.textContent = j;
@@ -66,7 +66,6 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     }
     //Creating the 'select' element by calling the optionQuantity function
     optionQuantity();
-
 
     let priceProduct = document.createElement('p');
     let priceLength = response.price;
@@ -82,8 +81,8 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
         let cartUp = JSON.parse(localStorage.getItem('cart'));
 
         //Creating a new Class to add different products easily in the localStorage item
-        class Line{
-            constructor(param, imgUrl, name, id, quantity, price){
+        class Line {
+            constructor(param, imgUrl, name, id, quantity, price) {
                 this.param = param;
                 this.imgUrl = imgUrl;
                 this.name = name;
@@ -93,13 +92,15 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
             }
         }
 
-        if(cartUp === null){                  //if this is the first product added, creating new line and stocking it
+        if (cartUp === null) {
+            //if this is the first product added, creating new line and stocking it
             let cart = [];
             let firstLine = new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
             location.reload();
-        } else {                              //Else, verifying if the product has already been added
+        } else {
+            //Else, verifying if the product has already been added
             let cartUp2 = JSON.parse(localStorage.getItem('cart'));
             let productAlreadyAdded = false;
             for (let k in cartUp2) {
@@ -129,4 +130,4 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     quantity.appendChild(selectQuantity);
     divProducts.appendChild(priceProduct);
     divProducts.appendChild(buttonCart);
-})
+});
