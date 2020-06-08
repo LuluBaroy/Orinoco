@@ -7,8 +7,8 @@ function getItems(param) {
     let sectionProducts = document.createElement('section');
     sectionProducts.id = "container-list";
 
-    if(isClicked === false || currentParam !== param){
-        if(isClicked === true){
+    if (isClicked === false || currentParam !== param) {
+        if (isClicked === true) {
             document.getElementById('container-list').remove();
         }
         document.getElementById('homepage').appendChild(sectionProducts);
@@ -19,17 +19,17 @@ function getItems(param) {
                 let articleProducts = document.createElement('article');
                 let linkProductsPage = document.createElement('a');
                 let idProduct = response._id;
-                    linkProductsPage.href = 'pages/products.html?type=' + param + '&id=' + idProduct;
-                    linkProductsPage.ariaLabel = "Page du produit";
+                linkProductsPage.href = 'pages/products.html?type=' + param + '&id=' + idProduct;
+                linkProductsPage.ariaLabel = "Page du produit";
                 let imageProducts = document.createElement('img');
-                    imageProducts.src = response.imageUrl;
-                    imageProducts.alt = "Photo Ourson " + response.name;
-                    imageProducts.title = "Photo de présentation ourson " + response.name;
+                imageProducts.src = response.imageUrl;
+                imageProducts.alt = "Photo Ourson " + response.name;
+                imageProducts.title = "Photo de présentation ourson " + response.name;
                 let divProducts = document.createElement('div');
                 let titleProducts = document.createElement('h2');
-                    titleProducts.textContent = response.name;
+                titleProducts.textContent = response.name;
                 let descriptionProducts = document.createElement('p');
-                    descriptionProducts.textContent = response.description;
+                descriptionProducts.textContent = response.description;
 
                 //Placing new elements on the index page
                 sectionProducts.appendChild(articleProducts);
@@ -45,4 +45,3 @@ function getItems(param) {
         }).catch();
     }
 }
-
