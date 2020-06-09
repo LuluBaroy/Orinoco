@@ -1,4 +1,8 @@
+import {connection} from "./main";
+import {priceCalculation} from "./main";
+
 //Getting all order's information
+
 let confirmation = JSON.parse(localStorage.getItem('confirm'));
 let contact = JSON.parse(localStorage.getItem('contact'));
 let orderId = JSON.parse(localStorage.getItem('orderId'));
@@ -9,7 +13,7 @@ let sectionConfirm = document.createElement('section');
 let pageTitle = document.createElement('h1');
 pageTitle.textContent = "Confirmation de commande";
 let orderIdText = document.createElement('h2');
-   orderIdText.textContent = "Référence(s) de votre commande : " + orderId.join(', ');
+   orderIdText.textContent = `Référence(s) de votre commande : ${orderId.join(', ')}`;
 
 let thanks = document.createElement('p');
 thanks.textContent = `Merci ${contact.firstName} ${contact.lastName} pour votre commande chez Orinoco !`;

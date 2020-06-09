@@ -1,3 +1,8 @@
+import {productsAddedToCart} from "./cart";
+import {sectionCart} from "./cart";
+import {connection} from "./main";
+import {priceCalculation} from "./main";
+
 if (productsAddedToCart === null) {
     sectionCart.id = "emptyCartSection";
     let textEmptyCart = document.createElement('h2');
@@ -24,6 +29,7 @@ if (productsAddedToCart === null) {
     sectionCart.appendChild(buttonReturnHomepage);
     sectionCart.appendChild(productsSuggested);
     sectionCart.appendChild(divProductsSuggested);
+
     let arrayForProductRandomlySelected = [];
     class ProductsRandomlySelected{
         constructor(param, id, name, image, url, price) {
@@ -37,7 +43,7 @@ if (productsAddedToCart === null) {
         }
     }
     function suggestionsProducts() {
-        for(let i = 0; i <= 2; i++) {
+        for(let i = 0; i <= 5; i++) {
             let randomParam = Math.floor(Math.random() * 3);
             let paramChose = "";
             switch (randomParam) {
@@ -109,34 +115,34 @@ if (productsAddedToCart === null) {
                                 break;
                         }
                     }
-                    console.log(arrayForProductRandomlySelected);
-                }
+                    if(i === 5){
+                        console.log(arrayForProductRandomlySelected);
+                        //Creating the visualisations' layout
+                        for(let j in arrayForProductRandomlySelected){
+                            let articleSuggested = document.createElement('article');
+                            articleSuggested.className = 'articleSuggested';
+                            let nameOfProduct = document.createElement('h3');
+                            nameOfProduct.textContent = arrayForProductRandomlySelected[j].name;
+                            let imgProductSuggested = document.createElement('img');
+                            imgProductSuggested.src = arrayForProductRandomlySelected[j].image;
+                            let linkToProduct = document.createElement('a');
+                            linkToProduct.href = arrayForProductRandomlySelected[j].url;
+                            let priceText = document.createElement('p');
+                            let priceProductsSuggested = arrayForProductRandomlySelected[j].price;
+                            priceCalculation(priceProductsSuggested, priceText, 'Prix : ');
 
+                            //Placing new elements in cart page
+                            divProductsSuggested.appendChild(articleSuggested);
+                            articleSuggested.appendChild(nameOfProduct);
+                            articleSuggested.appendChild(linkToProduct);
+                            linkToProduct.appendChild(imgProductSuggested);
+                            articleSuggested.appendChild(priceText);
+                        }
+
+                    }
+                }
             });
         }
-        //Creating the visualisations' layout
-        /*let articleSuggested = document.createElement('article');
-        articleSuggested.className = 'articleSuggested';
-        let nameOfProduct = document.createElement('h3');
-        nameOfProduct.textContent = titleProductChose;
-        let imgProductSuggested = document.createElement('img');
-        imgProductSuggested.src = imgSrc;
-        let linkToProduct = document.createElement('a');
-        linkToProduct.href = linkProduct;
-        let priceText = document.createElement('p');
-        let priceProductsSuggested = priceOfProduct;
-        priceCalculation(priceProductsSuggested, priceText, 'Prix : ');
-
-        //Placing new elements in cart page
-        divProductsSuggested.appendChild(articleSuggested);
-        articleSuggested.appendChild(nameOfProduct);
-        articleSuggested.appendChild(linkToProduct);
-        linkToProduct.appendChild(imgProductSuggested);
-        articleSuggested.appendChild(priceText);*/
-
     }
     suggestionsProducts();
-
-
 }
-//Calling the random suggestions (1 by product)

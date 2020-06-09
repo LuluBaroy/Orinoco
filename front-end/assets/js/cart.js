@@ -1,5 +1,9 @@
+import{priceCalculation} from "./main";
+import {modifyingHeader} from "./main";
+
 //Getting products stored in localStorage
 let productsAddedToCart = JSON.parse(localStorage.getItem('cart'));
+modifyingHeader();
 
 let titleCart = document.createElement('h1');
 titleCart.textContent = "Panier";
@@ -98,3 +102,7 @@ if (productsAddedToCart !== null) {
     priceCalculation(calculationTotalOrder, totalOrder, 'Prix total de la commande : ');
     sectionCart.appendChild(totalOrder);
 }
+require("./form");
+require("./suggestions");
+export {productsAddedToCart};
+export{sectionCart};

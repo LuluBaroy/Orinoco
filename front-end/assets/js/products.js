@@ -1,10 +1,15 @@
+import {connection} from "./main";
+import{urlStr} from "./main";
+import {priceCalculation} from "./main";
+import {modifyingHeader} from "./main";
 //Calling of the promise
-connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.get("id")).then(function (response) {
+modifyingHeader();
+connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get("id")).then(function (response) {
     let sectionProducts = document.createElement('section');
     let imageProducts = document.createElement('img');
     imageProducts.src = response.imageUrl;
-    imageProducts.alt = "Photo " + currentParamProducts + " " + response.name;
-    imageProducts.title = "Photo de présentation " + currentParamProducts + " " + response.name;
+    imageProducts.alt = "Photo " + urlStr.get('type') + " " + response.name;
+    imageProducts.title = "Photo de présentation " + urlStr.get('type') + " " + response.name;
     let divProducts = document.createElement('div');
     let titleProducts = document.createElement('h1');
     titleProducts.textContent = response.name;
@@ -19,7 +24,7 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
 
     //Switching option property according to URL's param
     let firstProperty = "";
-    switch (currentParamProducts) {
+    switch (urlStr.get('type')) {
         case "teddies":
             firstProperty = 'colors';
             break;
@@ -95,7 +100,7 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
         if (cartUp === null) {
             //if this is the first product added, creating new line and stocking it
             let cart = [];
-            let firstLine = new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
+            let firstLine = new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
             location.reload();
@@ -110,7 +115,7 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
                 }
             }
             if (!productAlreadyAdded) {
-                cartUp2.push(new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
+                cartUp2.push(new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
             }
             localStorage.setItem('cart', JSON.stringify(cartUp2));
             location.reload();

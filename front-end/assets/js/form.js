@@ -1,3 +1,7 @@
+import {productsAddedToCart} from "./cart";
+import {sending} from "./main";
+import {orderIds} from "./main";
+
 if (productsAddedToCart !== null) {
     //Creating form                                                                     /////!!!!!A RETRAVAILLER !!!!\\\\\\
     let sectionForm = document.createElement('section');
@@ -62,12 +66,11 @@ if (productsAddedToCart !== null) {
             for (let i in productsOrdered) {
                 sending("http://localhost:3000/api/" + i + "/order", new formSent(newContact, productsOrdered[i]));
             }
-
             localStorage.setItem('confirm', JSON.stringify(confirm));
             localStorage.setItem('contact', JSON.stringify(newContact));
             localStorage.removeItem('cart');
             console.log(orderIds);
-            window.location.href = "./confirmation.html";
+
         }
-    });
+    });window.location.href = "./confirmation.html";
 }

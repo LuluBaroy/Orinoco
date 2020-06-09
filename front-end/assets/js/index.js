@@ -1,7 +1,12 @@
+import {connection} from "./main";
+import {modifyingHeader} from "./main";
+
+modifyingHeader();
 let isClicked = false;
 let currentParam = 'teddies';
 
 function getItems(param) {
+
     //Creating the list container
     document.getElementById('imgHomepage').style.display = 'none';
     let sectionProducts = document.createElement('section');
@@ -45,3 +50,5 @@ function getItems(param) {
         }).catch();
     }
 }
+window.getItems = getItems;
+
