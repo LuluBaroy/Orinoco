@@ -58,7 +58,7 @@ body{
 }
 
 
-#homepage, #cart, #confirmation{
+#homepage, #cart{
   margin: 5% 20%;
   #btns{
     display: flex;
@@ -66,10 +66,12 @@ body{
     margin: 0 auto 10% auto;
     justify-content: space-evenly;
     button{
+      flex: 0 0 20%;
       border: 2px solid black;
-      border-radius: 20px;
+      border-radius: 25px 0 25px 0;
       background-color: #F3E9F1;
-      padding: 2%;
+      padding: 1%;
+      box-shadow: 0 0 12px grey;
     }
     #btn-teddies, #btn-camera, #btn-furniture{
       a{
@@ -121,7 +123,7 @@ body{
    }
  }
 #productPage{
-  margin: 15% 5%;
+  margin: 8% 5%;
   text-align: left;
   justify-content: space-between;
   section{
@@ -299,6 +301,30 @@ footer{
       }
     }
   }
+  #divTitleForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto 5% auto;
+    border: 4px solid #F3E9F1;
+    box-shadow: 0 0 12px black;
+    border-radius: 50px;
+    width: 70%;
+
+    h2{
+      margin: 0;
+
+    }
+    #placeOrder{
+      flex: 0 0 40%;
+    }
+    #imgPlaceOrder{
+      flex: 0 0 20%;
+      margin-right: 5%;
+      object-fit: scale-down;
+    }
+  }
   form{
     margin: auto;
     width: 50%;
@@ -345,5 +371,109 @@ footer{
         }
       }
     }
+  }
+}
+#confirmation{
+  margin: 5% 20%;
+  section{
+    margin-top: 8%;
+    border: 4px solid black;
+    border-radius: 50px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 12px grey;
+    li{
+      text-align: center;
+      list-style: inside url("../img/listStyle.png");
+      &:first-child{
+        margin: 2% auto 1% auto;
+      }
+      &:nth-child(2){
+        margin: 0 auto;
+      }
+      &:last-child{
+        margin: 1% auto 10% auto;
+      }
+    }
+  }
+  h1{
+    margin: auto auto 5% auto;
+    border: 4px solid #F3E9F1;
+    box-shadow: 0 0 12px black;
+    border-radius: 50px;
+    width: 80%;
+    padding: 2%;
+  }
+  #divYourOrder{
+    display: flex;
+    margin: 5% auto 5% auto;
+    align-items: center;
+    justify-content: center;
+    img{
+      flex: 0 0 20%;
+      max-width: 80%;
+      object-fit: scale-down;
+    }
+    #yourOrder{
+      flex: 0 0 35%;
+      text-align: center;
+      font-size: 1.5em;
+    }
+  }
+
+  p{
+    font-size: 1.05em;
+    margin-bottom: 3%;
+    line-height: 125%;
+  }
+  #yourProducts{
+    border-bottom: 2px solid black;
+    margin: 4% 0;
+  }
+  article {
+    border: 5px solid #F3E9F1;
+    box-shadow: 2px 2px 12px #4E4E4E;
+    border-radius: 20px;
+    margin: 2% 0 2% 0;
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    word-break: break-word;
+    img {
+      width: 20%;
+      height: 20%;
+      object-fit: scale-down;
+      border: 2px solid black;
+      border-radius: 25px;
+      flex: 0 0 30%;
+    }
+    div{
+      flex: 0 0 70%;
+      margin-left: 2%;
+      h2{
+        font-size: 1.2em;
+        margin: 2% 0;
+      }
+      #totalPriceText{
+        text-align: right;
+        padding-right: 5%;
+      }
+    }
+  }
+  #priceOrder{
+    margin: 5% 2% 5% 0;
+    text-align: right;
+  }
+  #divider{
+    max-width: 80%;
+    object-fit: scale-down;
+    margin: 0 auto;
+  }
+  #thanksEndNote{
+    margin-top: 5%;
+    font-size: 1em;
+    text-align: center;
   }
 }

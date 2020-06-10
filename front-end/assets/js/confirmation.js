@@ -8,18 +8,65 @@ let orderId = JSON.parse(localStorage.getItem('orderId'));
 
 //Creating the elements above the products purchased
 let sectionConfirm = document.createElement('section');
+
 let pageTitle = document.createElement('h1');
 pageTitle.textContent = "Confirmation de commande";
-let orderIdText = document.createElement('h2');
-orderIdText.textContent = `Référence(s) de votre commande : ${orderId.join(', ')}`;
+
+//Creating the title of the resume section
+let divYourOrder = document.createElement("div");
+divYourOrder.id = "divYourOrder";
+let orderLeft = document.createElement('img');
+orderLeft.src = "../assets/img/orderleft.png";
+let yourOrder = document.createElement('h2');
+yourOrder.textContent = "Votre commande";
+yourOrder.id = 'yourOrder';
+let orderRight = document.createElement('img');
+orderRight.src = "../assets/img/orderRight.png";
+
+let orderIdText = document.createElement('ul');
+orderIdText.textContent = "Référence(s) de votre commande : ";
+for(let id in orderId){
+        let newRef = document.createElement('li');
+        newRef.textContent = orderId[id];
+        orderIdText.appendChild(newRef);
+}
+
+
 let thanks = document.createElement('p');
 thanks.textContent = `Merci ${contact.firstName} ${contact.lastName} pour votre commande chez Orinoco !`;
+
 let resume = document.createElement('p');
 resume.textContent = `Un e-mail de confirmation vous sera très prochainement envoyé à l'adresse ${contact.email} contenant le résumé de votre commande et les informations de livraison à votre adresse ${contact.address} à ${contact.city} !`;
 
-//Initializing the order's total price variable
-let priceOrderLength;
+let yourProducts = document.createElement('p');
+yourProducts.textContent = "Les produits que vous avez commandés :"
+yourProducts.id = 'yourProducts';
+
+//Placing all elements on confirmation's page
+document.getElementById('confirmation').appendChild(pageTitle);
+document.getElementById('confirmation').appendChild(sectionConfirm);
+sectionConfirm.appendChild(divYourOrder);
+divYourOrder.appendChild(orderLeft);
+divYourOrder.appendChild(yourOrder);
+divYourOrder.appendChild(orderRight);
+sectionConfirm.appendChild(orderIdText);
+sectionConfirm.appendChild(thanks);
+sectionConfirm.appendChild(resume);
+sectionConfirm.appendChild(yourProducts);
+
+//divider (Placed at the end of the for loop)
+let divider = document.createElement('img');
+divider.src = "../assets/img/divider_confirm.png";
+divider.id = "divider";
+
+//Thanks note for users (Placed at the end of the for loop)
+let thanksEndNote = document.createElement('p');
+thanksEndNote.id = "thanksEndNote";
+thanksEndNote.textContent = "Orinoco vous remercie ! À très bientôt sur notre site !"
+//Initializing the order's total price variable (calculate at the end of the for loop)
+let priceOrderLength = 0;
 let priceOrder = document.createElement('p');
+priceOrder.id = 'priceOrder';
 
 //Getting products' info with their types and id, then creating their visualisation
 for (let i in confirmation) {
@@ -40,15 +87,12 @@ for (let i in confirmation) {
                 let quantity = document.createElement('p');
                 quantity.textContent = "Quantité choisie : " + confirmation[i].quantity;
                 let totalPriceText = document.createElement('p');
+                totalPriceText.id = "totalPriceText";
                 let totalPriceByProducts = response.price * confirmation[i].quantity;
                 priceCalculation(totalPriceByProducts, totalPriceText, 'Prix total pour cet article : ');
 
-                //Placing all elements on confirmation's page
-                document.getElementById('confirmation').appendChild(pageTitle);
-                document.getElementById('confirmation').appendChild(orderIdText);
-                document.getElementById('confirmation').appendChild(thanks);
-                document.getElementById('confirmation').appendChild(resume);
-                document.getElementById('confirmation').appendChild(sectionConfirm);
+
+
                 sectionConfirm.appendChild(articleConfirm);
                 articleConfirm.appendChild(imageConfirm);
                 articleConfirm.appendChild(divConfirm);
@@ -59,7 +103,12 @@ for (let i in confirmation) {
 
                 //Calculating the order's price and placing it after all products purchased
                 priceOrderLength += response.price * confirmation[i].quantity;
-                priceCalculation(priceOrderLength, priceOrder, 'Prix de votre commande : ');
+                priceCalculation(priceOrderLength, priceOrder, 'Prix de votre commande (TTC) : ');
                 sectionConfirm.appendChild(priceOrder);
+                sectionConfirm.appendChild(divider);
+                sectionConfirm.appendChild(thanksEndNote);
+
         }).catch();
+
 }
+
