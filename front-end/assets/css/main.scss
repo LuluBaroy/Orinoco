@@ -25,6 +25,7 @@ header{
     a {
       display: flex;
       .return{
+        display: flex;
         max-width: 20%;
         max-height: 20%;
       }
@@ -44,7 +45,6 @@ header{
     }
   }
 }
-
 body{
   background-color: white;
   h1{
@@ -56,7 +56,6 @@ body{
     font-size: 2em;
   }
 }
-
 
 #homepage, #cart{
   margin: 5% 20%;
@@ -168,7 +167,6 @@ body{
       transition: all 1s ease;
       object-fit: scale-down;
       background-color: #F3E9F1;
-      flex: 0 0 10%;
       border-radius: 25px;
       border: 5px solid #F3E9F1;
       box-shadow: 0 0 12px #4E4E4E;
