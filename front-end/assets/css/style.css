@@ -29,6 +29,7 @@ header div a {
   display: flex;
 }
 header div a .return {
+  display: flex;
   max-width: 20%;
   max-height: 20%;
 }
@@ -167,7 +168,6 @@ body h1 {
   transition: all 1s ease;
   object-fit: scale-down;
   background-color: #F3E9F1;
-  flex: 0 0 10%;
   border-radius: 25px;
   border: 5px solid #F3E9F1;
   box-shadow: 0 0 12px #4E4E4E;
