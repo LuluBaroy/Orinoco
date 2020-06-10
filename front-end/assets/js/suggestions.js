@@ -3,7 +3,7 @@ import {sectionCart} from "./cart";
 import {connection} from "./main";
 import {priceCalculation} from "./main";
 
-if (productsAddedToCart === null) {
+if (productsAddedToCart === null) { //If the cart is empty, creating a button to go back to homepage and a product suggestion
     sectionCart.id = "emptyCartSection";
     let textEmptyCart = document.createElement('h2');
     textEmptyCart.textContent = "Votre panier est vide !!";
@@ -30,7 +30,10 @@ if (productsAddedToCart === null) {
     sectionCart.appendChild(productsSuggested);
     sectionCart.appendChild(divProductsSuggested);
 
+    //Initializing an array to stock every product randomly chose
     let arrayForProductRandomlySelected = [];
+
+    //Creating a new class for every product randomly chose
     class ProductsRandomlySelected{
         constructor(param, id, name, image, url, price) {
             this.param = param;
@@ -42,8 +45,10 @@ if (productsAddedToCart === null) {
 
         }
     }
+
     function suggestionsProducts() {
         for(let i = 0; i <= 5; i++) {
+            //Getting a product type randomly
             let randomParam = Math.floor(Math.random() * 3);
             let paramChose = "";
             switch (randomParam) {
@@ -57,8 +62,12 @@ if (productsAddedToCart === null) {
                     paramChose = 'cameras';
                     break;
             }
+
+            //Then, with the type randomly got, getting a product of that type
             connection("http://localhost:3000/api/" + paramChose).then(function (response) {
                 let randomProducts = Math.floor(Math.random() * 5);
+
+                //If no product already add in array
                 if(arrayForProductRandomlySelected.length === 0){
                     switch (randomProducts) {
                         case 0:
@@ -77,9 +86,9 @@ if (productsAddedToCart === null) {
                             arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[4]._id, response[4].name, response[4].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[4]._id, response[4].price));
                             break;
                     }
-                } else {
+                } else { //If there's already product(s) in the array
                     let productsRandomId;
-                    switch (randomProducts) {
+                    switch (randomProducts) { //Getting a new random product id
                         case 0:
                             productsRandomId = response[0]._id;
                             break;
@@ -96,7 +105,10 @@ if (productsAddedToCart === null) {
                             productsRandomId = response[4]._id;
                             break;
                     }
+                    //Then, checking if that new id is already in array
                     if(arrayForProductRandomlySelected.length === 1 && arrayForProductRandomlySelected[0].id !== productsRandomId || arrayForProductRandomlySelected.length === 2 && arrayForProductRandomlySelected[0].id !== productsRandomId && arrayForProductRandomlySelected[1].id !== productsRandomId) {
+
+                        //If isn't already in the array, adding the new product
                         switch (productsRandomId) {
                             case response[0]._id:
                                 arrayForProductRandomlySelected.push(new ProductsRandomlySelected(paramChose, response[0]._id, response[0].name, response[0].imageUrl, 'products.html?type=' + paramChose + '&id=' + response[0]._id, response[0].price));
@@ -115,10 +127,12 @@ if (productsAddedToCart === null) {
                                 break;
                         }
                     }
+
+                    //When the loop is in its last iteration, creating the products visualisations
                     if(i === 5){
-                        console.log(arrayForProductRandomlySelected);
-                        //Creating the visualisations' layout
+
                         for(let j in arrayForProductRandomlySelected){
+
                             let articleSuggested = document.createElement('article');
                             articleSuggested.className = 'articleSuggested';
                             let nameOfProduct = document.createElement('h3');
@@ -144,5 +158,6 @@ if (productsAddedToCart === null) {
             });
         }
     }
+    //Calling the function
     suggestionsProducts();
 }

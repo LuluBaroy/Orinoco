@@ -21,7 +21,7 @@ let queryStr = window.location.search;
 let urlStr = new URLSearchParams(queryStr);
 
 
-//Modifying Header
+//Modifying Header with number of products added in cart
 function modifyingHeader(){
     let productsAdded;
     if (JSON.parse(localStorage.getItem('cart')) === null) {
@@ -52,7 +52,7 @@ const sending = function (url, order) {
         request.onreadystatechange = function (response) {
             if (this.readyState === 4) {
                 if (this.status === 201) {
-                    resolve(response = JSON.parse(this.responseText), orderIds.push(response.orderId), console.log(orderIds), localStorage.setItem('orderId', JSON.stringify(orderIds)));
+                    resolve(response = JSON.parse(this.responseText), orderIds.push(response.orderId), localStorage.setItem('orderId', JSON.stringify(orderIds)));
                 } else {
                     reject();
                 }

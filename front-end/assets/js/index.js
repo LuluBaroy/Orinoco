@@ -12,9 +12,10 @@ function getItems(param) {
     let sectionProducts = document.createElement('section');
     sectionProducts.id = "container-list";
 
+    //Checking if a button has alrealdy been clicked and which product type is called
     if (isClicked === false || currentParam !== param) {
-        if (isClicked === true) {
-            document.getElementById('container-list').remove();
+        if (isClicked === true) { //If a button has already been clicked and the product type is different,
+            document.getElementById('container-list').remove(); //Deleting the previous products list
         }
         document.getElementById('homepage').appendChild(sectionProducts);
         connection("http://localhost:3000/api/" + param).then(function (response) {

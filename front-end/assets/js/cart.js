@@ -1,30 +1,34 @@
 import{priceCalculation} from "./main";
 import {modifyingHeader} from "./main";
 
+modifyingHeader();
 //Getting products stored in localStorage
 let productsAddedToCart = JSON.parse(localStorage.getItem('cart'));
-modifyingHeader();
 
+//Creating the cart display
 let titleCart = document.createElement('h1');
 titleCart.textContent = "Panier";
 let sectionCart = document.createElement('section');
 document.getElementById('cart').appendChild(sectionCart);
 sectionCart.appendChild(titleCart);
 
+//If there is product(s) added in the localStorage
 if (productsAddedToCart !== null) {
     sectionCart.id = "sectionWithProducts";
     for (let i in productsAddedToCart) {
+
+        //Creating each product display
         let articlesCart = document.createElement('article');
         articlesCart.className = 'articlesSelected';
         let idProductCart = document.createElement('p');
         idProductCart.textContent = productsAddedToCart[i].id;
 
-        //Possibility to go back on product page by clicking on his image
+        //Possibility to go back on product page by clicking on its image
         let linkProductsPageCart = document.createElement('a');
         linkProductsPageCart.href = '../pages/products.html?type=' + productsAddedToCart[i].param + '&id=' + productsAddedToCart[i].id;
         linkProductsPageCart.ariaLabel = "Page du produit";
 
-        //Differents elements to describe products
+        //Creating different elements to describe products
         let imageProductsCart = document.createElement('img');
         imageProductsCart.src = productsAddedToCart[i].imgUrl;
         imageProductsCart.alt = "Photo " + productsAddedToCart[i].name;
@@ -47,6 +51,7 @@ if (productsAddedToCart !== null) {
         let buttonMore = document.createElement('button');
         buttonMore.textContent = "+";
         buttonMore.addEventListener('click', function (event) {
+            //Increasing product's quantity, updating localStorage and reloading cart's page
             productsAddedToCart[i].quantity++;
             localStorage.setItem('cart', JSON.stringify(productsAddedToCart));
             location.reload();
@@ -56,15 +61,15 @@ if (productsAddedToCart !== null) {
         let buttonLess = document.createElement('button');
         buttonLess.textContent = "-";
         buttonLess.addEventListener('click', function (event) {
-            if (productsAddedToCart[i].quantity === 1) {
-                productsAddedToCart.splice([i], 1);
-                localStorage.setItem('cart', JSON.stringify(productsAddedToCart));
-                location.reload();
-                if (productsAddedToCart.length === 0) {
-                    localStorage.clear();
-                    location.reload();
+            if (productsAddedToCart[i].quantity === 1) { //if quantity left of the product equals one and we want to reduce it
+                productsAddedToCart.splice([i], 1);  //deleting that product of local storage
+                localStorage.setItem('cart', JSON.stringify(productsAddedToCart)); //updating the localStorage
+                location.reload(); //Reloading the cart page
+                if (productsAddedToCart.length === 0) { //If all products have been deleted
+                    localStorage.clear(); //Clearing localStorage
+                    location.reload(); //Reloading cart page
                 }
-            } else {
+            } else { //Else, reducing product's quantity, updating localStorage and reloading cart's page
                 productsAddedToCart[i].quantity--;
                 localStorage.setItem('cart', JSON.stringify(productsAddedToCart));
                 location.reload();
