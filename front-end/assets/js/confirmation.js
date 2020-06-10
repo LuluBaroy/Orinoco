@@ -1,23 +1,24 @@
+import {connection} from "./main";
+import {priceCalculation} from "./main";
+
 //Getting all order's information
 let confirmation = JSON.parse(localStorage.getItem('confirm'));
 let contact = JSON.parse(localStorage.getItem('contact'));
 let orderId = JSON.parse(localStorage.getItem('orderId'));
-console.log(orderId);
 
-//Creating the structure above the products purchased
+//Creating the elements above the products purchased
 let sectionConfirm = document.createElement('section');
 let pageTitle = document.createElement('h1');
 pageTitle.textContent = "Confirmation de commande";
 let orderIdText = document.createElement('h2');
-   orderIdText.textContent = "Référence(s) de votre commande : " + orderId.join(', ');
-
+orderIdText.textContent = `Référence(s) de votre commande : ${orderId.join(', ')}`;
 let thanks = document.createElement('p');
 thanks.textContent = `Merci ${contact.firstName} ${contact.lastName} pour votre commande chez Orinoco !`;
 let resume = document.createElement('p');
 resume.textContent = `Un e-mail de confirmation vous sera très prochainement envoyé à l'adresse ${contact.email} contenant le résumé de votre commande et les informations de livraison à votre adresse ${contact.address} à ${contact.city} !`;
 
 //Initializing the order's total price variable
-let priceOrderLength = 0;
+let priceOrderLength;
 let priceOrder = document.createElement('p');
 
 //Getting products' info with their types and id, then creating their visualisation

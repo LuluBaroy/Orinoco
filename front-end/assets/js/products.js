@@ -1,10 +1,18 @@
+import {connection} from "./main";
+import{urlStr} from "./main";
+import {priceCalculation} from "./main";
+import {modifyingHeader} from "./main";
+
+//calling the modifyingHeader function
+modifyingHeader();
+
 //Calling of the promise
-connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.get("id")).then(function (response) {
+connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get("id")).then(function (response) {
     let sectionProducts = document.createElement('section');
     let imageProducts = document.createElement('img');
     imageProducts.src = response.imageUrl;
-    imageProducts.alt = "Photo " + currentParamProducts + " " + response.name;
-    imageProducts.title = "Photo de présentation " + currentParamProducts + " " + response.name;
+    imageProducts.alt = "Photo " + urlStr.get('type') + " " + response.name;
+    imageProducts.title = "Photo de présentation " + urlStr.get('type') + " " + response.name;
     let divProducts = document.createElement('div');
     let titleProducts = document.createElement('h1');
     titleProducts.textContent = response.name;
@@ -19,7 +27,7 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
 
     //Switching option property according to URL's param
     let firstProperty = "";
-    switch (currentParamProducts) {
+    switch (urlStr.get('type')) {
         case "teddies":
             firstProperty = 'colors';
             break;
@@ -75,9 +83,11 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
     //Parametring the buttonCart
     let buttonCart = document.createElement('button');
     buttonCart.textContent = 'Ajouter au panier';
+
+    //When clicking on the buttonCart
     buttonCart.addEventListener('click', function (event) {
 
-        //Getting the locally stored item and verifying if this is the first product added
+        //Getting the locally stored item
         let cartUp = JSON.parse(localStorage.getItem('cart'));
 
         //Creating a new Class to add different products easily in the localStorage item
@@ -95,7 +105,7 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
         if (cartUp === null) {
             //if this is the first product added, creating new line and stocking it
             let cart = [];
-            let firstLine = new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
+            let firstLine = new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
             location.reload();
@@ -104,13 +114,15 @@ connection('http://localhost:3000/api/' + currentParamProducts + "/" + urlStr.ge
             let cartUp2 = JSON.parse(localStorage.getItem('cart'));
             let productAlreadyAdded = false;
             for (let k in cartUp2) {
+                //If the product is already added, we modify its quantity
                 if (cartUp2[k].id === response._id) {
                     productAlreadyAdded = true;
                     cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
                 }
             }
+            //If the product isn't already added, we add it
             if (!productAlreadyAdded) {
-                cartUp2.push(new Line(currentParamProducts, response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
+                cartUp2.push(new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
             }
             localStorage.setItem('cart', JSON.stringify(cartUp2));
             location.reload();

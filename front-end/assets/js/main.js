@@ -1,5 +1,5 @@
 //Getting products' information with Promise
-const connection = function (url) {
+function connection(url) {
     return new Promise(function (resolve, reject) {
         let request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -19,20 +19,23 @@ const connection = function (url) {
 //Getting Product ID
 let queryStr = window.location.search;
 let urlStr = new URLSearchParams(queryStr);
-let currentParamProducts = urlStr.get('type');
 
-//Modifying Header
-let productsAdded;
-if (JSON.parse(localStorage.getItem('cart')) === null) {
-    productsAdded = 0;
-} else {
-    productsAdded = JSON.parse(localStorage.getItem('cart')).length;
-    if (document.getElementById('return')) {
-        document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='../assets/img/basket.png'> Panier ( " + productsAdded + " )";
+
+//Modifying Header with number of products added in cart
+function modifyingHeader(){
+    let productsAdded;
+    if (JSON.parse(localStorage.getItem('cart')) === null) {
+        productsAdded = 0;
     } else {
-        document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='assets/img/basket.png'> Panier ( " + productsAdded + " )";
+        productsAdded = JSON.parse(localStorage.getItem('cart')).length;
+        if (document.getElementById('return')) {
+            document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='../assets/img/basket.png'> Panier ( " + productsAdded + " )";
+        } else {
+            document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='assets/img/basket.png'> Panier ( " + productsAdded + " )";
+        }
     }
 }
+
 
 //Function to convert price in euro
 function priceCalculation(price, priceText, text) {
@@ -49,7 +52,7 @@ const sending = function (url, order) {
         request.onreadystatechange = function (response) {
             if (this.readyState === 4) {
                 if (this.status === 201) {
-                    resolve(response = JSON.parse(this.responseText), orderIds.push(response.orderId), console.log(orderIds), localStorage.setItem('orderId', JSON.stringify(orderIds)));
+                    resolve(response = JSON.parse(this.responseText), orderIds.push(response.orderId), localStorage.setItem('orderId', JSON.stringify(orderIds)));
                 } else {
                     reject();
                 }
@@ -60,3 +63,10 @@ const sending = function (url, order) {
         request.send(JSON.stringify(order));
     });
 };
+
+export {connection};
+export{urlStr};
+export{priceCalculation};
+export {sending};
+export{orderIds};
+export{modifyingHeader};
