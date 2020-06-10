@@ -3,13 +3,27 @@ import {sending} from "./main";
 import {orderIds} from "./main";
 
 if (productsAddedToCart !== null) { //If there is product(s) added in localStorage
-    //Creating form                                                                     /////!!!!!A RETRAVAILLER !!!!\\\\\\
+    //Creating form
+    // ///!!!!!A RETRAVAILLER !!!!\\\\\\
+    let divTitleForm = document.createElement('div');
+    divTitleForm.id = "divTitleForm";
+    let titleForm = document.createElement('h2');
+    titleForm.id = 'placeOrder';
+    titleForm.textContent = "Passez commande !";
+    let imgPlaceOrder = document.createElement('img');
+    imgPlaceOrder.src = "../assets/img/arrow_placeOrder.png";
+    imgPlaceOrder.id = "imgPlaceOrder";
     let sectionForm = document.createElement('section');
     sectionForm.id = "sectionForm";
-    sectionForm.innerHTML = "<form action=\"\" id=\"form1\">\n" + "  <div class=\"formCss\">\n" + "    <label for=\"name\">Nom : </label>\n" + "    <input type=\"text\" name=\"lastName\" id=\"lastName\" class='infoRequired' required placeholder='Dupont, ...' pattern='^[A-Z]{1}[a-z]+$' title='Champ obligatoire. Renseignez votre nom au format suivant : Dupont'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"name\">Prénom : </label>\n" + "    <input type=\"text\" name=\"firstName\" id=\"firstName\" class='infoRequired'required placeholder='Jean-Luc, ...' pattern='^[A-Z]{1}[A-Za-zÀ-ÿ\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : Pierre ou Pierre-Yves ou Pierre-yves'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Adresse : </label>\n" + "    <input type=\"text\" name=\"address\" id=\"address\" class='infoRequired' required placeholder='3 rue des lilas, ...' pattern='^[0-9]{1,3}[ ,-][ A-Za-zÀ-ÿ0-9\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : 3 rue des lilas, ou 3, rue des Lilas'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Ville : </label>\n" + "    <input type=\"text\" name=\"city\" id=\"city\" class='infoRequired' required placeholder='Paris, ...' pattern='^[A-Z]{1}[a-zA-Z\-]+$' title='Champ Obligatoire. Renseignez le champ au format : Paris ou Neuilly-sur-Seine'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"email\">Email : </label>\n" + "    <input type=\"email\" name=\"email\" id=\"email\" class='infoRequired' required placeholder='pierre.dupont@gmail.com, ...' pattern='^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})+$' title='Champ Obligatoire. Renseignez ce champ avec une adresse mail valide au format : pierre.dupont@gmail.com ou pierre-dupont@gmail.com'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <input type=\"button\" id='btn-submit' value=\"Validez votre commande !\">\n" + "  </div>\n" + "</form>";
+    let divForm = document.createElement('div');
+    divForm.innerHTML = "<form action=\"\" id=\"form1\">\n" + "  <div class=\"formCss\">\n" + "    <label for=\"name\">Nom : </label>\n" + "    <input type=\"text\" name=\"lastName\" id=\"lastName\" class='infoRequired' required placeholder='Dupont, ...' pattern='^[A-Z]{1}[a-z]+$' title='Champ obligatoire. Renseignez votre nom au format suivant : Dupont'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"name\">Prénom : </label>\n" + "    <input type=\"text\" name=\"firstName\" id=\"firstName\" class='infoRequired'required placeholder='Jean-Luc, ...' pattern='^[A-Z]{1}[A-Za-zÀ-ÿ\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : Pierre ou Pierre-Yves ou Pierre-yves'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Adresse : </label>\n" + "    <input type=\"text\" name=\"address\" id=\"address\" class='infoRequired' required placeholder='3 rue des lilas, ...' pattern='^[0-9]{1,3}[ ,-][ A-Za-zÀ-ÿ0-9\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : 3 rue des lilas, ou 3, rue des Lilas'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Ville : </label>\n" + "    <input type=\"text\" name=\"city\" id=\"city\" class='infoRequired' required placeholder='Paris, ...' pattern='^[A-Z]{1}[a-zA-Z\-]+$' title='Champ Obligatoire. Renseignez le champ au format : Paris ou Neuilly-sur-Seine'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"email\">Email : </label>\n" + "    <input type=\"email\" name=\"email\" id=\"email\" class='infoRequired' required placeholder='pierre.dupont@gmail.com, ...' pattern='^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})+$' title='Champ Obligatoire. Renseignez ce champ avec une adresse mail valide au format : pierre.dupont@gmail.com ou pierre-dupont@gmail.com'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <input type=\"button\" id='btn-submit' value=\"Validez votre commande !\">\n" + "  </div>\n" + "</form>";
 
     //Placing form in cart page
     document.getElementById('cart').appendChild(sectionForm);
+    sectionForm.appendChild(divTitleForm);
+    divTitleForm.appendChild(imgPlaceOrder);
+    divTitleForm.appendChild(titleForm);
+    sectionForm.appendChild(divForm);
     
     //Adding an event listener on the submit button
     document.getElementById('btn-submit').addEventListener('click', function (event) {
