@@ -137,7 +137,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     divProducts.appendChild(refProduct);
     divProducts.appendChild(descriptionProducts);
     divProducts.appendChild(labelSelect);
-    divProducts.appendChild(selectProduct);
+    labelSelect.appendChild(selectProduct);
     divProducts.appendChild(quantity);
     quantity.appendChild(selectQuantity);
     divProducts.appendChild(priceProduct);

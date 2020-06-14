@@ -29,9 +29,9 @@ function modifyingHeader(){
     } else {
         productsAdded = JSON.parse(localStorage.getItem('cart')).length;
         if (document.getElementById('return')) {
-            document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='../assets/img/basket.png'> Panier ( " + productsAdded + " )";
+            document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='../assets/img/basket.png' alt='Image panier'> Panier ( " + productsAdded + " )";
         } else {
-            document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='assets/img/basket.png'> Panier ( " + productsAdded + " )";
+            document.getElementById('btn-cart').innerHTML = "<img class=\"basket\" src='assets/img/basket.png' alt='Image panier'> Panier ( " + productsAdded + " )";
         }
     }
 }
@@ -46,13 +46,20 @@ function priceCalculation(price, priceText, text) {
 
 //Promise for POST request
 let orderIds = [];
+class OrderConfirm {
+    constructor(id, param){
+        this.id = id;
+        this.param = param;
+    }
+}
+
 const sending = function (url, order) {
     return new Promise(function (resolve, reject) {
         let request = new XMLHttpRequest();
         request.onreadystatechange = function (response) {
             if (this.readyState === 4) {
                 if (this.status === 201) {
-                    resolve(response = JSON.parse(this.responseText), orderIds.push(response.orderId), localStorage.setItem('orderId', JSON.stringify(orderIds)));
+                    resolve(response = JSON.parse(this.responseText), orderIds.push(new OrderConfirm(response.orderId, JSON.parse(localStorage.getItem('paramOrder')))), localStorage.setItem('orderId', JSON.stringify(orderIds)));
                 } else {
                     reject();
                 }

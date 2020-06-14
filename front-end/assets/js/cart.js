@@ -43,10 +43,12 @@ if (productsAddedToCart !== null) {
         priceCalculation(priceLengthCart, priceProductsCart, 'Prix : ');
 
         let divQuantity = document.createElement('div');
+        divQuantity.id = "divQuantity";
         //Quantity chose on product's page
         let quantityProductsCart = document.createElement('p');
         quantityProductsCart.textContent = "Quantité : " + productsAddedToCart[i].quantity;
-
+        let divButtonQuantity = document.createElement('div');
+        divButtonQuantity.id = "divButtonQuantity";
         //Creating a button to increase a product's quantity
         let buttonMore = document.createElement('button');
         buttonMore.textContent = "+";
@@ -92,8 +94,9 @@ if (productsAddedToCart !== null) {
         divProductsCart.appendChild(priceProductsCart);
         divProductsCart.appendChild(divQuantity);
         divQuantity.appendChild(quantityProductsCart);
-        divQuantity.appendChild(buttonMore);
-        divQuantity.appendChild(buttonLess);
+        divQuantity.appendChild(divButtonQuantity);
+        divButtonQuantity.appendChild(buttonMore);
+        divButtonQuantity.appendChild(buttonLess);
         divProductsCart.appendChild(totalPriceByProducts);
     }
 
@@ -102,7 +105,7 @@ if (productsAddedToCart !== null) {
     for (let j in productsAddedToCart) {
         calculationTotalOrder += productsAddedToCart[j].price * productsAddedToCart[j].quantity;
     }
-    let totalOrder = document.createElement('p');
+    let totalOrder = document.createElement('h3');
     totalOrder.id = "totalPrice";
     priceCalculation(calculationTotalOrder, totalOrder, 'Prix total de la commande : ');
     sectionCart.appendChild(totalOrder);
