@@ -6,6 +6,7 @@ let confirmation = JSON.parse(localStorage.getItem('confirm'));
 let contact = JSON.parse(localStorage.getItem('contact'));
 let orderId = JSON.parse(localStorage.getItem('orderId'));
 
+console.log(orderId);
 //Creating the elements above the products purchased
 let sectionConfirm = document.createElement('section');
 
@@ -17,17 +18,19 @@ let divYourOrder = document.createElement("div");
 divYourOrder.id = "divYourOrder";
 let orderLeft = document.createElement('img');
 orderLeft.src = "../assets/img/orderleft.png";
+orderLeft.alt = "Image Gauche Votre commande";
 let yourOrder = document.createElement('h2');
 yourOrder.textContent = "Votre commande";
 yourOrder.id = 'yourOrder';
 let orderRight = document.createElement('img');
 orderRight.src = "../assets/img/orderRight.png";
+orderRight.alt = "Image droite Votre commande";
 
 let orderIdText = document.createElement('ul');
 orderIdText.textContent = "Référence(s) de votre commande : ";
-for(let id in orderId){
+for(let i in orderId){
         let newRef = document.createElement('li');
-        newRef.textContent = orderId[id];
+        newRef.textContent = `${orderId[i].param[i]} : ${orderId[i].id}`;
         orderIdText.appendChild(newRef);
 }
 
@@ -39,7 +42,7 @@ let resume = document.createElement('p');
 resume.textContent = `Un e-mail de confirmation vous sera très prochainement envoyé à l'adresse ${contact.email} contenant le résumé de votre commande et les informations de livraison à votre adresse ${contact.address} à ${contact.city} !`;
 
 let yourProducts = document.createElement('p');
-yourProducts.textContent = "Les produits que vous avez commandés :"
+yourProducts.textContent = "Le(s) produit(s) que vous avez commandé(s) :"
 yourProducts.id = 'yourProducts';
 
 //Placing all elements on confirmation's page
@@ -58,6 +61,7 @@ sectionConfirm.appendChild(yourProducts);
 let divider = document.createElement('img');
 divider.src = "../assets/img/divider_confirm.png";
 divider.id = "divider";
+divider.alt = "Image Separation avant phrase de remerciement";
 
 //Thanks note for users (Placed at the end of the for loop)
 let thanksEndNote = document.createElement('p');

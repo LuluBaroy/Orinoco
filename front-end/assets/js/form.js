@@ -13,10 +13,11 @@ if (productsAddedToCart !== null) { //If there is product(s) added in localStora
     let imgPlaceOrder = document.createElement('img');
     imgPlaceOrder.src = "../assets/img/arrow_placeOrder.png";
     imgPlaceOrder.id = "imgPlaceOrder";
+    imgPlaceOrder.alt = "Image Passez Commande !";
     let sectionForm = document.createElement('section');
     sectionForm.id = "sectionForm";
     let divForm = document.createElement('div');
-    divForm.innerHTML = "<form action=\"\" id=\"form1\">\n" + "  <div class=\"formCss\">\n" + "    <label for=\"name\">Nom : </label>\n" + "    <input type=\"text\" name=\"lastName\" id=\"lastName\" class='infoRequired' required placeholder='Dupont, ...' pattern='^[A-Z]{1}[a-z]+$' title='Champ obligatoire. Renseignez votre nom au format suivant : Dupont'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"name\">Prénom : </label>\n" + "    <input type=\"text\" name=\"firstName\" id=\"firstName\" class='infoRequired'required placeholder='Jean-Luc, ...' pattern='^[A-Z]{1}[A-Za-zÀ-ÿ\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : Pierre ou Pierre-Yves ou Pierre-yves'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Adresse : </label>\n" + "    <input type=\"text\" name=\"address\" id=\"address\" class='infoRequired' required placeholder='3 rue des lilas, ...' pattern='^[0-9]{1,3}[ ,-][ A-Za-zÀ-ÿ0-9\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : 3 rue des lilas, ou 3, rue des Lilas'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Ville : </label>\n" + "    <input type=\"text\" name=\"city\" id=\"city\" class='infoRequired' required placeholder='Paris, ...' pattern='^[A-Z]{1}[a-zA-Z\-]+$' title='Champ Obligatoire. Renseignez le champ au format : Paris ou Neuilly-sur-Seine'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"email\">Email : </label>\n" + "    <input type=\"email\" name=\"email\" id=\"email\" class='infoRequired' required placeholder='pierre.dupont@gmail.com, ...' pattern='^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})+$' title='Champ Obligatoire. Renseignez ce champ avec une adresse mail valide au format : pierre.dupont@gmail.com ou pierre-dupont@gmail.com'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <input type=\"button\" id='btn-submit' value=\"Validez votre commande !\">\n" + "  </div>\n" + "</form>";
+    divForm.innerHTML = "<form action=\"\" id=\"form1\">\n" + "  <div class=\"formCss\">\n" + "    <label for=\"lastName\">Nom : </label>\n" + "    <input type=\"text\" name=\"lastName\" id=\"lastName\" class='infoRequired' required placeholder='Dupont, ...' pattern='^[A-Z]{1}[a-z]+$' title='Champ obligatoire. Renseignez votre nom au format suivant : Dupont'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"firstName\">Prénom : </label>\n" + "    <input type=\"text\" name=\"firstName\" id=\"firstName\" class='infoRequired'required placeholder='Jean-Luc, ...' pattern='^[A-Z]{1}[A-Za-zÀ-ÿ\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : Pierre ou Pierre-Yves ou Pierre-yves'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"address\">Adresse : </label>\n" + "    <input type=\"text\" name=\"address\" id=\"address\" class='infoRequired' required placeholder='3 rue des lilas, ...' pattern='^[0-9]{1,3}[ ,-][ A-Za-zÀ-ÿ0-9\-]+$' title='Champ Obligatoire. Renseignez ce champ au format : 3 rue des lilas, ou 3, rue des Lilas'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"city\">Ville : </label>\n" + "    <input type=\"text\" name=\"city\" id=\"city\" class='infoRequired' required placeholder='Paris, ...' pattern='^[A-Z]{1}[a-zA-Z\-]+$' title='Champ Obligatoire. Renseignez le champ au format : Paris ou Neuilly-sur-Seine'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <label for=\"email\">Email : </label>\n" + "    <input type=\"email\" name=\"email\" id=\"email\" class='infoRequired' required placeholder='pierre.dupont@gmail.com, ...' pattern='^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})+$' title='Champ Obligatoire. Renseignez ce champ avec une adresse mail valide au format : pierre.dupont@gmail.com ou pierre-dupont@gmail.com'>\n" + "  </div>\n" + "  <div class=\"formCss\">\n" + "    <input type=\"button\" id='btn-submit' value=\"Validez votre commande !\">\n" + "  </div>\n" + "</form>";
 
     //Placing form in cart page
     document.getElementById('cart').appendChild(sectionForm);
@@ -79,30 +80,21 @@ if (productsAddedToCart !== null) { //If there is product(s) added in localStora
                 confirm.push(new Confirm(productsAddedToCart[l].param, productsAddedToCart[l].id, productsAddedToCart[l].quantity));
             }
 
+            //Initializing an array to get the param used to the POST request and adding it to orderIds (see main.js)
+            let paramOrder = [];
+
             //sending the POST request for all products' type
             for (let i in productsOrdered) {
-                sending("http://localhost:3000/api/" + i + "/order", new formSent(newContact, productsOrdered[i])).then(function(){
+                paramOrder.push(i);
+                localStorage.setItem('paramOrder', JSON.stringify(paramOrder));
 
+                sending("http://localhost:3000/api/" + i + "/order", new formSent(newContact, productsOrdered[i])).then(function(){
                     //Checking the number of order's Id we're supposed to get and then redirecting to the confirmation page
-                    if(productsOrdered['cameras'] && productsOrdered['teddies'] && productsOrdered['furniture']){
-                        if(orderIds.length === 3){
+                    if(Object.keys(productsOrdered).length === orderIds.length){
                             localStorage.setItem('confirm', JSON.stringify(confirm));
                             localStorage.setItem('contact', JSON.stringify(newContact));
                             localStorage.removeItem('cart');
                             window.location.href = "./confirmation.html";
-                        }
-                    } else if(productsOrdered['teddies'] && productsOrdered['cameras'] || productsOrdered['teddies'] && productsOrdered['furniture'] || productsOrdered['cameras'] && productsOrdered['furniture']){
-                        if(orderIds.length === 2){
-                            localStorage.setItem('confirm', JSON.stringify(confirm));
-                            localStorage.setItem('contact', JSON.stringify(newContact));
-                            localStorage.removeItem('cart');
-                            window.location.href = "./confirmation.html";
-                        }
-                    } else {
-                        localStorage.setItem('confirm', JSON.stringify(confirm));
-                        localStorage.setItem('contact', JSON.stringify(newContact));
-                        localStorage.removeItem('cart');
-                        window.location.href = "./confirmation.html";
                     }
                 });
             }
