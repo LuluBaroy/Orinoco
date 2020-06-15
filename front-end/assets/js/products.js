@@ -6,6 +6,9 @@ import {modifyingHeader} from "./main";
 //calling the modifyingHeader function
 modifyingHeader();
 
+let titlePage = document.createElement('h1');
+titlePage.textContent = "Produit Choisi";
+
 //Calling of the promise
 connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get("id")).then(function (response) {
     let sectionProducts = document.createElement('section');
@@ -14,7 +17,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     imageProducts.alt = "Photo " + urlStr.get('type') + " " + response.name;
     imageProducts.title = "Photo de présentation " + urlStr.get('type') + " " + response.name;
     let divProducts = document.createElement('div');
-    let titleProducts = document.createElement('h1');
+    let titleProducts = document.createElement('h2');
     titleProducts.textContent = response.name;
     let refProduct = document.createElement('p');
     refProduct.textContent = "Ref: " + response._id;
@@ -130,6 +133,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     });
 
     //Placing all elements in the product page
+    document.getElementById('productPage').appendChild(titlePage);
     document.getElementById('productPage').appendChild(sectionProducts);
     sectionProducts.appendChild(imageProducts);
     sectionProducts.appendChild(divProducts);
