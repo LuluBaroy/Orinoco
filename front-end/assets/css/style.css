@@ -3,7 +3,59 @@
   src: url("../font/belligerent-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
+@keyframes movingTitle {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes shake {
+  10%, 90% {
+    transform: rotate(1deg);
+  }
+  20%, 80% {
+    transform: rotate(1deg);
+  }
+  30%, 50%, 70% {
+    transform: rotate(-1deg);
+  }
+  40%, 60% {
+    transform: rotate(1deg);
+  }
+}
+#confirmation h1, #cart h1, #productPage h1, #homepage h1 {
+  border: 4px solid #F3E9F1;
+  box-shadow: 0 0 12px black;
+  border-radius: 50px;
+  padding: 2%;
+  letter-spacing: 0;
+  display: block;
+  margin: 10% auto;
+  text-align: center;
+  text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+  background: url("../img/bg-anim.jpg") repeat-y;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: movingTitle 80s linear infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+}
+
+#cart form .formCss #btn-submit, #productPage section div button, #homepage #btns .btn-homepage {
+  box-shadow: 0 0 12px black;
+  border: 4px solid black;
+  background: linear-gradient(to right, #B892EB 0, #B892EB 100%) no-repeat left bottom/0 100%;
+  transition: 350ms ease-in-out;
+}
+#cart form .formCss #btn-submit:hover, #productPage section div button:hover, #homepage #btns .btn-homepage:hover {
+  color: white;
+  background-size: 100% 100%;
+}
+
 *, header a, footer a {
   font-family: "belligerent";
   font-size: 1.2em;
@@ -30,6 +82,9 @@ header #btn-cart .basket {
   max-width: 10%;
   margin: auto;
 }
+header #btn-cart:hover {
+  animation: 1.5s shake linear;
+}
 header a {
   display: flex;
   text-decoration: none;
@@ -39,6 +94,11 @@ header a {
 header a .logo {
   max-width: 50%;
   margin: 5% auto;
+  transform: scale(1);
+  transition: 250ms ease-in-out;
+}
+header a .logo:hover {
+  transform: scale(0.95);
 }
 header a .return {
   display: none;
@@ -68,7 +128,6 @@ footer a:hover {
   margin: 5%;
 }
 #homepage h1 {
-  text-align: center;
   font-size: 1.4em;
 }
 #homepage #imgHomepage {
@@ -80,27 +139,23 @@ footer a:hover {
 #homepage #btns {
   display: flex;
   flex-direction: column;
+  margin: 5% auto;
 }
 #homepage #btns .btn-homepage {
   margin: 5%;
   border: 2px solid black;
-  border-radius: 25px 0 25px 0;
-  background-color: #F3E9F1;
-  box-shadow: 0 0 12px grey;
+  border-radius: 25px 0;
 }
 #homepage #btns .btn-homepage a {
   color: black;
   text-decoration: none;
-}
-#homepage #btns .btn-homepage:hover {
-  background-color: rgba(143, 91, 254, 0.3);
-  box-shadow: 2px 2px 12px black;
 }
 #homepage section article {
   border: 5px solid #F3E9F1;
   box-shadow: 2px 2px 12px #4E4E4E;
   border-radius: 20px;
   padding: 5%;
+  margin: 5% auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,17 +170,25 @@ footer a:hover {
   max-width: 50%;
   border: 2px solid black;
   border-radius: 25px;
+  box-shadow: 0 0 12px lightgrey;
 }
 #homepage section article a img:hover {
-  box-shadow: 0 0 16px #C899BE;
+  box-shadow: 0 0 16px #D14EC8;
+}
+#homepage section article p {
+  display: none;
 }
 
+#productPage h1 {
+  width: 80%;
+  font-size: 1.4em;
+}
 #productPage section {
   display: flex;
   margin: 5%;
   flex-direction: column;
 }
-#productPage section h1 {
+#productPage section h2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,6 +219,7 @@ footer a:hover {
   margin: 5% 0;
   padding: 2%;
   border-radius: 20px;
+  background-color: white;
 }
 #productPage section div select option {
   text-align: center;
@@ -172,13 +236,7 @@ footer a:hover {
   margin: 5% auto;
   padding: 2%;
   border-radius: 100px;
-  border: 4px solid black;
   background-color: white;
-  box-shadow: 0 0 12px black;
-  transition: background-color 200ms ease-out;
-}
-#productPage section div button:hover {
-  background-color: #C899BE;
 }
 #productPage section div p:nth-child(2) {
   font-size: 0.8em;
@@ -187,12 +245,8 @@ footer a:hover {
 }
 
 #cart h1 {
-  border: 4px solid #F3E9F1;
-  box-shadow: 0 0 12px black;
-  border-radius: 50px;
-  padding: 5%;
-  margin: 5% auto;
   font-size: 1.2em;
+  width: 50%;
 }
 #cart #emptyCartSection, #cart #sectionWithProducts, #cart #sectionForm {
   border: 4px solid black;
@@ -225,7 +279,7 @@ footer a:hover {
   border-radius: 25px;
 }
 #cart #emptyCartSection article img:hover, #cart #sectionWithProducts article img:hover, #cart #sectionForm article img:hover {
-  box-shadow: 0 0 16px #C899BE;
+  box-shadow: 0 0 16px #D14EC8;
 }
 #cart #emptyCartSection #divQuantity, #cart #sectionWithProducts #divQuantity, #cart #sectionForm #divQuantity {
   display: flex;
@@ -250,7 +304,7 @@ footer a:hover {
   transition: background-color 200ms ease-out;
 }
 #cart #emptyCartSection #divQuantity #divButtonQuantity button:hover, #cart #sectionWithProducts #divQuantity #divButtonQuantity button:hover, #cart #sectionForm #divQuantity #divButtonQuantity button:hover {
-  background-color: #C899BE;
+  background-color: #B892EB;
 }
 #cart #emptyCartSection #totalPrice, #cart #sectionWithProducts #totalPrice, #cart #sectionForm #totalPrice {
   font-size: 1.2em;
@@ -333,23 +387,10 @@ footer a:hover {
   margin-top: 20%;
   cursor: pointer;
   border-radius: 20px;
-  border: 4px solid black;
-  background-color: white;
-  box-shadow: 0 0 12px black;
-  transition: background-color 200ms ease-out;
-}
-#cart form .formCss #btn-submit:hover {
-  background-color: #C899BE;
 }
 
 #confirmation h1 {
-  margin: 5% auto;
-  text-align: center;
-  border: 4px solid #F3E9F1;
-  box-shadow: 0 0 12px black;
-  border-radius: 50px;
-  width: 80%;
-  padding: 2%;
+  width: 70%;
 }
 #confirmation section {
   display: flex;
@@ -362,7 +403,9 @@ footer a:hover {
   line-height: 1.2;
 }
 #confirmation section li {
-  list-style: inside url("../img/listStyle.png");
+  width: 75%;
+  margin: 2% auto;
+  list-style: outside url("../img/listStyle.png");
 }
 #confirmation section #divYourOrder {
   display: flex;
@@ -430,6 +473,11 @@ footer a:hover {
   header a .return {
     display: flex;
     max-width: 20%;
+    transform: rotate(0);
+    transition: 1.2s ease-in-out;
+  }
+  header a .return:hover {
+    transform: rotate(-360deg);
   }
   header a .logo {
     max-width: 100%;
@@ -444,7 +492,8 @@ footer a:hover {
   }
 
   #homepage h1 {
-    margin: 5% auto;
+    width: 80%;
+    font-size: 1.8em;
   }
   #homepage #btns {
     margin: 5% auto;
@@ -453,6 +502,7 @@ footer a:hover {
 
   #cart h1 {
     font-size: 1.8em;
+    width: 30%;
   }
   #cart p {
     font-size: 1.2em;
@@ -494,6 +544,10 @@ footer a:hover {
     align-items: center;
   }
 
+  #productPage h1 {
+    width: 40%;
+  }
+
   #confirmation h1 {
     font-size: 1.8em;
     margin: 10% auto;
@@ -523,6 +577,9 @@ footer a:hover {
   #homepage {
     margin: 0 10%;
   }
+  #homepage h1 {
+    width: 70%;
+  }
   #homepage #btns {
     flex-direction: row;
     width: 100%;
@@ -544,6 +601,9 @@ footer a:hover {
   #homepage section article a img {
     max-width: 100%;
     margin: 5%;
+  }
+  #homepage section article p {
+    display: flex;
   }
   #homepage section article div {
     flex: 0 0 65%;
@@ -591,6 +651,7 @@ footer a:hover {
   #cart #sectionWithProducts article #divQuantity {
     margin: 0;
     flex-direction: row;
+    align-items: center;
   }
   #cart #sectionWithProducts article #divQuantity #divButtonQuantity button {
     box-shadow: 0 0 12px black;
@@ -639,11 +700,11 @@ footer a:hover {
     margin: 5% auto;
   }
   #confirmation section #divYourOrder img {
-    max-width: 100%;
+    max-width: 30%;
   }
   #confirmation section li {
     text-align: center;
-    margin: 2%;
+    width: 55%;
   }
   #confirmation section li:last-child {
     margin-bottom: 5%;
@@ -673,8 +734,106 @@ footer a:hover {
   }
 }
 @media screen and (min-width: 992px) {
+  #homepage h1 {
+    font-size: 2em;
+  }
   #homepage #btns {
     width: 80%;
+  }
+  #homepage section article h2 {
+    margin-bottom: 5%;
+  }
+  #homepage section article a img {
+    width: 205px;
+    height: 200px;
+    object-fit: scale-down;
+  }
+
+  #productPage section {
+    margin: 5%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #productPage section img {
+    max-width: 40%;
+    height: 400px;
+    margin: 0;
+  }
+  #productPage section div {
+    width: 370px;
+  }
+  #productPage section div select {
+    margin: 2%;
+    border-radius: 50px;
+  }
+
+  #cart #emptyCartSection h2 {
+    font-size: 1.8em;
+  }
+  #cart #sectionWithProducts article a img {
+    width: 205px;
+    height: 200px;
+  }
+  #cart #sectionWithProducts article div {
+    margin: 5% 10% 5% 2%;
+  }
+
+  #confirmation h1 {
+    margin: 10% auto 5%;
+    width: 50%;
+  }
+  #confirmation section article {
+    margin: 2%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  header a .logo {
+    max-width: 70%;
+  }
+
+  #homepage, #cart, #confirmation {
+    margin: 5% 15%;
+  }
+
+  #homepage h1 {
+    width: 50%;
+    margin: 5% auto;
+  }
+  #homepage #btns .btn-homepage {
+    flex: 0 0 25%;
+  }
+  #homepage section article {
+    margin: 5% 10%;
+  }
+  #homepage section article a img {
+    margin: 5%;
+  }
+
+  #productPage h1 {
+    width: 20%;
+    margin: 5% auto;
+  }
+  #productPage section img, #productPage section div {
+    height: 470px;
+  }
+  #productPage section div {
+    width: 550px;
+    padding: 0 2% 1%;
+  }
+  #productPage section div h2 {
+    margin-top: 10%;
+  }
+
+  #cart h1, #confirmation h1 {
+    margin: 5% auto;
+  }
+
+  #cart #sectionWithProducts article {
+    margin: 2% 0;
+  }
+  #cart #sectionWithProducts #totalPrice {
+    font-size: 1.6em;
   }
 }
 
