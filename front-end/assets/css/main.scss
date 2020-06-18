@@ -11,7 +11,7 @@
 }
 @keyframes shake {
   10%, 90% {
-    transform: rotate(1deg);
+    transform: rotate(-1deg);
   }
 
   20%, 80% {
@@ -27,13 +27,12 @@
   }
 }
 %title{
-  border: 4px solid #F3E9F1;
-  box-shadow: 0 0 12px black;
-  border-radius: 50px;
-  padding: 2%;
-  letter-spacing: 0;
+  border: 0.2em solid #F3E9F1;
+  box-shadow: 0 0 0.4em black;
+  border-radius: 1.5em;
+  padding: 0.17em;
   display: block;
-  margin: 10% auto;
+  margin: 1em auto;
   text-align: center;
   text-shadow: 0 0 80px rgba(255,255,255,.5);
   background: url("../img/bg-anim.jpg") repeat-y;
@@ -44,54 +43,54 @@
   -webkit-backface-visibility: hidden;
 }
 %buttonHover{
-  box-shadow: 0 0 12px black;
-  border: 4px solid black;
+  box-shadow: 0 0 0.4em black;
+  border: 0.2em solid black;
   background: linear-gradient(to right, #B892EB 0, #B892EB 100%) no-repeat left bottom / 0 100%;
-  transition: 350ms ease-in-out;
+  transition: 250ms ease-in-out;
   &:hover{
     color: white;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black;
     background-size: 100% 100%;
   }
 }
-
-*, header a, footer a{
+.displayFlex{
+  display: flex;
+}
+*, .header-a, .footer-a{
   font-family: 'belligerent';
   font-size: 1.2em;
 }
 body{
   background-color: white;
 }
-header{
+.header{
   background-color: #F3E9F1;
-  display: flex;
   flex-direction: column;
-  height: auto;
   justify-content: center;
   align-items: center;
   #btn-cart{
     display: inline;
-    margin-bottom: 5%;
+    margin-bottom: 1em;
     text-align: center;
     .basket{
-      max-width: 10%;
+      max-width: 1.3em;
       margin: auto;
     }
     &:hover{
-      animation: 1.5s shake linear;
+      animation: 1.2s shake linear;
     }
   }
-  a {
-    display: flex;
+  .header-a{
     text-decoration: none;
     color: black;
     font-size: 1em;
     .logo{
-      max-width: 50%;
-      margin: 5% auto;
+      max-width: 8em;
+      margin: 1em auto;
       transform: scale(1);
       transition: 250ms ease-in-out;
       &:hover{
-        transform: scale(0.95);
+        transform: scale(0.8);
       }
     }
     .return{
@@ -99,61 +98,52 @@ header{
     }
   }
 }
-footer{
+.footer{
   background-color: #F3E9F1;
-  display: flex;
   flex-direction: column;
   height: 6em;
   width: 100%;
-  a{
+  .footer-a{
     text-align: center;
     flex: 0 0 10%;
     margin: auto;
     align-items: center;
-    padding: 1%;
+    padding: 0.2em;
     &:hover{
       cursor: pointer;
-      border-radius: 25px;
-      box-shadow: 0 0 12px black;
+      border-radius: 0.7em;
+      box-shadow: 0 0 0.9em black;
     }
   }
 }
-
 #homepage{
-  margin: 5%;
-  h1{
+  margin: 0.8em;
+  .h1-homepage{
     font-size: 1.4em;
     @extend %title;
   }
   #imgHomepage{
     max-width: 100%;
     object-fit: scale-down;
-    display: flex;
     float: right;
   }
   #btns{
-    display: flex;
     flex-direction: column;
-    margin: 5% auto;
+    margin: 1em auto;
     .btn-homepage {
-      margin: 5%;
-      border: 2px solid black;
-      border-radius: 25px 0;
+      margin: 0.45em;
+      border: 0.1em solid black;
+      border-radius: 1em 0;
       @extend %buttonHover;
-      a {
-        color: black;
-        text-decoration: none;
-      }
-
     }
   }
   section{
     article {
-      border: 5px solid #F3E9F1;
-      box-shadow: 2px 2px 12px #4E4E4E;
-      border-radius: 20px;
-      padding: 5%;
-      margin: 5% auto;
+      border: 0.3em solid #F3E9F1;
+      box-shadow: 0 0 0.4em #4E4E4E;
+      border-radius: 1em;
+      padding: 0.8em;
+      margin: 0.8em auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -161,16 +151,16 @@ footer{
       text-align: center;
       h2 {
         font-size: 1.2em;
-        margin: 2% 0;
+        margin: 0.3em 0;
       }
       a{
         img {
-          max-width: 50%;
-          border: 2px solid black;
-          border-radius: 25px;
-          box-shadow: 0 0 12px lightgrey;
+          max-width: 100%;
+          border: 0.1em solid black;
+          border-radius: 0.5em;
+          box-shadow: 0 0 0.9em lightgrey;
           &:hover {
-            box-shadow: 0 0 16px #D14EC8;
+            box-shadow: 0 0 1em #D14EC8;
           }
         }
       }
@@ -184,28 +174,29 @@ footer{
   h1{
     width: 80%;
     font-size: 1.4em;
+    margin: 1em auto;
     @extend %title;
   }
   section{
     display: flex;
-    margin: 5%;
+    margin: 0.4em;
     flex-direction: column;
     h2{
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 4% auto 2%;
+      margin: 0.5em auto;
       font-size: 2em;
     }
     img{
       max-width: 90%;
-      margin: 5% auto;
+      margin: 0.5em auto;
       transition: all 1s ease;
       object-fit: scale-down;
       background-color: #F3E9F1;
-      border-radius: 25px;
-      border: 5px solid #F3E9F1;
-      box-shadow: 0 0 12px #4E4E4E;
+      border-radius: 1.5em;
+      border: 0.2em solid #F3E9F1;
+      box-shadow: 0 0 0.4em #4E4E4E;
       &:hover{
         transform:scale(1.15);
       }
@@ -213,36 +204,36 @@ footer{
     div{
       font-size: 1em;
       background-color: #F3E9F1;
-      border-radius: 25px;
-      padding: 2%;
-      box-shadow: 0 0 12px #4E4E4E;
+      border-radius: 1em;
+      padding: 0.2em;
+      box-shadow: 0 0 0.4em #4E4E4E;
+      display: flex;
+      flex-direction: column;
+      #labelOptions{
+        margin-top: 1em;
+      }
       select {
-        margin: 5% 0;
-        padding: 2%;
-        border-radius: 20px;
+        margin: 0.3em;
+        padding: 0.2em;
+        border-radius: 1em;
         background-color: white;
         option {
           text-align: center;
         }
       }
       .selectQuantity{
-        display: flex;
         align-items: baseline;
-        select{
-          margin-left: 5%;
-        }
       }
       button{
-        display: flex;
-        margin: 5% auto;
-        padding: 2%;
-        border-radius: 100px;
+        margin: 0.7em auto;
+        padding: 0.14em;
+        border-radius: 1.5em;
         background-color: white;
         @extend %buttonHover;
       }
       p:nth-child(2){
         font-size: 0.8em;
-        margin-bottom: 5%;
+        margin-bottom: 1em;
         text-align: center;
       }
     }
@@ -254,56 +245,61 @@ footer{
     font-size: 1.2em;
     width: 50%;
   }
+  #sectionTitle{
+    font-size: 1.2em;
+    margin: 1em auto 0;
+  }
   #emptyCartSection, #sectionWithProducts, #sectionForm{
-    border: 4px solid black;
-    border-radius: 50px;
-    padding: 5%;
-    margin: 5%;
+    border: 0.3em solid black;
+    border-radius: 1.5em;
+    padding: 0.6em;
+    margin: 1em 0.2em;
     line-height: 1.5;
     display: flex;
     flex-direction: column;
     text-align: center;
     font-size: 0.8em;
-    h2{
+    h2, h3{
       font-size: 1.4em;
+      margin: 1em auto;
     }
     article {
       display: flex;
       flex-direction: column;
-      border: 5px solid #F3E9F1;
-      box-shadow: 2px 2px 12px #4E4E4E;
-      border-radius: 20px;
+      border: 0.3em solid #F3E9F1;
+      box-shadow: 0 0 0.4em #4E4E4E;
+      border-radius: 1em;
       word-break: break-word;
-      margin: 5% 0;
+      margin: 1em 0;
       img {
-        margin-top: 5%;
-        max-width: 50%;
+        margin-top: 1em;
+        max-width: 80%;
         object-fit: scale-down;
-        border: 2px solid black;
-        border-radius: 25px;
+        border: 0.15em solid black;
+        border-radius: 1em;
         &:hover {
-          box-shadow: 0 0 16px #D14EC8;
+          box-shadow: 0 0 0.5em #D14EC8;
         }
       }
     }
     #divQuantity{
       display: flex;
       flex-direction: column;
-      margin: 4%;
+      margin: 1em;
       #divButtonQuantity{
         display: flex;
         margin: auto;
         flex-direction: row;
         button {
-          width: 35px;
-          height: 35px;
+          width: 1.3em;
+          height: 1.3em;
           font-size: 1.5em;
           background: #fafafa;
-          border-radius: 50%;
-          padding-bottom: 2%;
-          margin: 0 2%;
+          border-radius: 1em;
+          padding-bottom: 0.2em;
+          margin: 0 0.05em;
           cursor: pointer;
-          border: 4px solid black;
+          border: 0.15em solid black;
           transition: background-color 200ms ease-out;
           &:hover{
             background-color: #B892EB;
@@ -313,26 +309,18 @@ footer{
     }
     #totalPrice{
       font-size: 1.2em;
-      margin: 5%;
+      margin: 1em;
     }
   }
   #emptyCartSection{
     button {
       display: inline-block;
       font-size: 1em;
-      padding: 5% 0;
+      padding: 0.5em 0;
       word-break: break-word;
-      margin: 5% 0;
-      cursor: pointer;
-      border-radius: 20px;
-      border: 4px solid black;
-      background-color: white;
-      box-shadow: 0 0 12px black;
-      transition: background-color 200ms ease-out;
-
-      &:hover {
-        background-color: #C899BE;
-      }
+      margin: 1em 0;
+      border-radius: 1.5em;
+      @extend %buttonHover;
     }
   }
   #productsSuggestedContainer {
@@ -354,12 +342,12 @@ footer{
   #divTitleForm{
     h2{
       margin: auto;
-      padding: 5%;
+      padding: 0.3em;
     }
     display: flex;
-    border: 4px solid #F3E9F1;
-    box-shadow: 0 0 12px black;
-    border-radius: 50px;
+    border: 0.3em solid #F3E9F1;
+    box-shadow: 0 0 0.4em black;
+    border-radius: 2em;
 
     #imgPlaceOrder{
       display: none;
@@ -372,35 +360,34 @@ footer{
       label{
         font-size: 1.3em;
         justify-content: center;
-        margin: 5%;
+        margin: 0.5em;
       }
       input{
-        border-radius: 20px;
+        border-radius: 1.5em;
         font-size: 1em;
-        padding: 5%;
+        padding: 0.8em;
         align-items: center;
         text-align: center;
         &:valid{
-          border: 4px solid #006C6C;
-          box-shadow: 0 0 12px #004F4F;
+          border: 0.3em solid #006C6C;
+          box-shadow: 0 0 0.6em #004F4F;
           background-color: white;
         }
         &:invalid{
           background-color: #FFDDDD;
-          border: 4px solid #C60000;
-          box-shadow: 0 0 12px #820000;
+          border: 0.3em solid #C60000;
+          box-shadow: 0 0 0.6em #820000;
         }
       }
       #btn-submit{
         display: inline-block;
         font-size: 1em;
-        padding: 5% 0;
+        padding: 1em 0;
         word-break: break-word;
-        margin-top: 20%;
+        margin-top: 2.5em;
         cursor: pointer;
-        border-radius: 20px;
+        border-radius: 2em;
         @extend %buttonHover;
-
       }
     }
   }
@@ -413,20 +400,20 @@ footer{
   section{
     display: flex;
     flex-direction: column;
-    margin: 10% 5%;
-    border: 4px solid black;
-    border-radius: 50px;
-    padding: 5%;
-    box-shadow: 0 0 12px grey;
+    margin: 2em 0.5em;
+    border: 0.2em solid black;
+    border-radius: 1em;
+    padding: 0.5em;
+    box-shadow: 0 0 0.4em grey;
     line-height: 1.2;
     li{
       width: 75%;
-      margin: 2% auto;
+      margin: 0.2em auto;
       list-style: outside url("../img/listStyle.png");
     }
     #divYourOrder{
       display: flex;
-      margin: 10% auto;
+      margin: 1em auto;
       justify-content: center;
       text-align: center;
       font-size: 1.4em;
@@ -436,33 +423,39 @@ footer{
     }
     p{
       font-size: 1em;
-      margin: 5% 0;
+      margin: 0.8em 0;
+      span{
+        word-break: break-word;
+        font-weight: bold;
+        border-bottom: 2px solid #B892EB;
+      }
     }
     #yourProducts{
-      border-bottom: 2px solid black;
+      border-bottom: 0.1em solid black;
     }
     article {
-      border: 5px solid #F3E9F1;
-      box-shadow: 2px 2px 12px #4E4E4E;
-      border-radius: 20px;
-      padding: 2%;
+      border: 0.3em solid #F3E9F1;
+      box-shadow: 0 0 0.4em #4E4E4E;
+      border-radius: 1em;
+      padding: 0.3em;
       display: flex;
       flex-direction: column;
       text-align: center;
       font-size: 0.8em;
+      margin: 2%;
       img {
-        max-width: 50%;
+        max-width: 80%;
         margin: auto;
-        border: 2px solid black;
-        border-radius: 25px;
+        border: 0.2em solid black;
+        border-radius: 1em;
       }
       h2{
         font-size: 1.4em;
-        margin-top: 5%;
+        margin-top: 0.7em;
       }
     }
     #priceOrder{
-      margin: 5% 2% 5% 0;
+      margin: 0.7em 0.4em 0.7em 0;
       text-align: right;
     }
     #divider{
@@ -471,27 +464,26 @@ footer{
       margin: 0 auto;
     }
     #thanksEndNote{
-      margin-top: 5%;
+      margin-top: 0.7em;
       font-size: 1em;
       text-align: center;
     }
   }
 }
-
 @media screen and (min-width: 577px){
-  header{
+  .header{
     flex-direction: row;
     height: 6em;
     #return{
-      flex: 0 0 20%;
+      flex: 0 0 30%;
     }
-    a{
+    .header-a{
       flex: 0 0 30%;
       .return{
         display: flex;
         max-width: 20%;
         transform: rotate(0);
-        transition: 1.2s ease-in-out;
+        transition: 0.3s ease-in-out;
         &:hover{
           transform: rotate(-360deg);
         }
@@ -505,63 +497,26 @@ footer{
       text-align: right;
     }
   }
-  footer{
+  .footer{
     flex-direction: row;
   }
   #homepage{
-    h1{
+    .h1-homepage{
       width: 80%;
       font-size: 1.8em;
     }
     #btns{
-      margin: 5% auto;
+      margin: 1em auto;
       width: 50%;
     }
-  }
-  #cart{
-    h1{
-      font-size: 1.8em;
-      width: 30%;
-    }
-    p{
-      font-size: 1.2em;
-    }
-    article{
-      padding: 2%;
-    }
-    #totalPrice{
-      font-size: 1.5em;
-    }
-    #divTitleForm{
-      #imgPlaceOrder{
-        display: flex;
-        max-width: 30%;
-        object-fit: scale-down;
-        margin-left: 5%;
-      }
-    }
-    form{
-      margin: 10% 0;
-      .formCss{
-        flex-direction: row;
-        label{
-          flex: 0 0 20%;
-          text-align: left;
+    section{
+      article{
+        a{
+          img{
+            max-width: 50%;
+          }
         }
-        input{
-          margin: 2% 0;
-          padding: 2%;
-          flex: 0 0 60%;
-        }
-        #btn-submit{
-          display: flex;
-          border-radius: 40px;
-          font-size: 1.4em;
-          margin: 10% auto 0;
-          flex: 0 0 80%;
-          justify-content: center;
-          align-items: center;
-        }
+
       }
     }
   }
@@ -569,17 +524,100 @@ footer{
     h1{
       width: 40%;
     }
+    section{
+      div{
+        margin: 1.3em;
+        padding: 1em;
+        button{
+          padding: 0.5em 0.9em;
+        }
+      }
+    }
+  }
+  #cart{
+    h1{
+      font-size: 1.8em;
+      width: 30%;
+    }
+    #sectionTitle{
+      font-size: 1.8em;
+    }
+    #emptyCartSection{
+      margin: 2em 5em;
+      button{
+        width: 30%;
+        margin: 1em auto;
+      }
+      p{
+        font-size: 1.2em;
+        margin: 1em 0;
+      }
+    }
+    #sectionWithProducts{
+      margin: 2em 5em;
+      article{
+        margin: 1em 2em;
+        padding: 2%;
+        img{
+          max-width: 60%;
+        }
+        p{
+          margin: 0.5em 0;
+          font-size: 1.2em;
+        }
+        #divQuantity{
+          margin: 0.3em 0 1em;
+        }
+      }
+      #totalPrice{
+         font-size: 1.5em;
+      }
+    }
+    #sectionForm{
+      margin: 2em 5em;
+      #divTitleForm{
+        width: 80%;
+        margin: 1em auto 2em;
+        #imgPlaceOrder{
+          display: flex;
+          max-width: 30%;
+          object-fit: scale-down;
+          margin-left: 5%;
+        }
+      }
+      form{
+        display: flex;
+        flex-direction: column;
+        .formCss{
+          flex-direction: row;
+          label{
+            flex: 0 0 25%;
+            text-align: left;
+            padding: 0.5em 0;
+          }
+          input{
+            margin: 0.5em 0;
+            padding: 0.3em;
+            flex: 0 0 65%;
+            border-radius: 2em;
+          }
+          #btn-submit{
+            font-size: 1.4em;
+            margin: 1.5em auto 0.5em;
+            flex: 0 0 80%;
+          }
+        }
+      }
+    }
   }
   #confirmation{
     h1{
       font-size: 1.8em;
-      margin: 10% auto;
+      margin: 2em auto;
     }
     section{
-      p{
-        font-size: 1.2em;
-        margin: 3% 0;
-      }
+      margin: 2em;
+      padding: 1.5em;
       #divYourOrder{
         h2{
           flex: 0 0 40%;
@@ -590,51 +628,57 @@ footer{
           max-width: 25%;
         }
       }
+      article{
+        img{
+          max-width: 60%;
+        }
+      }
+      #priceOrder{
+        margin-top: 2em;
+      }
     }
   }
 }
-
 @media screen and (min-width: 768px){
-  header{
+  .header{
     height: 8em;
     #btn-cart{
-      flex: 0 0 20%;
       font-size: 1.2em;
     }
   }
   #homepage{
-    h1{
-      width: 70%;
+    margin: 0 4em;
+    .h1-homepage{
+      width: 65%;
     }
-    margin: 0 10%;
     #btns{
       flex-direction: row;
       width: 100%;
       .btn-homepage{
         flex: 0 0 30%;
         margin: auto;
-        padding: 2%;
+        padding: 0.4em;
       }
     }
     section{
-      margin: 10% 0;
+      margin: 4em 0;
       article{
         flex-direction: row;
-        margin: 5%;
+        margin: 1em;
         padding: 0;
         text-align: left;
         a{
           img{
             max-width: 100%;
-            margin: 5%;
+            margin: 0.5em;
           }
-        }
-        p{
-          display: flex;
         }
         div{
           flex: 0 0 65%;
-          padding-left: 5%;
+          padding-left: 1.5em;
+          p{
+            display: flex;
+          }
         }
       }
     }
@@ -644,58 +688,68 @@ footer{
     section{
       margin: 5% 10%;
       img{
-        max-width: 90%;
+        max-width: 80%;
       }
     }
   }
   #cart{
     h1{
-      font-size: 2em;
-      padding: 2% 4%;
+      width: 25%;
     }
-    h2{
+    h3{
       font-size: 1.8em;
+      margin-top: 2em;
     }
     #emptyCartSection{
+      h2{
+        font-size: 1.8em;
+      }
       p{
         margin: 5%;
         text-align: left;
         font-size: 1.2em;
       }
       button{
-        width: 30%;
-        margin: auto;
-        padding: 2%;
         font-size: 1.4em;
-        border-radius: 50px;
       }
     }
     #sectionWithProducts{
+      h2{
+        font-size: 1.8em;
+      }
       article{
         flex-direction: row;
         text-align: left;
+        align-items: center;
+        padding: 0 1em;
         div{
+          margin-top: 1.5em;
           flex: 0 0 70%;
-          margin-left: 5%;
+          margin-left: 1em;
+          line-height: normal;
           p:last-child{
             text-align: right;
-            padding-right: 5%;
+            padding-right: 1em;
+          }
+          #divQuantity{
+            flex-direction: row;
+            align-items: center;
+            margin: 0;
+            #divButtonQuantity{
+              margin-left: 2em;
+              flex: 0 0 50%;
+              button{
+                box-shadow: 0 0 0.4em black;
+              }
+            }
           }
         }
-        #divQuantity{
-          margin: 0;
-          flex-direction: row;
-          align-items: center;
-          #divButtonQuantity{
-            button{
-              box-shadow: 0 0 12px black;
-             }
-           }
-         }
+
         a{
           flex: 0 0 30%;
           img{
             max-width: 100%;
+            padding: 2.5em 0;
           }
         }
       }
@@ -703,43 +757,42 @@ footer{
         text-align: right;
       }
     }
-    #divTitleForm{
-      justify-content: center;
-      align-items: center;
-      width: 80%;
-      margin: auto;
-      padding: 2%;
-      h2{
-        font-size: 1.8em;
-        padding: 0;
-        margin: 0;
-      }
-      #imgPlaceOrder{
-        max-width: 100%;
-        margin-left: 0;
-        padding-right: 10%;
-      }
-    }
-    form{
-      margin: 5% 15%;
-      .formCss{
-        input{
-          border-radius: 50px;
-          margin: 4% 0;
-          font-size: 1.2em;
+    #sectionForm{
+      #divTitleForm{
+        align-items: center;
+        justify-content: center;
+        border-radius: 2.5em;
+        h2{
+          font-size: 1.8em;
+          padding: 0;
+          margin: 0;
         }
-        #btn-submit{
-          padding: 2% 0;
-          flex: 0 0 100%;
+        #imgPlaceOrder{
+          max-width: 100%;
+          margin-left: 0;
+          padding-right: 10%;
+        }
+      }
+      form{
+        margin: 1em 6em;
+        .formCss{
+          input{
+            font-size: 1.2em;
+          }
+          #btn-submit{
+            flex: 0 0 100%;
+          }
         }
       }
     }
   }
   #confirmation{
     section{
+      margin: 2em 4em;
+      padding: 2em;
       #divYourOrder{
         align-items: center;
-        margin: 5% auto;
+        margin: 1.5em auto;
         img{
           max-width: 30%;
         }
@@ -748,7 +801,7 @@ footer{
         text-align: center;
         width: 55%;
         &:last-child{
-          margin-bottom: 5%;
+          margin-bottom: 1.5em;
         }
       }
       article{
@@ -759,61 +812,54 @@ footer{
         div{
           flex: 0 0 70%;
           text-align: left;
-          margin-left: 2%;
-          h2{
+          margin-left: 0.8em;
+          h3{
             text-align: center;
             font-size: 1.8em;
-            margin-top: 0;
           }
-          p:last-child{
-            text-align: right;
-            margin-right: 5%;
-          }
-        }
-      }
-      #yourProducts{
-        margin-bottom: 5%;
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 992px){
-  #homepage{
-    h1{
-      font-size: 2em;
-    }
-      #btns{
-        width: 80%;
-      }
-      section{
-        article{
-          h2{
-            margin-bottom: 5%;
-          }
-          a{
-            img{
-              width: 205px;
-              height: 200px;
-              object-fit: scale-down;
+          p{
+            font-size: 1.2em;
+            &:last-child {
+              text-align: right;
+              margin-right: 5%;
             }
           }
         }
       }
     }
-  #productPage{
+  }
+}
+@media screen and (min-width: 992px){
+  #homepage {
+    .h1-homepage{
+      margin: 1.5em auto;
+      width: 50%;
+    }
+    #btns {
+      width: 80%;
+      margin-top: 2em;
+    }
     section{
-      margin: 5%;
+      margin: 2em 4em;
+    }
+  }
+  #productPage{
+    h1{
+      margin: 2em auto;
+    }
+    section{
       flex-direction: row;
       align-items: center;
-      justify-content: space-around;
       img{
-        max-width: 40%;
-        height: 400px;
-        margin: 0;
+        max-width: 45%;
+        margin: 0 auto;
+        height: 415px;
       }
       div{
-        width: 370px;
+        height: 415px;
+        padding: 0.2em;
+        margin: 0 auto;
+        flex: 0 0 45%;
         select{
           margin: 2%;
           border-radius: 50px;
@@ -822,100 +868,65 @@ footer{
     }
   }
   #cart{
-    #emptyCartSection{
-      h2{
-        font-size: 1.8em;
+    #sectionWithProducts{
+      margin: 2em 8em;
+      article{
+        p:last-child{
+          padding-bottom: 1em;
+        }
       }
     }
-    #sectionWithProducts{
-      article{
-        a{
-          img{
-            width: 205px;
-            height: 200px;
-          }
-        }
-        div{
-          margin: 5% 10% 5% 2%;
-        }
+    #sectionForm{
+      margin: 2em 8em;
+      form{
+        margin: 1em 9em;
       }
     }
   }
   #confirmation{
     h1{
-      margin: 10% auto 5%;
       width: 50%;
     }
     section{
-      article{
-        margin: 2%;
+      margin: 0 5em 2em;
+      li{
+        width: 65%;
       }
     }
   }
 }
-
 @media screen and (min-width: 1200px){
-  header{
-    a{
+  .header{
+    .header-a{
       .logo{
         max-width: 70%;
       }
     }
   }
-  #homepage, #cart, #confirmation{
-    margin: 5% 15%;
+  .footer{
+    height: 7em;
   }
-  #homepage{
-    h1{
-      width: 50%;
-      margin: 5% auto;
-    }
-    #btns{
-      .btn-homepage{
-        flex: 0 0 25%;
-      }
-    }
-    section{
-      article{
-        margin: 5% 10%;
-        a{
-          img{
-            margin: 5%;
-          }
-        }
-      }
-    }
+  #homepage, #cart{
+    margin: 0 10em;
   }
   #productPage{
     h1{
-      width: 20%;
-      margin: 5% auto;
+      width: 15%;
+      padding: 0.5em;
     }
     section{
-      img, div{
-        height: 470px;
-      }
       div{
-        width: 550px;
-        padding: 0 2% 1%;
-        h2{
-          margin-top: 10%;
+        select{
+          padding: 0.5em;
         }
       }
     }
   }
-  #cart, #confirmation{
-    h1{
-      margin: 5% auto;
-    }
-  }
-  #cart{
-    #sectionWithProducts{
-      article{
-        margin: 2% 0;
-      }
-      #totalPrice{
-        font-size: 1.6em;
+  #confirmation{
+    section{
+      margin: 0 15em 2em;
+      li{
+        width: 55%;
       }
     }
   }

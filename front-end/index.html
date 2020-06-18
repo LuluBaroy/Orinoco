@@ -16,30 +16,30 @@
         <meta name="twitter:title" content="Orinoco - Votre e-commerce spécialisé !" />
         <meta name="twitter:description" content="Bienvenue chez Orinoco ! Nous sommes un e-commerce se démarquant des grands groupes en créant des applications thématiques ne vendant qu'un seul groupe de produit!" />
         <meta name="twitter:image" content="https://lulubaroy.github.io/Orinoco/front-end/assets/img/favicon.jpg"/>
-        <link rel="apple-touch-icon" href="assets/img/favicon.jpg">
+        <link rel="apple-touch-icon" href="assets/img/favicon.ico">
         <title>Orinoco - Votre e-commerce spécialisé !</title>
         <meta name="description" content="Bienvenue chez Orinoco ! Nous sommes un e-commerce se démarquant des grands groupes en créant des applications thématiques ne vendant qu'un seul groupe de produit!">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     </head>
-    <body id="body-homepage">
-        <header>
+    <body>
+        <header class="header displayFlex">
             <div id="return"></div>
-            <a href="index.html" aria-label="Retour page Accueil" tabindex="0"><img class="logo" src="assets/img/logo.png" alt="logo Orinoco"/></a>
-            <a id="btn-cart" href="pages/cart.html"><img class="basket" src="assets/img/basket.png" alt="Image Panier"> Panier</a>
+            <a href="index.html" aria-label="Retour page Accueil" tabindex="0" class="header-a displayFlex"><img class="logo" src="assets/img/logo.png" alt="logo Orinoco"/></a>
+            <a id="btn-cart" href="pages/cart.html" class="header-a displayFlex"><img class="basket" src="assets/img/basket.png" alt="Image Panier"> Panier</a>
         </header>
         <main id="homepage">
-            <h1>Bienvenue chez Orinoco !</h1>
-            <div id="btns">
+            <h1 class="h1-homepage">Bienvenue chez Orinoco !</h1>
+            <div id="btns" class="displayFlex">
                 <button class="btn-homepage" onClick="getItems('cameras')">Ori-Cameras</button>
                 <button class="btn-homepage" onClick="getItems('teddies')">Ori-Teddies</button>
                 <button class="btn-homepage" onClick="getItems('furniture')">Ori-Furnitures</button>
             </div>
-            <img id="imgHomepage" src="assets/img/bg.png" alt="Fond écran page d'accueil"/>
+            <img id="imgHomepage" src="assets/img/bg.png" alt="Fond écran page d'accueil" class="displayFlex"/>
         </main>
-        <footer id="footerSettings">
-            <a>A propos de nous</a>
-            <a>Contactez-nous</a>
+        <footer class="footer displayFlex">
+            <a class="footer-a">A propos de nous</a>
+            <a class="footer-a">Contactez-nous</a>
         </footer>
         <script src="dist/index.bundle.js"></script>
     </body>

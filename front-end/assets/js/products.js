@@ -26,6 +26,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     let labelSelect = document.createElement('label');
     labelSelect.for = "option-product";
     labelSelect.textContent = "Options : ";
+    labelSelect.id = "labelOptions";
     let selectProduct = document.createElement('select');
 
     //Switching option property according to URL's param
