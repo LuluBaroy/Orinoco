@@ -10,7 +10,7 @@ function getItems(param) {
     //Creating the list container
     document.getElementById('imgHomepage').style.display = 'none';
     let sectionProducts = document.createElement('section');
-
+    sectionProducts.id = 'container-list';
     //Checking if a button has alrealdy been clicked and which product type is called
     if (isClicked === false || currentParam !== param) {
         if (isClicked === true) { //If a button has already been clicked and the product type is different,
