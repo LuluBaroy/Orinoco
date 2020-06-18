@@ -29,8 +29,6 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
     sectionCart.appendChild(productsSuggested);
     sectionCart.appendChild(divProductsSuggested);
 
-
-
     function suggestionsProducts() {
          //Getting a product type randomly
         let randomParam = Math.floor(Math.random() * 3);
@@ -56,17 +54,14 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
                     return randomProducts;
                 }
             }
-
         });
-
     }
-
     //Initializing an array to stock every product randomly chose
     let arrayForProductRandomlySelected = [];
+
     //Calling the function
     for(let i = arrayForProductRandomlySelected.length; i !== 3; i++){
         arrayForProductRandomlySelected.push(suggestionsProducts());
         console.log(arrayForProductRandomlySelected);
     }
-
 }

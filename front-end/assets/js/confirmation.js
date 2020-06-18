@@ -36,10 +36,10 @@ for(let i in orderId){
 
 
 let thanks = document.createElement('p');
-thanks.textContent = `Merci ${contact.firstName} ${contact.lastName} pour votre commande chez Orinoco !`;
+thanks.innerHTML = "Merci <span>" + contact.firstName + " " + contact.lastName + "</span> pour votre commande chez Orinoco !";
 
 let resume = document.createElement('p');
-resume.textContent = `Un e-mail de confirmation vous sera très prochainement envoyé à l'adresse ${contact.email} contenant le résumé de votre commande et les informations de livraison à votre adresse ${contact.address} à ${contact.city} !`;
+resume.innerHTML = "Un e-mail de confirmation vous sera très prochainement envoyé à l'adresse <span>" + contact.email + "</span> contenant le résumé de votre commande et les informations de livraison à votre adresse <span>" + contact.address + "</span> à <span>" + contact.city + "</span> !";
 
 let yourProducts = document.createElement('p');
 yourProducts.textContent = "Le(s) produit(s) que vous avez commandé(s) :"

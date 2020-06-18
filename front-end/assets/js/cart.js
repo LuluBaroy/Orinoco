@@ -8,13 +8,19 @@ let productsAddedToCart = JSON.parse(localStorage.getItem('cart'));
 //Creating the cart display
 let titleCart = document.createElement('h1');
 titleCart.textContent = "Panier";
+document.getElementById('cart').appendChild(titleCart);
+
 let sectionCart = document.createElement('section');
 document.getElementById('cart').appendChild(sectionCart);
-sectionCart.appendChild(titleCart);
+
 
 //If there is product(s) added in the localStorage
 if (productsAddedToCart !== null) {
     sectionCart.id = "sectionWithProducts";
+    let sectionTitle = document.createElement('h2');
+    sectionTitle.textContent = "Produit(s) Ajouté(s)";
+    sectionTitle.id = "sectionTitle";
+    sectionCart.appendChild(sectionTitle);
     for (let i in productsAddedToCart) {
 
         //Creating each product display
@@ -34,7 +40,7 @@ if (productsAddedToCart !== null) {
         imageProductsCart.alt = "Photo " + productsAddedToCart[i].name;
         imageProductsCart.title = "Photo de " + productsAddedToCart[i].name;
         let divProductsCart = document.createElement('div');
-        let titleProductsCart = document.createElement('h2');
+        let titleProductsCart = document.createElement('h3');
         titleProductsCart.textContent = productsAddedToCart[i].name;
 
         //Getting the price of each product and converting it in euro
