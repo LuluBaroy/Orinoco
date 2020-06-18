@@ -6,7 +6,6 @@ let confirmation = JSON.parse(localStorage.getItem('confirm'));
 let contact = JSON.parse(localStorage.getItem('contact'));
 let orderId = JSON.parse(localStorage.getItem('orderId'));
 
-console.log(orderId);
 //Creating the elements above the products purchased
 let sectionConfirm = document.createElement('section');
 
@@ -95,8 +94,6 @@ for (let i in confirmation) {
                 let totalPriceByProducts = response.price * confirmation[i].quantity;
                 priceCalculation(totalPriceByProducts, totalPriceText, 'Prix total pour cet article : ');
 
-
-
                 sectionConfirm.appendChild(articleConfirm);
                 articleConfirm.appendChild(imageConfirm);
                 articleConfirm.appendChild(divConfirm);
@@ -115,4 +112,3 @@ for (let i in confirmation) {
         }).catch();
 
 }
-

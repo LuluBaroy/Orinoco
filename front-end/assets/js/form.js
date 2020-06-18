@@ -92,7 +92,6 @@ if (productsAddedToCart !== null) { //If there is product(s) added in localStora
                     //Checking the number of order's Id we're supposed to get and then redirecting to the confirmation page
                     if(Object.keys(productsOrdered).length === orderIds.length){
                             localStorage.setItem('confirm', JSON.stringify(confirm));
-                            localStorage.setItem('contact', JSON.stringify(newContact));
                             localStorage.removeItem('cart');
                             window.location.href = "./confirmation.html";
                     }
