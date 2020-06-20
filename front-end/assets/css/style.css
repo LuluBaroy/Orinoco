@@ -310,6 +310,14 @@ body {
   font-size: 1.2em;
   margin: 1em;
 }
+#cart #emptyCartSection #divSuggestion {
+  display: flex;
+  flex-direction: column;
+}
+#cart #emptyCartSection #divSuggestion article img {
+  max-width: 50%;
+  object-fit: scale-down;
+}
 #cart #emptyCartSection button {
   display: inline-block;
   font-size: 1em;
@@ -678,6 +686,17 @@ body {
   }
   #cart #emptyCartSection button {
     font-size: 1.4em;
+  }
+  #cart #emptyCartSection #divSuggestion {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  #cart #emptyCartSection #divSuggestion article {
+    flex: 0 0 30%;
+  }
+  #cart #emptyCartSection #divSuggestion article img {
+    max-width: 80%;
+    max-height: 150px;
   }
   #cart #sectionWithProducts h2 {
     font-size: 1.8em;

@@ -30,38 +30,46 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
     sectionCart.appendChild(divProductsSuggested);
 
     function suggestionsProducts() {
-         //Getting a product type randomly
-        let randomParam = Math.floor(Math.random() * 3);
-        let paramChose = "";
-        switch (randomParam) {
-            case 0:
-                paramChose = 'teddies';
-                break;
-            case 1:
-                paramChose = 'furniture';
-                break;
-            case 2:
-                paramChose = 'cameras';
-                break;
-        }
+        //Getting a product type randomly
+        let productsType = ['teddies','furniture','cameras'];
+        let paramChose = productsType[Math.floor(Math.random() * (productsType.length-1))];
         //Then, with the type randomly got, getting a product of that type
         connection("http://localhost:3000/api/" + paramChose).then(function (response) {
-            let randomProducts = response[Math.floor(Math.random() * response.length)];
-            if (arrayForProductRandomlySelected.length === 0) {
-                return randomProducts;
-            } else {
-                if (arrayForProductRandomlySelected.findIndex(i => i._id === randomProducts._id) === -1) {
+            function getProduct(){
+                let randomProducts=response[Math.floor(Math.random() * response.length)];
+                if (arrayForProductRandomlySelected.length === 0 || arrayForProductRandomlySelected.findIndex(i => i._id === randomProducts._id) === -1) {
                     return randomProducts;
                 }
             }
+            //Initializing an array to stock every product randomly chose
+            let arrayForProductRandomlySelected = [];
+            //Calling the function
+            while(arrayForProductRandomlySelected.length < 3){
+                arrayForProductRandomlySelected.push(getProduct());
+            }
+            console.log(arrayForProductRandomlySelected);
+            let divSuggestion = document.createElement('div');
+            divSuggestion.id = "divSuggestion";
+            arrayForProductRandomlySelected.forEach(function(response){
+                let articleSuggestion = document.createElement('article');
+                let linkProductSuggested = document.createElement('a');
+                linkProductSuggested.href = 'products.html?type=' + paramChose + '&id=' + response._id;
+                let imageProductsSuggested = document.createElement('img');
+                imageProductsSuggested.src = response.imageUrl;
+                imageProductsSuggested.alt = "Photo Ourson " + response.name;
+                imageProductsSuggested.title = "Photo de présentation ourson " + response.name;
+                let titleProduct = document.createElement('h3');
+                titleProduct.textContent = response.name;
+
+                sectionCart.appendChild(divSuggestion);
+                divSuggestion.appendChild(articleSuggestion);
+                articleSuggestion.appendChild(linkProductSuggested);
+                linkProductSuggested.appendChild(imageProductsSuggested);
+                articleSuggestion.appendChild(titleProduct);
+            })
+
+
         });
     }
-    //Initializing an array to stock every product randomly chose
-    let arrayForProductRandomlySelected = [];
-
-    //Calling the function
-    for(let i = arrayForProductRandomlySelected.length; i !== 3; i++){
-        arrayForProductRandomlySelected.push(suggestionsProducts());
-        console.log(arrayForProductRandomlySelected);
-    }
+    suggestionsProducts();
 }
