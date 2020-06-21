@@ -51,6 +51,7 @@
   transition: 250ms ease-in-out;
 }
 #cart form .formCss #btn-submit:hover, #cart #emptyCartSection button:hover, #productPage section div button:hover, #homepage #btns .btn-homepage:hover {
+  cursor: pointer;
   color: white;
   text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black;
   background-size: 100% 100%;
@@ -178,6 +179,16 @@ body {
   font-size: 1.4em;
   margin: 1em auto;
 }
+#productPage #textProductAdded {
+  text-align: center;
+  font-size: 1.2em;
+  margin: 5% auto;
+  padding: 2%;
+  width: 85%;
+  border-radius: 100px;
+  border: 4px solid black;
+  box-shadow: 0 0 12px #DD55CF;
+}
 #productPage section {
   display: flex;
   margin: 0.4em;
@@ -216,6 +227,7 @@ body {
   margin-top: 1em;
 }
 #productPage section div select {
+  cursor: pointer;
   margin: 0.3em;
   padding: 0.2em;
   border-radius: 1em;
@@ -310,6 +322,14 @@ body {
   font-size: 1.2em;
   margin: 1em;
 }
+#cart #emptyCartSection #divSuggestion {
+  display: flex;
+  flex-direction: column;
+}
+#cart #emptyCartSection #divSuggestion article img {
+  max-width: 50%;
+  object-fit: scale-down;
+}
 #cart #emptyCartSection button {
   display: inline-block;
   font-size: 1em;
@@ -370,6 +390,7 @@ body {
   background-color: #FFDDDD;
   border: 0.3em solid #C60000;
   box-shadow: 0 0 0.6em #820000;
+  position: relative;
 }
 #cart form .formCss #btn-submit {
   display: inline-block;
@@ -503,6 +524,10 @@ body {
 
   #productPage h1 {
     width: 40%;
+  }
+  #productPage #textProductAdded {
+    margin: 0 auto 5%;
+    width: 50%;
   }
   #productPage section div {
     margin: 1.3em;
@@ -679,6 +704,17 @@ body {
   #cart #emptyCartSection button {
     font-size: 1.4em;
   }
+  #cart #emptyCartSection #divSuggestion {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  #cart #emptyCartSection #divSuggestion article {
+    flex: 0 0 30%;
+  }
+  #cart #emptyCartSection #divSuggestion article img {
+    max-width: 80%;
+    max-height: 150px;
+  }
   #cart #sectionWithProducts h2 {
     font-size: 1.8em;
   }
@@ -802,6 +838,9 @@ body {
   #productPage h1 {
     margin: 2em auto;
   }
+  #productPage #textProductAdded {
+    width: 25%;
+  }
   #productPage section {
     flex-direction: row;
     align-items: center;
@@ -861,6 +900,9 @@ body {
   #productPage h1 {
     width: 15%;
     padding: 0.5em;
+  }
+  #productPage section div #labelOptions {
+    margin-top: 0.2em;
   }
   #productPage section div select {
     padding: 0.5em;

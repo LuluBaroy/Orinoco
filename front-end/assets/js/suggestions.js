@@ -28,40 +28,49 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
     sectionCart.appendChild(buttonReturnHomepage);
     sectionCart.appendChild(productsSuggested);
     sectionCart.appendChild(divProductsSuggested);
+    let divSuggestion = document.createElement('div');
+    divSuggestion.id = "divSuggestion";
 
     function suggestionsProducts() {
-         //Getting a product type randomly
-        let randomParam = Math.floor(Math.random() * 3);
-        let paramChose = "";
-        switch (randomParam) {
-            case 0:
-                paramChose = 'teddies';
-                break;
-            case 1:
-                paramChose = 'furniture';
-                break;
-            case 2:
-                paramChose = 'cameras';
-                break;
+        //Getting a product type randomly
+        let productsType = ['teddies','furniture','cameras'];
+        let paramChose = [];
+        for(let i =0; i < 3; i++){
+            paramChose.push(productsType[Math.floor(Math.random() * (productsType.length))]);
         }
-        //Then, with the type randomly got, getting a product of that type
-        connection("http://localhost:3000/api/" + paramChose).then(function (response) {
-            let randomProducts = response[Math.floor(Math.random() * response.length)];
-            if (arrayForProductRandomlySelected.length === 0) {
-                return randomProducts;
-            } else {
-                if (arrayForProductRandomlySelected.findIndex(i => i._id === randomProducts._id) === -1) {
-                    return randomProducts;
-                }
-            }
-        });
-    }
-    //Initializing an array to stock every product randomly chose
-    let arrayForProductRandomlySelected = [];
 
-    //Calling the function
-    for(let i = arrayForProductRandomlySelected.length; i !== 3; i++){
-        arrayForProductRandomlySelected.push(suggestionsProducts());
-        console.log(arrayForProductRandomlySelected);
+        let selectedProduct=[];
+
+        paramChose.forEach((item, index) => {
+            //Then, with the type randomly got, getting a product of that type
+            connection("http://localhost:3000/api/" + item).then(function (response) {
+                function getProduct(){
+                    let randomProducts=response[Math.floor(Math.random() * response.length)];
+                    if (selectedProduct.length === 0 || selectedProduct.findIndex(i => i._id === randomProducts._id) === -1) {
+                        selectedProduct.push(randomProducts);
+                        let articleSuggestion = document.createElement('article');
+                        let linkProductSuggested = document.createElement('a');
+                        linkProductSuggested.href = linkProductSuggested.href = 'products.html?type=' + item + '&id=' + randomProducts._id;
+                        let imageProductsSuggested = document.createElement('img');
+                        imageProductsSuggested.src = randomProducts.imageUrl;
+                        imageProductsSuggested.alt = "Photo Ourson " + randomProducts.name;
+                        imageProductsSuggested.title = "Photo de présentation ourson " + randomProducts.name;
+                        let titleProduct = document.createElement('h3');
+                        titleProduct.textContent = randomProducts.name;
+
+                        sectionCart.appendChild(divSuggestion);
+                        divSuggestion.appendChild(articleSuggestion);
+                        articleSuggestion.appendChild(linkProductSuggested);
+                        linkProductSuggested.appendChild(imageProductsSuggested);
+                        articleSuggestion.appendChild(titleProduct);
+                    }
+                    else{
+                        getProduct();
+                    }
+                }
+                getProduct();
+            });
+        })
     }
+    suggestionsProducts();
 }

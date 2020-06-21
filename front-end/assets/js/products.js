@@ -105,6 +105,16 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
                 this.price = price;
             }
         }
+        function productAddedText(text){
+            let textProductAdded = document.createElement('p');
+            textProductAdded.textContent = text;
+            textProductAdded.id = "textProductAdded";
+            document.getElementById('productPage').appendChild(textProductAdded);
+            setTimeout(function(){
+                document.getElementById('productPage').removeChild(textProductAdded);
+                location.reload();
+            }, 1550);
+        }
 
         if (cartUp === null) {
             //if this is the first product added, creating new line and stocking it
@@ -112,7 +122,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
             let firstLine = new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
-            location.reload();
+            productAddedText("Le produit a bien été ajouté au panier !");
         } else {
             //Else, verifying if the product has already been added
             let cartUp2 = JSON.parse(localStorage.getItem('cart'));
@@ -122,14 +132,16 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
                 if (cartUp2[k].id === response._id) {
                     productAlreadyAdded = true;
                     cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
+                    productAddedText("La quantité pour ce produit a été modifiée !");
                 }
             }
             //If the product isn't already added, we add it
             if (!productAlreadyAdded) {
                 cartUp2.push(new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
+                productAddedText("Le produit a été ajouté au panier !");
             }
             localStorage.setItem('cart', JSON.stringify(cartUp2));
-            location.reload();
+
         }
     });
 
