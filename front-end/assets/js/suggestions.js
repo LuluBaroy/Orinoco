@@ -28,48 +28,49 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
     sectionCart.appendChild(buttonReturnHomepage);
     sectionCart.appendChild(productsSuggested);
     sectionCart.appendChild(divProductsSuggested);
+    let divSuggestion = document.createElement('div');
+    divSuggestion.id = "divSuggestion";
 
     function suggestionsProducts() {
         //Getting a product type randomly
         let productsType = ['teddies','furniture','cameras'];
-        let paramChose = productsType[Math.floor(Math.random() * (productsType.length-1))];
-        //Then, with the type randomly got, getting a product of that type
-        connection("http://localhost:3000/api/" + paramChose).then(function (response) {
-            function getProduct(){
-                let randomProducts=response[Math.floor(Math.random() * response.length)];
-                if (arrayForProductRandomlySelected.length === 0 || arrayForProductRandomlySelected.findIndex(i => i._id === randomProducts._id) === -1) {
-                    return randomProducts;
+        let paramChose = [];
+        for(let i =0; i < 3; i++){
+            paramChose.push(productsType[Math.floor(Math.random() * (productsType.length))]);
+        }
+
+        let selectedProduct=[];
+
+        paramChose.forEach((item, index) => {
+            //Then, with the type randomly got, getting a product of that type
+            connection("http://localhost:3000/api/" + item).then(function (response) {
+                function getProduct(){
+                    let randomProducts=response[Math.floor(Math.random() * response.length)];
+                    if (selectedProduct.length === 0 || selectedProduct.findIndex(i => i._id === randomProducts._id) === -1) {
+                        selectedProduct.push(randomProducts);
+                        let articleSuggestion = document.createElement('article');
+                        let linkProductSuggested = document.createElement('a');
+                        linkProductSuggested.href = linkProductSuggested.href = 'products.html?type=' + item + '&id=' + randomProducts._id;
+                        let imageProductsSuggested = document.createElement('img');
+                        imageProductsSuggested.src = randomProducts.imageUrl;
+                        imageProductsSuggested.alt = "Photo Ourson " + randomProducts.name;
+                        imageProductsSuggested.title = "Photo de présentation ourson " + randomProducts.name;
+                        let titleProduct = document.createElement('h3');
+                        titleProduct.textContent = randomProducts.name;
+
+                        sectionCart.appendChild(divSuggestion);
+                        divSuggestion.appendChild(articleSuggestion);
+                        articleSuggestion.appendChild(linkProductSuggested);
+                        linkProductSuggested.appendChild(imageProductsSuggested);
+                        articleSuggestion.appendChild(titleProduct);
+                    }
+                    else{
+                        getProduct();
+                    }
                 }
-            }
-            //Initializing an array to stock every product randomly chose
-            let arrayForProductRandomlySelected = [];
-            //Calling the function
-            while(arrayForProductRandomlySelected.length < 3){
-                arrayForProductRandomlySelected.push(getProduct());
-            }
-            console.log(arrayForProductRandomlySelected);
-            let divSuggestion = document.createElement('div');
-            divSuggestion.id = "divSuggestion";
-            arrayForProductRandomlySelected.forEach(function(response){
-                let articleSuggestion = document.createElement('article');
-                let linkProductSuggested = document.createElement('a');
-                linkProductSuggested.href = 'products.html?type=' + paramChose + '&id=' + response._id;
-                let imageProductsSuggested = document.createElement('img');
-                imageProductsSuggested.src = response.imageUrl;
-                imageProductsSuggested.alt = "Photo Ourson " + response.name;
-                imageProductsSuggested.title = "Photo de présentation ourson " + response.name;
-                let titleProduct = document.createElement('h3');
-                titleProduct.textContent = response.name;
-
-                sectionCart.appendChild(divSuggestion);
-                divSuggestion.appendChild(articleSuggestion);
-                articleSuggestion.appendChild(linkProductSuggested);
-                linkProductSuggested.appendChild(imageProductsSuggested);
-                articleSuggestion.appendChild(titleProduct);
-            })
-
-
-        });
+                getProduct();
+            });
+        })
     }
     suggestionsProducts();
 }

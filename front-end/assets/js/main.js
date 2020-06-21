@@ -44,35 +44,7 @@ function priceCalculation(price, priceText, text) {
     return euros;
 }
 
-//Promise for POST request
-let orderIds = [];
-class OrderConfirm {
-    constructor(id, param){
-        this.id = id;
-        this.param = param;
-    }
-}
-const sending = function (url, order) {
-    return new Promise(function (resolve, reject) {
-        let request = new XMLHttpRequest();
-        request.onreadystatechange = function (response) {
-            if (this.readyState === 4) {
-                if (this.status === 201) {
-                    resolve(response = JSON.parse(this.responseText), orderIds.push(new OrderConfirm(response.orderId, JSON.parse(localStorage.getItem('paramOrder')))), localStorage.setItem('orderId', JSON.stringify(orderIds)), localStorage.setItem('contact', JSON.stringify(response.contact)));
-                } else {
-                    reject();
-                }
-            }
-        };
-        request.open("POST", url);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify(order));
-    });
-};
-
 export {connection};
 export{urlStr};
 export{priceCalculation};
-export {sending};
-export{orderIds};
 export{modifyingHeader};
