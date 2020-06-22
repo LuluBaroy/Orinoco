@@ -36,10 +36,20 @@
                 <button class="btn-homepage" onClick="getItems('furniture')">Ori-Furnitures</button>
             </div>
             <img id="imgHomepage" src="assets/img/bg.png" alt="Fond écran page d'accueil" class="displayFlex"/>
+            <div id="myModal" class="modal">
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+                <div class="modal-content">
+                    <div class="mySlides">
+                        <img src="assets/img/aboutUs.jpg" class="hover-shadow">
+                    </div>
+                </div>
+            </div>
         </main>
         <footer class="footer displayFlex">
-            <a class="footer-a">A propos de nous</a>
-            <a class="footer-a">Contactez-nous</a>
+            <a onclick="openModal()" class="footer-a">A propos de nous</a>
+            <a class="footer-a" href="mailto:contact@orinoco.fr">
+                <img id="imgContacts" src="assets/img/contacts.jpg"> Contactez-nous
+            </a>
         </footer>
         <script src="dist/index.bundle.js"></script>
     </body>

@@ -1,6 +1,8 @@
 import {connection} from "./main";
 import {modifyingHeader} from "./main";
-
+import {openModal} from "./main";
+import {closeModal} from "./main";
+import {showSlides} from "./main";
 modifyingHeader();
 let isClicked = false;
 let currentParam = 'teddies';
@@ -51,4 +53,7 @@ function getItems(param) {
     }
 }
 window.getItems = getItems;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.showSlides = showSlides;
 

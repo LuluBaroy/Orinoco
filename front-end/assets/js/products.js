@@ -2,6 +2,9 @@ import {connection} from "./main";
 import{urlStr} from "./main";
 import {priceCalculation} from "./main";
 import {modifyingHeader} from "./main";
+import {openModal} from "./main";
+import {closeModal} from "./main";
+import {showSlides} from "./main";
 
 //calling the modifyingHeader function
 modifyingHeader();
@@ -160,3 +163,6 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     divProducts.appendChild(priceProduct);
     divProducts.appendChild(buttonCart);
 });
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.showSlides = showSlides;
