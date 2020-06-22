@@ -1,5 +1,8 @@
 import{priceCalculation} from "./main";
 import {modifyingHeader} from "./main";
+import {openModal} from "./main";
+import {closeModal} from "./main";
+import {showSlides} from "./main";
 
 modifyingHeader();
 //Getting products stored in localStorage
@@ -116,6 +119,9 @@ if (productsAddedToCart !== null) {
     priceCalculation(calculationTotalOrder, totalOrder, 'Prix total de la commande : ');
     sectionCart.appendChild(totalOrder);
 }
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.showSlides = showSlides;
 require("./form");
 require("./suggestions");
 export {productsAddedToCart};

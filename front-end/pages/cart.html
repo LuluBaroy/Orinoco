@@ -30,10 +30,20 @@
             <a id="btn-cart" href="cart.html" class="header-a displayFlex"><img class="basket" src="../assets/img/basket.png" alt="Image Panier"> Panier</a>
         </header>
         <main id="cart">
+            <div id="myModal" class="modal">
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+                <div class="modal-content">
+                    <div class="mySlides">
+                        <img src="../assets/img/aboutUs.jpg" class="hover-shadow">
+                    </div>
+                </div>
+            </div>
         </main>
         <footer class="footer displayFlex">
-            <a class="footer-a">A propos de nous</a>
-            <a class="footer-a">Contactez-nous</a>
+            <a onclick="openModal()" class="footer-a">A propos de nous</a>
+            <a class="footer-a" href="mailto:contact@orinoco.fr">
+                <img id="imgContacts" src="../assets/img/contacts.jpg"> Contactez-nous
+            </a>
         </footer>
         <script src="../dist/cart.bundle.js"></script>
     </body>

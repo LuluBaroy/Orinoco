@@ -1,5 +1,8 @@
 import {connection} from "./main";
 import {priceCalculation} from "./main";
+import {openModal} from "./main";
+import {closeModal} from "./main";
+import {showSlides} from "./main";
 
 //Getting all order's information
 let confirmation = JSON.parse(localStorage.getItem('confirm'));
@@ -112,3 +115,6 @@ for (let i in confirmation) {
         }).catch();
 
 }
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.showSlides = showSlides;

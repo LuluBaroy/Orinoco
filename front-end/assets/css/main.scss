@@ -26,6 +26,14 @@
     transform: rotate(1deg);
   }
 }
+@keyframes appear {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 %title{
   border: 0.2em solid #F3E9F1;
   box-shadow: 0 0 0.4em black;
@@ -63,6 +71,49 @@
 }
 body{
   background-color: white;
+  main{
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      overflow: auto;
+      padding-top: 10px;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+    .modal-content {
+      padding: 50px 0;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .mySlides {
+      display: none;
+      width: 90%;
+      margin: auto;
+      img{
+        max-width: 100%;
+        border-radius: 50px;
+      }
+    }
+    .close {
+      color: white;
+      position: absolute;
+      top: 10px;
+      right: 25px;
+      font-size: 35px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: #999;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
 }
 .header{
   background-color: #F3E9F1;
@@ -105,16 +156,22 @@ body{
   height: 6em;
   width: 100%;
   .footer-a{
+    color: black;
+    text-decoration: none;
     text-align: center;
     flex: 0 0 10%;
     margin: auto;
     align-items: center;
     padding: 0.2em;
+    #imgContacts{
+      display: none;
+    }
     &:hover{
       cursor: pointer;
       border-radius: 0.7em;
       box-shadow: 0 0 0.9em black;
     }
+
   }
 }
 #homepage{
@@ -494,6 +551,13 @@ body{
   }
 }
 @media screen and (min-width: 577px){
+  body{
+    main{
+      .mySlides {
+        width: 60%;
+      }
+    }
+  }
   .header{
     flex-direction: row;
     height: 6em;
@@ -667,10 +731,30 @@ body{
   }
 }
 @media screen and (min-width: 768px){
+  body{
+    main{
+      .mySlides {
+        width: 50%;
+      }
+    }
+  }
   .header{
     height: 8em;
     #btn-cart{
       font-size: 1.2em;
+    }
+  }
+  .footer-a{
+    &:hover{
+      #imgContacts{
+        animation: appear 0.5s linear;
+        display: flex;
+        position: fixed;
+        bottom: 13%;
+        right: 2%;
+        object-fit: scale-down;
+        box-shadow: 0 0 12px black;
+      }
     }
   }
   #homepage{
@@ -868,6 +952,25 @@ body{
   }
 }
 @media screen and (min-width: 992px){
+  body{
+    main{
+      .modal-content{
+        padding-top: 25px;
+      }
+      .mySlides {
+        width: 25%;
+      }
+    }
+  }
+  .footer{
+    .footer-a{
+      &:hover{
+        #imgContacts{
+          right: 5%;
+        }
+      }
+    }
+  }
   #homepage {
     .h1-homepage{
       margin: 1.5em auto;
@@ -937,6 +1040,14 @@ body{
   }
 }
 @media screen and (min-width: 1200px){
+  body{
+    main{
+      .close{
+        top: 50px;
+        right: 450px;
+      }
+    }
+  }
   .header{
     .header-a{
       .logo{
@@ -946,6 +1057,16 @@ body{
   }
   .footer{
     height: 7em;
+    .footer-a{
+      padding: 1em;
+      &:hover{
+        border-radius: 50px;
+        #imgContacts{
+          bottom: 13%;
+          right: 10%;
+        }
+      }
+    }
   }
   #homepage, #cart{
     margin: 0 10em;
