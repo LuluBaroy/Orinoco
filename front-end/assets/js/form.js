@@ -1,4 +1,5 @@
 import {productsAddedToCart} from "./cart";
+import Swal from "sweetalert2";
 
 //Array and class to stock info from server's response
 let orderIds = [];
@@ -87,17 +88,13 @@ if (productsAddedToCart !== null) { //If there is product(s) added in localStora
         if (!document.getElementById('form1').checkValidity()) {
             //Form isn't valid: preventing the submit
             event.preventDefault();
-            document.getElementById('btn-submit').setAttribute("disabled", true);
-            let textInvalid = document.createElement('p');
-            textInvalid.textContent = 'Merci de remplir tous les champs du formulaire avant de valider votre commande !';
-            textInvalid.style.fontSize = "1.2em";
-            textInvalid.style.color = "#C60000";
-            textInvalid.style.margin = "0 0 2%";
-            sectionForm.appendChild(textInvalid);
-            setTimeout(function() {
-                sectionForm.removeChild(textInvalid);
-                document.getElementById('btn-submit').removeAttribute("disabled");
-            },3000);
+            Swal.fire({
+                position: 'center',
+                imageUrl: 'https://media1.tenor.com/images/8bce66c7f447d8b7cfce2cfe1da61782/tenor.gif?itemid=11295732',
+                title: 'Merci de renseigner tous les champs du formulaire avant de valider votre commande !',
+                showConfirmButton: false,
+                timer: 2500
+            })
         } else {
             //Form is valid: creating the user contact infos
             let newContact = new Contact(document.getElementById('firstName').value, document.getElementById('lastName').value, document.getElementById('address').value, document.getElementById('city').value, document.getElementById('email').value);

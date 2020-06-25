@@ -1,9 +1,17 @@
-import {connection} from "./main";
+import {connection, contactUs} from "./main";
 import {priceCalculation} from "./main";
-import {openModal} from "./main";
-import {closeModal} from "./main";
-import {showSlides} from "./main";
+import {aboutUs} from "./main";
+import Swal from "sweetalert2";
 
+function thanksAlert(){
+        Swal.fire({
+                position: 'center',
+                title: 'Merci pour votre commande !',
+                imageUrl: 'https://media1.tenor.com/images/3264bcc47ee47ebbdd441f9f1d203542/tenor.gif?itemid=12498539',
+                showConfirmButton: false,
+                timer: 2200
+        })
+}
 //Getting all order's information
 let confirmation = JSON.parse(localStorage.getItem('confirm'));
 let contact = JSON.parse(localStorage.getItem('contact'));
@@ -113,8 +121,7 @@ for (let i in confirmation) {
                 sectionConfirm.appendChild(thanksEndNote);
 
         }).catch();
-
 }
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.showSlides = showSlides;
+window.aboutUs = aboutUs;
+window.contactUs = contactUs;
+window.thanksAlert = thanksAlert;

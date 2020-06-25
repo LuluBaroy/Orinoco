@@ -1,8 +1,8 @@
 import{priceCalculation} from "./main";
 import {modifyingHeader} from "./main";
-import {openModal} from "./main";
-import {closeModal} from "./main";
-import {showSlides} from "./main";
+import {aboutUs} from "./main";
+import {contactUs} from "./main";
+import Swal from 'sweetalert2'
 
 modifyingHeader();
 //Getting products stored in localStorage
@@ -73,13 +73,54 @@ if (productsAddedToCart !== null) {
         buttonLess.textContent = "-";
         buttonLess.addEventListener('click', function (event) {
             if (productsAddedToCart[i].quantity === 1) { //if quantity left of the product equals one and we want to reduce it
-                productsAddedToCart.splice([i], 1);  //deleting that product of local storage
-                localStorage.setItem('cart', JSON.stringify(productsAddedToCart)); //updating the localStorage
-                location.reload(); //Reloading the cart page
-                if (productsAddedToCart.length === 0) { //If all products have been deleted
-                    localStorage.clear(); //Clearing localStorage
-                    location.reload(); //Reloading cart page
-                }
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                })
+                swalWithBootstrapButtons.fire({
+                    imageUrl: 'https://media1.tenor.com/images/0032588f968fc984c0b2cf5018cc6cee/tenor.gif?itemid=15814216',
+                    title: 'Êtes-vous sûr(e) ?',
+                    text: `Vous allez sauvagement supprimer ${productsAddedToCart[i].name} du panier !`,
+                    showCancelButton: true,
+                    confirmButtonText: 'Supprimer',
+                    confirmButtonColor: '#D70000',
+                    cancelButtonText: 'Annuler',
+                    cancelButtonColor: '#009D9D'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            position: 'center',
+                            imageUrl: 'https://media1.tenor.com/images/c7eb5bbae52025b4d2ad9b8224022bd4/tenor.gif?itemid=11667710',
+                            title: 'Produit supprimé !',
+                            titleText: `${productsAddedToCart[i].name} n'est plus qu'un lointain souvenir ...`,
+                            showConfirmButton: false,
+                            timer: 2200
+                        })
+                        setTimeout(function () {
+                            productsAddedToCart.splice([i], 1);  //deleting that product of local storage
+                            localStorage.setItem('cart', JSON.stringify(productsAddedToCart)); //updating the localStorage
+                            location.reload(); //Reloading the cart page
+                            if (productsAddedToCart.length === 0) { //If all products have been deleted
+                                localStorage.clear(); //Clearing localStorage
+                                location.reload(); //Reloading cart page
+                            }
+                        }, 2200)
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire({
+                            position: 'center',
+                            imageUrl: 'https://media1.tenor.com/images/45e529c116a1758fd09bdb27e2172eca/tenor.gif?itemid=11674749',
+                            title: 'Annulé !',
+                            titleText: `Ouf ! Vous avez sauvez ${productsAddedToCart[i].name} !`,
+                            showConfirmButton: false,
+                            timer: 2200
+                        })
+                    }
+                })
             } else { //Else, reducing product's quantity, updating localStorage and reloading cart's page
                 productsAddedToCart[i].quantity--;
                 localStorage.setItem('cart', JSON.stringify(productsAddedToCart));
@@ -119,9 +160,8 @@ if (productsAddedToCart !== null) {
     priceCalculation(calculationTotalOrder, totalOrder, 'Prix total de la commande : ');
     sectionCart.appendChild(totalOrder);
 }
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.showSlides = showSlides;
+window.aboutUs = aboutUs;
+window.contactUs = contactUs;
 require("./form");
 require("./suggestions");
 export {productsAddedToCart};

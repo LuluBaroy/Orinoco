@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 //Getting products' information with Promise
 function connection(url) {
     return new Promise(function (resolve, reject) {
@@ -14,7 +15,7 @@ function connection(url) {
         request.open("GET", url);
         request.send();
     });
-};
+}
 
 //Getting Product ID
 let queryStr = window.location.search;
@@ -43,32 +44,23 @@ function priceCalculation(price, priceText, text) {
     return euros;
 }
 
-// Open the Modal
-function openModal() {
-    document.getElementById("myModal").style.display = "block";
+// Lightbox functions
+function aboutUs() {
+    Swal.fire({
+        imageUrl: '../assets/img/aboutUs.jpg',
+        backdrop: `rgba(0,0,0,0.85)`
+    })
+}
+function contactUs() {
+    Swal.fire({
+        imageUrl: '../assets/img/contacts.jpg',
+        backdrop: `rgba(0,0,0,0.85)`
+    })
 }
 
-// Close the Modal
-function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-}
-
-let slideIndex = 1;
-showSlides(slideIndex);
-
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slides[slideIndex-1].style.display = "block";
-}
-export {openModal};
-export {closeModal};
-export {showSlides};
+//Exports
+export {aboutUs};
+export {contactUs};
 export {connection};
 export{urlStr};
 export{priceCalculation};

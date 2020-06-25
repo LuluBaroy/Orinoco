@@ -22,27 +22,17 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
 </head>
-<body>
+<body onload="thanksAlert()">
     <header class="header displayFlex">
         <div id="return"><a href="../index.html" class="header-a displayFlex"><img class="return" src="../assets/img/return.png" alt="image retour page accueil"/></a></div>
         <a href="../index.html" aria-label="Retour page Accueil" tabindex="0" class="header-a displayFlex"><img class="logo" src="../assets/img/logo.png" alt="logo Orinoco"/></a>
         <a id="btn-cart" href="cart.html" class="header-a displayFlex"><img class="basket" src="../assets/img/basket.png" alt="Image Panier"> Panier</a>
     </header>
     <main id="confirmation">
-        <div id="myModal" class="modal">
-            <span class="close cursor" onclick="closeModal()">&times;</span>
-            <div class="modal-content">
-                <div class="mySlides">
-                    <img src="../assets/img/aboutUs.jpg" class="hover-shadow">
-                </div>
-            </div>
-        </div>
     </main>
     <footer class="footer displayFlex">
-        <a onclick="openModal()" class="footer-a">A propos de nous</a>
-        <a class="footer-a" href="mailto:contact@orinoco.fr">
-            <img id="imgContacts" src="../assets/img/contacts.jpg"> Contactez-nous
-        </a>
+        <a onclick="aboutUs()" class="footer-a">A propos de nous</a>
+        <a onclick="contactUs()" class="footer-a">Contactez-nous</a>
     </footer>
 <script src="../dist/confirmation.bundle.js"></script>
 </body>
