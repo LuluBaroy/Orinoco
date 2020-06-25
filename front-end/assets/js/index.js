@@ -1,8 +1,9 @@
 import {connection} from "./main";
 import {modifyingHeader} from "./main";
-import {openModal} from "./main";
-import {closeModal} from "./main";
-import {showSlides} from "./main";
+import {aboutUs} from "./main";
+import {contactUs} from "./main";
+import Swal from "sweetalert2";
+
 modifyingHeader();
 let isClicked = false;
 let currentParam = 'teddies';
@@ -53,7 +54,5 @@ function getItems(param) {
     }
 }
 window.getItems = getItems;
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.showSlides = showSlides;
-
+window.aboutUs = aboutUs;
+window.contactUs = contactUs;

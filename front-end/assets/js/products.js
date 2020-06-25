@@ -2,9 +2,9 @@ import {connection} from "./main";
 import{urlStr} from "./main";
 import {priceCalculation} from "./main";
 import {modifyingHeader} from "./main";
-import {openModal} from "./main";
-import {closeModal} from "./main";
-import {showSlides} from "./main";
+import {aboutUs} from "./main";
+import {contactUs} from "./main";
+import Swal from 'sweetalert2'
 
 //calling the modifyingHeader function
 modifyingHeader();
@@ -108,16 +108,6 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
                 this.price = price;
             }
         }
-        function productAddedText(text){
-            let textProductAdded = document.createElement('p');
-            textProductAdded.textContent = text;
-            textProductAdded.id = "textProductAdded";
-            document.getElementById('productPage').appendChild(textProductAdded);
-            setTimeout(function(){
-                document.getElementById('productPage').removeChild(textProductAdded);
-                location.reload();
-            }, 1550);
-        }
 
         if (cartUp === null) {
             //if this is the first product added, creating new line and stocking it
@@ -125,7 +115,16 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
             let firstLine = new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
-            productAddedText("Le produit a bien été ajouté au panier !");
+            Swal.fire({
+                position: 'center',
+                title: 'Produit ajouté au panier !',
+                imageUrl: 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
         } else {
             //Else, verifying if the product has already been added
             let cartUp2 = JSON.parse(localStorage.getItem('cart'));
@@ -135,13 +134,31 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
                 if (cartUp2[k].id === response._id) {
                     productAlreadyAdded = true;
                     cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
-                    productAddedText("La quantité pour ce produit a été modifiée !");
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Quantité modifiée !',
+                        imageUrl: 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
                 }
             }
             //If the product isn't already added, we add it
             if (!productAlreadyAdded) {
                 cartUp2.push(new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
-                productAddedText("Le produit a été ajouté au panier !");
+                Swal.fire({
+                    position: 'center',
+                    title: 'Produit ajouté au panier !',
+                    imageUrl: 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                setTimeout(function(){
+                    location.reload();
+                }, 1500);
             }
             localStorage.setItem('cart', JSON.stringify(cartUp2));
 
@@ -163,6 +180,5 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     divProducts.appendChild(priceProduct);
     divProducts.appendChild(buttonCart);
 });
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.showSlides = showSlides;
+window.aboutUs = aboutUs;
+window.contactUs = contactUs;
