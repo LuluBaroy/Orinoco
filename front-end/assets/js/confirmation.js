@@ -44,7 +44,6 @@ for(let i in orderId){
         orderIdText.appendChild(newRef);
 }
 
-
 let thanks = document.createElement('p');
 thanks.innerHTML = "Merci <span>" + contact.firstName + " " + contact.lastName + "</span> pour votre commande chez Orinoco !";
 

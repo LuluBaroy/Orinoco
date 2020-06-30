@@ -22,10 +22,10 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     </head>
-    <body>
+    <body id="body-homepage">
         <header class="header displayFlex">
             <div id="return"></div>
-            <a href="index.html" aria-label="Retour page Accueil" tabindex="0" class="header-a displayFlex"><img class="logo" src="assets/img/logo.png" alt="logo Orinoco"/></a>
+            <a href="index.html" aria-label="Retour page Accueil" class="header-a displayFlex" tabindex="0"><img class="logo" src="assets/img/logo.png" alt="logo Orinoco"/></a>
             <a id="btn-cart" href="pages/cart.html" class="header-a displayFlex"><img class="basket" src="assets/img/basket.png" alt="Image Panier"> Panier</a>
         </header>
         <main id="homepage">
@@ -38,8 +38,8 @@
             <img id="imgHomepage" src="assets/img/bg.png" alt="Fond écran page d'accueil" class="displayFlex"/>
         </main>
         <footer class="footer displayFlex">
-            <a onclick="aboutUs()" class="footer-a">A propos de nous</a>
-            <a onclick="contactUs()" class="footer-a">Contactez-nous</a>
+            <a onclick="aboutUs()" class="footer-a" tabindex="0">A propos de nous</a>
+            <a onclick="contactUs()" class="footer-a" tabindex="0">Contactez-nous</a>
         </footer>
         <script src="dist/index.bundle.js"></script>
     </body>

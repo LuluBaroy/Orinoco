@@ -55,7 +55,7 @@
   border: 0.2em solid black;
   background: linear-gradient(to right, #B892EB 0, #B892EB 100%) no-repeat left bottom / 0 100%;
   transition: 250ms ease-in-out;
-  &:hover{
+  &:hover, &:focus{
     cursor: pointer;
     color: white;
     text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black;
@@ -69,8 +69,20 @@
   font-family: 'belligerent';
   font-size: 1.2em;
 }
+*, a, button{
+  outline: none;
+}
 body{
   background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+#body-homepage{
+  height: 100vh;
+}
+.loader{
+  display: flex;
+  margin: auto;
 }
 .header{
   background-color: #F3E9F1;
@@ -85,7 +97,7 @@ body{
       max-width: 1.3em;
       margin: auto;
     }
-    &:hover{
+    &:hover, &:focus{
       animation: 1.2s shake linear;
     }
   }
@@ -106,12 +118,17 @@ body{
       display: none;
     }
   }
+  .header-a:not #btn-cart{
+    &:focus{
+      box-shadow: 0 0 12px black;
+    }
+  }
 }
 .footer{
   background-color: #F3E9F1;
   flex-direction: column;
-  height: 6em;
   width: 100%;
+  flex-grow: 1;
   .footer-a{
     color: black;
     text-decoration: none;
@@ -120,7 +137,7 @@ body{
     margin: auto;
     align-items: center;
     padding: 0.2em;
-    &:hover{
+    &:hover, &:focus{
       cursor: pointer;
       border-radius: 0.7em;
       box-shadow: 0 0 0.9em black;
@@ -128,22 +145,22 @@ body{
   }
 }
 #homepage{
-  margin: 0.8em;
+  margin: 0.8em 0.8em 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   .h1-homepage{
     font-size: 1.4em;
     @extend %title;
   }
-  span{
-
-  }
   #imgHomepage{
     max-width: 100%;
-    object-fit: scale-down;
-    float: right;
+    align-self: flex-end;
   }
   #btns{
     flex-direction: column;
     margin: 1em auto;
+    flex-grow: 1;
     .btn-homepage {
       margin: 0.45em;
       border: 0.1em solid black;
@@ -874,7 +891,6 @@ body{
     }
     #btns {
       width: 80%;
-      margin-top: 2em;
     }
     section{
       margin: 2em 4em;

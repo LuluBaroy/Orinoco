@@ -19,17 +19,20 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
     //Products suggestions for users
     let productsSuggested = document.createElement('p');
     productsSuggested.textContent = "Ces produits pourraient vous plaire :";
-    let divProductsSuggested = document.createElement('div');
-    divProductsSuggested.id = 'productsSuggestedContainer';
 
     //Placing all elements in the cart page
     sectionCart.appendChild(textEmptyCart);
     sectionCart.appendChild(findProducts);
     sectionCart.appendChild(buttonReturnHomepage);
     sectionCart.appendChild(productsSuggested);
-    sectionCart.appendChild(divProductsSuggested);
+
+    let imgLoader = document.createElement('img');
+    imgLoader.classList.add("loader");
+    imgLoader.src = "../assets/img/loader.svg" ;
+    productsSuggested.appendChild(imgLoader);
     let divSuggestion = document.createElement('div');
     divSuggestion.id = "divSuggestion";
+
 
     function suggestionsProducts() {
         //Getting a product type randomly
@@ -44,6 +47,9 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
         paramChose.forEach((item, index) => {
             //Then, with the type randomly got, getting a product of that type
             connection("http://localhost:3000/api/" + item).then(function (response) {
+               if(productsSuggested.appendChild(imgLoader)){
+                   productsSuggested.removeChild(imgLoader);
+               }
                 function getProduct(){
                     let randomProducts=response[Math.floor(Math.random() * response.length)];
                     if (selectedProduct.length === 0 || selectedProduct.findIndex(i => i._id === randomProducts._id) === -1) {

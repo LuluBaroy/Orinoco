@@ -73,6 +73,7 @@ if (productsAddedToCart !== null) {
         buttonLess.textContent = "-";
         buttonLess.addEventListener('click', function (event) {
             if (productsAddedToCart[i].quantity === 1) { //if quantity left of the product equals one and we want to reduce it
+                //Popup for product deletion
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -90,6 +91,7 @@ if (productsAddedToCart !== null) {
                     cancelButtonColor: '#009D9D'
                 }).then((result) => {
                     if (result.value) {
+                        //Popup for confirmed deletion
                         Swal.fire({
                             position: 'center',
                             imageUrl: 'https://media1.tenor.com/images/c7eb5bbae52025b4d2ad9b8224022bd4/tenor.gif?itemid=11667710',
@@ -111,6 +113,7 @@ if (productsAddedToCart !== null) {
                         /* Read more about handling dismissals below */
                         result.dismiss === Swal.DismissReason.cancel
                     ) {
+                        //Popup for cancelled deletion
                         Swal.fire({
                             position: 'center',
                             imageUrl: 'https://media1.tenor.com/images/45e529c116a1758fd09bdb27e2172eca/tenor.gif?itemid=11674749',

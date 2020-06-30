@@ -2,7 +2,6 @@ import {connection} from "./main";
 import {modifyingHeader} from "./main";
 import {aboutUs} from "./main";
 import {contactUs} from "./main";
-import Swal from "sweetalert2";
 
 modifyingHeader();
 let isClicked = false;
@@ -11,17 +10,24 @@ let currentParam = 'teddies';
 function getItems(param) {
 
     //Creating the list container
+    document.getElementById('body-homepage').style.height = 'auto';
     document.getElementById('imgHomepage').style.display = 'none';
+    let imgLoader = document.createElement('img');
+    imgLoader.classList.add("loader");
+    imgLoader.src = "assets/img/loader.svg" ;
     let sectionProducts = document.createElement('section');
     sectionProducts.id = 'container-list';
+    document.getElementById('homepage').appendChild(sectionProducts);
+    sectionProducts.appendChild(imgLoader);
+
     //Checking if a button has alrealdy been clicked and which product type is called
     if (isClicked === false || currentParam !== param) {
         if (isClicked === true) { //If a button has already been clicked and the product type is different,
             document.getElementById('container-list').remove(); //Deleting the previous products list
         }
-        document.getElementById('homepage').appendChild(sectionProducts);
         connection("http://localhost:3000/api/" + param).then(function (response) {
 
+            sectionProducts.removeChild(imgLoader);
             //For each products, we create HTML structure
             response.forEach(function (response) {
                 let articleProducts = document.createElement('article');

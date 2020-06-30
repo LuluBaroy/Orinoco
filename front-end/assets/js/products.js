@@ -4,16 +4,33 @@ import {priceCalculation} from "./main";
 import {modifyingHeader} from "./main";
 import {aboutUs} from "./main";
 import {contactUs} from "./main";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 //calling the modifyingHeader function
 modifyingHeader();
+function myModal(message, image){
+    Swal.fire({
+        position: 'center',
+        title: message,
+        imageUrl: image,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
 
 let titlePage = document.createElement('h1');
 titlePage.textContent = "Produit Choisi";
 
+let imgLoader = document.createElement('img');
+imgLoader.classList.add("loader");
+imgLoader.src = "../assets/img/loader.svg" ;
+
+document.getElementById('productPage').appendChild(titlePage);
+document.getElementById('productPage').appendChild(imgLoader);
+
 //Calling of the promise
 connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get("id")).then(function (response) {
+    document.getElementById('productPage').removeChild(imgLoader);
     let sectionProducts = document.createElement('section');
     let imageProducts = document.createElement('img');
     imageProducts.src = response.imageUrl;
@@ -115,16 +132,9 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
             let firstLine = new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price);
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
-            Swal.fire({
-                position: 'center',
-                title: 'Produit ajouté au panier !',
-                imageUrl: 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206',
-                showConfirmButton: false,
-                timer: 2000
-            })
-            setTimeout(function(){
-                location.reload();
-            }, 2000);
+            //Popup for product added
+            myModal('Produit ajouté au panier !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
+            setTimeout(function(){location.reload();}, 2000);
         } else {
             //Else, verifying if the product has already been added
             let cartUp2 = JSON.parse(localStorage.getItem('cart'));
@@ -134,39 +144,23 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
                 if (cartUp2[k].id === response._id) {
                     productAlreadyAdded = true;
                     cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
-                    Swal.fire({
-                        position: 'center',
-                        title: 'Quantité modifiée !',
-                        imageUrl: 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    setTimeout(function(){
-                        location.reload();
-                    }, 2000);
+                    //Popup for modified quantity
+                    myModal('Quantité modifiée !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
+                    setTimeout(function(){location.reload();}, 2000);
                 }
             }
             //If the product isn't already added, we add it
             if (!productAlreadyAdded) {
                 cartUp2.push(new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
-                Swal.fire({
-                    position: 'center',
-                    title: 'Produit ajouté au panier !',
-                    imageUrl: 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                setTimeout(function(){
-                    location.reload();
-                }, 1500);
+                //Popup for new product added
+                myModal('Produit ajouté au panier !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
+                setTimeout(function(){location.reload();}, 2000);
             }
             localStorage.setItem('cart', JSON.stringify(cartUp2));
-
         }
     });
 
     //Placing all elements in the product page
-    document.getElementById('productPage').appendChild(titlePage);
     document.getElementById('productPage').appendChild(sectionProducts);
     sectionProducts.appendChild(imageProducts);
     sectionProducts.appendChild(divProducts);

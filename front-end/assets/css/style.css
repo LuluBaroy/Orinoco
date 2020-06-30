@@ -58,7 +58,7 @@
   background: linear-gradient(to right, #B892EB 0, #B892EB 100%) no-repeat left bottom/0 100%;
   transition: 250ms ease-in-out;
 }
-#cart form .formCss #btn-submit:hover, #cart #emptyCartSection button:hover, #productPage section div button:hover, #homepage #btns .btn-homepage:hover {
+#cart form .formCss #btn-submit:hover, #cart #emptyCartSection button:hover, #productPage section div button:hover, #homepage #btns .btn-homepage:hover, #cart form .formCss #btn-submit:focus, #cart #emptyCartSection button:focus, #productPage section div button:focus, #homepage #btns .btn-homepage:focus {
   cursor: pointer;
   color: white;
   text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black;
@@ -74,8 +74,23 @@
   font-size: 1.2em;
 }
 
+a, button {
+  outline: none;
+}
+
 body {
   background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+#body-homepage {
+  height: 100vh;
+}
+
+.loader {
+  display: flex;
+  margin: auto;
 }
 
 .header {
@@ -93,7 +108,7 @@ body {
   max-width: 1.3em;
   margin: auto;
 }
-.header #btn-cart:hover {
+.header #btn-cart:hover, .header #btn-cart:focus {
   animation: 1.2s shake linear;
 }
 .header .header-a {
@@ -113,12 +128,15 @@ body {
 .header .header-a .return {
   display: none;
 }
+.header .header-a:not #btn-cart:focus {
+  box-shadow: 0 0 12px black;
+}
 
 .footer {
   background-color: #F3E9F1;
   flex-direction: column;
-  height: 6em;
   width: 100%;
+  flex-grow: 1;
 }
 .footer .footer-a {
   color: black;
@@ -129,26 +147,29 @@ body {
   align-items: center;
   padding: 0.2em;
 }
-.footer .footer-a:hover {
+.footer .footer-a:hover, .footer .footer-a:focus {
   cursor: pointer;
   border-radius: 0.7em;
   box-shadow: 0 0 0.9em black;
 }
 
 #homepage {
-  margin: 0.8em;
+  margin: 0.8em 0.8em 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 #homepage .h1-homepage {
   font-size: 1.4em;
 }
 #homepage #imgHomepage {
   max-width: 100%;
-  object-fit: scale-down;
-  float: right;
+  align-self: flex-end;
 }
 #homepage #btns {
   flex-direction: column;
   margin: 1em auto;
+  flex-grow: 1;
 }
 #homepage #btns .btn-homepage {
   margin: 0.45em;
@@ -825,7 +846,6 @@ body {
   }
   #homepage #btns {
     width: 80%;
-    margin-top: 2em;
   }
   #homepage section {
     margin: 2em 4em;

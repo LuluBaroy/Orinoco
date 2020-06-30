@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+
 //Getting products' information with Promise
 function connection(url) {
     return new Promise(function (resolve, reject) {
@@ -44,7 +45,7 @@ function priceCalculation(price, priceText, text) {
     return euros;
 }
 
-// Lightbox functions
+// Popup functions
 function aboutUs() {
     Swal.fire({
         imageUrl: '../assets/img/aboutUs.jpg',
@@ -57,6 +58,7 @@ function contactUs() {
         backdrop: `rgba(0,0,0,0.85)`
     })
 }
+
 
 //Exports
 export {aboutUs};
