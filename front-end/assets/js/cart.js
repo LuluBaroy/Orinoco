@@ -1,4 +1,5 @@
 import {contactUs, aboutUs, modifyingHeader, myModal, priceCalculation} from "./main";
+import Swal from "sweetalert2";
 
 modifyingHeader();
 //Getting products stored in localStorage
