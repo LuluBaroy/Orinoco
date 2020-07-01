@@ -1,17 +1,7 @@
-import {connection, contactUs} from "./main";
-import {priceCalculation} from "./main";
-import {aboutUs} from "./main";
-import Swal from "sweetalert2";
+import {myModal, aboutUs, priceCalculation, connection, contactUs} from "./main";
 
-function thanksAlert(){
-        Swal.fire({
-                position: 'center',
-                title: 'Merci pour votre commande !',
-                imageUrl: 'https://media1.tenor.com/images/3264bcc47ee47ebbdd441f9f1d203542/tenor.gif?itemid=12498539',
-                showConfirmButton: false,
-                timer: 2200
-        })
-}
+myModal(2000, 'Merci pour votre commande !', 'https://media1.tenor.com/images/3264bcc47ee47ebbdd441f9f1d203542/tenor.gif?itemid=12498539')
+
 //Getting all order's information
 let confirmation = JSON.parse(localStorage.getItem('confirm'));
 let contact = JSON.parse(localStorage.getItem('contact'));
@@ -124,3 +114,4 @@ for (let i in confirmation) {
 window.aboutUs = aboutUs;
 window.contactUs = contactUs;
 window.thanksAlert = thanksAlert;
+localStorage.clear();

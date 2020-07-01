@@ -24,9 +24,17 @@
 </head>
 <body onload="thanksAlert()">
     <header class="header displayFlex">
-        <div id="return"><a href="../index.html" class="header-a displayFlex"><img class="return" src="../assets/img/return.png" alt="image retour page accueil"/></a></div>
-        <a href="../index.html" aria-label="Retour page Accueil" tabindex="0" class="header-a displayFlex"><img class="logo" src="../assets/img/logo.png" alt="logo Orinoco"/></a>
-        <a id="btn-cart" href="cart.html" class="header-a displayFlex"><img class="basket" src="../assets/img/basket.png" alt="Image Panier"> Panier</a>
+        <div id="return">
+            <a href="javascript:history.go(-1)" class="header-a displayFlex" aria-label="Bouton page précédente">
+                <img class="return" src="../assets/img/return.png" alt="image retour page accueil"/>
+            </a>
+        </div>
+        <a id="logo" href="../index.html" aria-label="Retour page Accueil" tabindex="0" class="header-a displayFlex">
+            <img class="logo" src="../assets/img/logo.png" alt="logo Orinoco"/>
+        </a>
+        <a id="btn-cart" href="cart.html" class="header-a displayFlex" aria-label="Bouton Accès page panier">
+            <img class="basket" src="../assets/img/basket.png" alt="Image Panier"> Panier
+        </a>
     </header>
     <main id="confirmation">
     </main>

@@ -1,8 +1,4 @@
-import{priceCalculation} from "./main";
-import {modifyingHeader} from "./main";
-import {aboutUs} from "./main";
-import {contactUs} from "./main";
-import Swal from 'sweetalert2'
+import {contactUs, aboutUs, modifyingHeader, myModal, priceCalculation} from "./main";
 
 modifyingHeader();
 //Getting products stored in localStorage
@@ -92,14 +88,7 @@ if (productsAddedToCart !== null) {
                 }).then((result) => {
                     if (result.value) {
                         //Popup for confirmed deletion
-                        Swal.fire({
-                            position: 'center',
-                            imageUrl: 'https://media1.tenor.com/images/c7eb5bbae52025b4d2ad9b8224022bd4/tenor.gif?itemid=11667710',
-                            title: 'Produit supprimé !',
-                            titleText: `${productsAddedToCart[i].name} n'est plus qu'un lointain souvenir ...`,
-                            showConfirmButton: false,
-                            timer: 2200
-                        })
+                        myModal(2200, `${productsAddedToCart[i].name} n'est plus qu'un lointain souvenir ...`, 'https://media1.tenor.com/images/c7eb5bbae52025b4d2ad9b8224022bd4/tenor.gif?itemid=11667710')
                         setTimeout(function () {
                             productsAddedToCart.splice([i], 1);  //deleting that product of local storage
                             localStorage.setItem('cart', JSON.stringify(productsAddedToCart)); //updating the localStorage
@@ -109,19 +98,9 @@ if (productsAddedToCart !== null) {
                                 location.reload(); //Reloading cart page
                             }
                         }, 2200)
-                    } else if (
-                        /* Read more about handling dismissals below */
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
                         //Popup for cancelled deletion
-                        Swal.fire({
-                            position: 'center',
-                            imageUrl: 'https://media1.tenor.com/images/45e529c116a1758fd09bdb27e2172eca/tenor.gif?itemid=11674749',
-                            title: 'Annulé !',
-                            titleText: `Ouf ! Vous avez sauvez ${productsAddedToCart[i].name} !`,
-                            showConfirmButton: false,
-                            timer: 2200
-                        })
+                        myModal(2200, `Ouf ! Vous avez sauvez ${productsAddedToCart[i].name} !`, 'https://media1.tenor.com/images/45e529c116a1758fd09bdb27e2172eca/tenor.gif?itemid=11674749')
                     }
                 })
             } else { //Else, reducing product's quantity, updating localStorage and reloading cart's page

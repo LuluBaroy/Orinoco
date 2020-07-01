@@ -34,6 +34,23 @@
     opacity: 1;
   }
 }
+@keyframes orderMoving {
+  10%, 90% {
+    transform: translateX(3px);
+  }
+
+  20%, 80% {
+    transform: translateX(-2px);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(3px);
+  }
+
+  40%, 60% {
+    transform: translateX(-2px);
+  }
+}
 %title{
   border: 0.2em solid #F3E9F1;
   box-shadow: 0 0 0.4em black;
@@ -117,10 +134,8 @@ body{
     .return{
       display: none;
     }
-  }
-  .header-a:not #btn-cart{
     &:focus{
-      box-shadow: 0 0 12px black;
+      animation: shake 1.5s linear;
     }
   }
 }
@@ -626,6 +641,7 @@ body{
           max-width: 30%;
           object-fit: scale-down;
           margin-left: 5%;
+          animation: orderMoving 2s infinite linear;
         }
       }
       form{

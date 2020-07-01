@@ -1,5 +1,16 @@
 import Swal from "sweetalert2";
 
+//Function for popup message
+function myModal(timer, message, image){
+    Swal.fire({
+        position: 'center',
+        title: message,
+        imageUrl: image,
+        showConfirmButton: false,
+        timer: timer
+    })
+}
+
 //Getting products' information with Promise
 function connection(url) {
     return new Promise(function (resolve, reject) {
@@ -9,7 +20,7 @@ function connection(url) {
                 if (request.status === 200) {
                     resolve(JSON.parse(request.responseText));
                 } else {
-                    reject();
+                    reject(myModal(4000, 'Une erreur est survenue, merci de réessayer ultérieurement', 'https://thumbs.gfycat.com/DiligentWastefulGavial-small.gif'), setTimeout(function(){location.reload()}, 3000));
                 }
             }
         };
@@ -21,7 +32,6 @@ function connection(url) {
 //Getting Product ID
 let queryStr = window.location.search;
 let urlStr = new URLSearchParams(queryStr);
-
 
 //Modifying Header with number of products added in cart
 function modifyingHeader(){
@@ -40,8 +50,8 @@ function modifyingHeader(){
 
 //Function to convert price in euro
 function priceCalculation(price, priceText, text) {
-    let euros = price.toString().slice(0, price.toString().length - 2);
-    priceText.textContent = text + new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(euros);
+    let euros = price/100;
+    priceText.textContent = text + new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(euros);
     return euros;
 }
 
@@ -59,11 +69,5 @@ function contactUs() {
     })
 }
 
-
 //Exports
-export {aboutUs};
-export {contactUs};
-export {connection};
-export{urlStr};
-export{priceCalculation};
-export{modifyingHeader};
+export {aboutUs, contactUs, connection, urlStr, priceCalculation, modifyingHeader, myModal};

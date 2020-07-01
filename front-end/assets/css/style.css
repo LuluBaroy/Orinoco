@@ -35,6 +35,20 @@
     opacity: 1;
   }
 }
+@keyframes orderMoving {
+  10%, 90% {
+    transform: translateX(3px);
+  }
+  20%, 80% {
+    transform: translateX(-2px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(3px);
+  }
+  40%, 60% {
+    transform: translateX(-2px);
+  }
+}
 #confirmation h1, #cart h1, #productPage h1, #homepage .h1-homepage {
   border: 0.2em solid #F3E9F1;
   box-shadow: 0 0 0.4em black;
@@ -74,7 +88,7 @@
   font-size: 1.2em;
 }
 
-a, button {
+*, a, button {
   outline: none;
 }
 
@@ -128,8 +142,8 @@ body {
 .header .header-a .return {
   display: none;
 }
-.header .header-a:not #btn-cart:focus {
-  box-shadow: 0 0 12px black;
+.header .header-a:focus {
+  animation: shake 1.5s linear;
 }
 
 .footer {
@@ -604,6 +618,7 @@ body {
     max-width: 30%;
     object-fit: scale-down;
     margin-left: 5%;
+    animation: orderMoving 2s infinite linear;
   }
   #cart #sectionForm form {
     display: flex;
