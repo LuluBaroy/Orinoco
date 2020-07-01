@@ -1,22 +1,7 @@
-import {connection} from "./main";
-import{urlStr} from "./main";
-import {priceCalculation} from "./main";
-import {modifyingHeader} from "./main";
-import {aboutUs} from "./main";
-import {contactUs} from "./main";
-import Swal from "sweetalert2";
+import {connection, urlStr, priceCalculation, modifyingHeader, aboutUs, contactUs, myModal} from "./main";
 
 //calling the modifyingHeader function
 modifyingHeader();
-function myModal(message, image){
-    Swal.fire({
-        position: 'center',
-        title: message,
-        imageUrl: image,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
 
 let titlePage = document.createElement('h1');
 titlePage.textContent = "Produit Choisi";
@@ -43,6 +28,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
     refProduct.textContent = "Ref: " + response._id;
     let descriptionProducts = document.createElement('p');
     descriptionProducts.textContent = response.description;
+
     let labelSelect = document.createElement('label');
     labelSelect.for = "option-product";
     labelSelect.textContent = "Options : ";
@@ -133,7 +119,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
             cart.push(firstLine);
             localStorage.setItem('cart', JSON.stringify(cart));
             //Popup for product added
-            myModal('Produit ajouté au panier !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
+            myModal(2000, 'Produit ajouté au panier !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
             setTimeout(function(){location.reload();}, 2000);
         } else {
             //Else, verifying if the product has already been added
@@ -145,7 +131,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
                     productAlreadyAdded = true;
                     cartUp2[k].quantity = parseInt(cartUp2[k].quantity) + parseInt(quantityChoose.value);
                     //Popup for modified quantity
-                    myModal('Quantité modifiée !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
+                    myModal(2000, 'Quantité modifiée !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
                     setTimeout(function(){location.reload();}, 2000);
                 }
             }
@@ -153,7 +139,7 @@ connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get(
             if (!productAlreadyAdded) {
                 cartUp2.push(new Line(urlStr.get('type'), response.imageUrl, response.name, response._id, parseInt(quantityChoose.value), response.price));
                 //Popup for new product added
-                myModal('Produit ajouté au panier !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
+                myModal(2000, 'Produit ajouté au panier !', 'https://media1.tenor.com/images/119b4dcf11954616395f19bc510027cf/tenor.gif?itemid=12388206');
                 setTimeout(function(){location.reload();}, 2000);
             }
             localStorage.setItem('cart', JSON.stringify(cartUp2));
