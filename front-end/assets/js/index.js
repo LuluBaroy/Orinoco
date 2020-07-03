@@ -1,7 +1,4 @@
-import {connection} from "./main";
-import {modifyingHeader} from "./main";
-import {aboutUs} from "./main";
-import {contactUs} from "./main";
+import {connection, modifyingHeader, aboutUs, contactUs} from "./main";
 
 modifyingHeader();
 let isClicked = false;
