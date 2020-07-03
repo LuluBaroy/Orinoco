@@ -11,7 +11,7 @@ class OrderConfirm {
 }
 
 //Promise for POST request
-const sending = function (url, order) {
+function sending(url, order) {
     return new Promise(function (resolve, reject) {
         let request = new XMLHttpRequest();
         request.onreadystatechange = function (response) {

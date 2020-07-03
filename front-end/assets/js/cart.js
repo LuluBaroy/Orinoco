@@ -147,5 +147,4 @@ window.aboutUs = aboutUs;
 window.contactUs = contactUs;
 require("./form");
 require("./suggestions");
-export {productsAddedToCart};
-export{sectionCart};
+export {productsAddedToCart, sectionCart};

@@ -1,5 +1,4 @@
-import {productsAddedToCart} from "./cart";
-import {sectionCart} from "./cart";
+import {productsAddedToCart, sectionCart} from "./cart";
 import {connection} from "./main";
 
 if (productsAddedToCart === null) { //If the cart is empty, creating a button to go back to homepage and a product suggestion
