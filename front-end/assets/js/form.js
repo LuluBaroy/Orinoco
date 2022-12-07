@@ -139,7 +139,7 @@ if (productsAddedToCart !== null) { //If there is product(s) added in localStora
                 paramOrder.push(i);
                 localStorage.setItem('paramOrder', JSON.stringify(paramOrder));
 
-                sending("http://localhost:3000/api/" + i + "/order", new FormSent(newContact, productsOrdered[i])).then(function(){
+                sending("https://orinoco44.herokuapp.com/api/" + i + "/order", new FormSent(newContact, productsOrdered[i])).then(function(){
                     //Checking the number of order's Id we're supposed to get and then redirecting to the confirmation page
                     if(Object.keys(productsOrdered).length === orderIds.length){
                             localStorage.setItem('confirm', JSON.stringify(confirm));
