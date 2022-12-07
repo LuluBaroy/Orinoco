@@ -45,7 +45,7 @@ if (productsAddedToCart === null) { //If the cart is empty, creating a button to
 
         paramChose.forEach((item, index) => {
             //Then, with the type randomly got, getting a product of that type
-            connection("https://orinoco44.herokuapp.com/" + item).then(function (response) {
+            connection("https://orinoco44.herokuapp.com/api/" + item).then(function (response) {
                if(productsSuggested.appendChild(imgLoader)){
                    productsSuggested.removeChild(imgLoader);
                }
