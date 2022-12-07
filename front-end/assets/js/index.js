@@ -22,7 +22,7 @@ function getItems(param) {
         if (isClicked === true) { //If a button has already been clicked and the product type is different,
             document.getElementById('container-list').remove(); //Deleting the previous products list
         }
-        connection("https://orinoco44.herokuapp.com/" + param).then(function (response) {
+        connection("https://orinoco44.herokuapp.com/api/" + param).then(function (response) {
 
             sectionProducts.removeChild(imgLoader);
             //For each products, we create HTML structure
