@@ -73,7 +73,7 @@ priceOrder.id = 'priceOrder';
 
 //Getting products' info with their types and id, then creating their visualisation
 for (let i in confirmation) {
-        connection('http://localhost:3000/api/' + confirmation[i].param + "/" + confirmation[i].id).then(function (response) {
+        connection('https://orinoco44.herokuapp.com/' + confirmation[i].param + "/" + confirmation[i].id).then(function (response) {
                 let articleConfirm = document.createElement('article');
                 let idConfirm = document.createElement('p');
                 idConfirm.textContent = confirmation[i].id;
