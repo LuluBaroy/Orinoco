@@ -14,7 +14,7 @@ document.getElementById('productPage').appendChild(titlePage);
 document.getElementById('productPage').appendChild(imgLoader);
 
 //Calling of the promise
-connection('http://localhost:3000/api/' + urlStr.get('type') + "/" + urlStr.get("id")).then(function (response) {
+connection('https://orinoco44.herokuapp.com/' + urlStr.get('type') + "/" + urlStr.get("id")).then(function (response) {
     document.getElementById('productPage').removeChild(imgLoader);
     let sectionProducts = document.createElement('section');
     let imageProducts = document.createElement('img');
